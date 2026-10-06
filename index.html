@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>مجلس وسط الرياض الرقمي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@500;600;700&display=swap">
+<style>
+/* Layout: app shell — right-hand sidebar nav (RTL), content canvas with cards; collapses to a top chip rail on phones */
+:root{
+  --bg:#F5F0E8; --surface:#FFFDF9; --soft:#EFE8DC; --line:#E2D7C5;
+  --ink:#1F1D19; --muted:#6B6458; --heading:#1F1D19; --brand-bg:#1E211D; --on-brand:#F5F0E8; --mint:#E6C35C;
+  --accent:#5F7442; --accent-soft:#E7EBDB; --on-accent:#FFFFFF; --terra:#A4472F; --navy:#304884;
+  --warn:#9A6A12; --warn-soft:#F7ECD3; --danger:#A4472F; --danger-soft:#F6E1DA; --info:#304884; --info-soft:#E2E7F3;
+  --map-bg:#EFE7D8; --road:#FBF8F2; --road-edge:#D9CBB2; --block:#E3D7C2; --park:#D2DBB6; --map-text:#5B5243;
+  --shadow:0 1px 2px rgba(40,30,10,.06),0 4px 14px rgba(40,30,10,.05);
+  --f-display:"Noto Kufi Arabic","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --f-body:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#15140F; --surface:#1E1C17; --soft:#27241D; --line:#383328;
+  --ink:#EEE7DA; --muted:#A79E8C; --heading:#F3ECDD; --brand-bg:#0F0E0B; --on-brand:#F3ECDD; --mint:#E6C35C;
+  --accent:#A7BC7F; --accent-soft:#2A3121; --on-accent:#1A1F12; --terra:#D98A6F; --navy:#8EA3D8;
+  --warn:#E2B55A; --warn-soft:#3A2E14; --danger:#E38D73; --danger-soft:#3D2019; --info:#8EA3D8; --info-soft:#1D2438;
+  --map-bg:#1C1A14; --road:#2C2920; --road-edge:#3A3529; --block:#24211A; --park:#2C3420; --map-text:#B8AE99;
+  --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#15140F; --surface:#1E1C17; --soft:#27241D; --line:#383328;
+  --ink:#EEE7DA; --muted:#A79E8C; --heading:#F3ECDD; --brand-bg:#0F0E0B; --on-brand:#F3ECDD; --mint:#E6C35C;
+  --accent:#A7BC7F; --accent-soft:#2A3121; --on-accent:#1A1F12; --terra:#D98A6F; --navy:#8EA3D8;
+  --warn:#E2B55A; --warn-soft:#3A2E14; --danger:#E38D73; --danger-soft:#3D2019; --info:#8EA3D8; --info-soft:#1D2438;
+  --map-bg:#1C1A14; --road:#2C2920; --road-edge:#3A3529; --block:#24211A; --park:#2C3420; --map-text:#B8AE99;
+  --shadow:0 1px 2px rgba(0,0,0,.3); color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65;direction:rtl}
+h1,h2,h3,h4{font-family:var(--f-display);color:var(--heading);margin:0;line-height:1.3;text-wrap:balance}
+h1{font-size:1.7rem} h2{font-size:1.3rem} h3{font-size:1.05rem} h4{font-size:.95rem}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+/* Top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--brand-bg);color:var(--on-brand);display:flex;align-items:center;gap:12px;padding:10px 20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--mint);color:#1E211D;display:grid;place-items:center;font-family:var(--f-display);font-weight:700}
+.brand b{font-family:var(--f-display);font-size:1.05rem;display:block;line-height:1.2}
+.brand small{opacity:.75;font-size:.75rem}
+.poc{white-space:nowrap;border:1px solid color-mix(in srgb,var(--mint) 60%,transparent);color:var(--mint);font-size:.72rem;padding:2px 8px;border-radius:99px;letter-spacing:.02em}
+.top-actions{margin-inline-start:auto;display:flex;align-items:center;gap:8px}
+.seg{display:inline-flex;background:rgba(255,255,255,.1);border-radius:99px;padding:3px}
+.seg button{border:0;background:transparent;color:inherit;padding:4px 12px;border-radius:99px;font-size:.82rem}
+.seg button.on{background:var(--mint);color:#1E211D;font-weight:600}
+.icon-btn{position:relative;border:0;background:rgba(255,255,255,.1);color:inherit;width:36px;height:36px;border-radius:10px;display:grid;place-items:center}
+.icon-btn .dot{position:absolute;top:5px;left:6px;min-width:16px;height:16px;border-radius:99px;background:var(--mint);color:#1E211D;font-size:.65rem;font-weight:700;display:grid;place-items:center;padding:0 3px}
+
+/* Shell */
+.shell{display:grid;grid-template-columns:250px minmax(0,1fr);min-height:calc(100% - 56px)}
+.side{background:var(--surface);border-inline-start:1px solid var(--line);padding:14px 10px;position:sticky;top:56px;align-self:start;height:calc(100vh - 56px);overflow:auto}
+.side h5{font-size:.72rem;color:var(--muted);margin:14px 10px 6px;font-weight:600;letter-spacing:.03em}
+.nav a{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;color:var(--ink);text-decoration:none;font-size:.9rem}
+.nav a:hover{background:var(--soft)}
+.nav a.on{background:var(--accent-soft);color:var(--heading);font-weight:600}
+.nav a svg{width:18px;height:18px;flex:none;color:var(--accent)}
+main{padding:22px 24px 60px;min-width:0}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.kicker{color:var(--accent);font-size:.8rem;font-weight:600;letter-spacing:.02em}
+.lede{color:var(--muted);margin-top:4px;max-width:70ch}
+
+/* Primitives */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow);min-width:0}
+.card h3{margin-bottom:8px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stack{display:flex;flex-direction:column;gap:10px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.between{justify-content:space-between}
+.muted{color:var(--muted)} .small{font-size:.82rem}
+.btn{border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);padding:7px 14px;border-radius:9px;font-weight:600;font-size:.86rem;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.quiet{background:var(--soft);border-color:var(--line);color:var(--ink);font-weight:500}
+.btn.sm{padding:4px 10px;font-size:.8rem}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;padding:2px 9px;border-radius:99px;background:var(--soft);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.chip.ok{background:var(--accent-soft);color:var(--accent);border-color:transparent}
+.chip.warn{background:var(--warn-soft);color:var(--warn);border-color:transparent}
+.chip.bad{background:var(--danger-soft);color:var(--danger);border-color:transparent}
+.chip.info{background:var(--info-soft);color:var(--info);border-color:transparent}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:14px;overflow-x:auto}
+.tabs button{border:0;background:none;padding:8px 12px;border-bottom:2px solid transparent;color:var(--muted);white-space:nowrap}
+.tabs button.on{color:var(--heading);border-color:var(--accent);font-weight:600}
+label.f{display:flex;flex-direction:column;gap:4px;font-size:.84rem;color:var(--muted)}
+input[type=text],input[type=number],select,textarea{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:7px 10px;color:var(--ink);width:100%}
+textarea{min-height:76px;resize:vertical}
+.list{display:flex;flex-direction:column}
+.list>.li{padding:10px 0;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.list>.li:last-child{border-bottom:0}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.stat b{font-family:var(--f-display);font-size:1.6rem;color:var(--heading);display:block;line-height:1.2}
+.stat span{color:var(--muted);font-size:.8rem}
+.ico{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;flex:none}
+.ico svg{width:20px;height:20px}
+.note{background:var(--soft);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;font-size:.82rem;color:var(--muted)}
+
+/* Home */
+.hero{background:var(--brand-bg);color:var(--on-brand);border-radius:16px;padding:24px;display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px;position:relative;overflow:hidden}
+.hero h1{color:var(--on-brand);font-size:1.9rem}
+.hero p{opacity:.85;margin-top:6px}
+.hero .mint{color:var(--mint)}
+.hero-list{display:flex;flex-direction:column;gap:8px}
+.hero-ev{background:rgba(255,255,255,.08);border-radius:10px;padding:9px 12px;display:flex;justify-content:space-between;gap:8px;align-items:center;border:0;color:inherit;text-align:start;width:100%}
+.hero-ev small{opacity:.75}
+.mod{display:flex;flex-direction:column;gap:10px;text-align:start;cursor:pointer;transition:border-color .15s}
+.mod:hover{border-color:var(--accent)}
+.mod ul{margin:0;padding-inline-start:18px;color:var(--muted);font-size:.85rem}
+
+/* Events */
+.days{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.day{flex:none;width:58px;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 0;text-align:center;font-size:.75rem;color:var(--muted)}
+.day b{display:block;font-size:1.1rem;color:var(--ink);font-family:var(--f-display)}
+.day.on{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.day.on b{color:var(--on-accent)}
+.day i{display:block;width:5px;height:5px;border-radius:9px;background:var(--accent);margin:2px auto 0}
+.day.on i{background:var(--on-accent)}
+.ev{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:12px;align-items:center}
+.ev-date{background:var(--soft);border-radius:10px;text-align:center;padding:6px 0;font-size:.72rem;color:var(--muted)}
+.ev-date b{display:block;font-family:var(--f-display);font-size:1.25rem;color:var(--heading)}
+
+/* Map */
+.map-wrap{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:14px;align-items:start}
+.map-box{position:relative;background:var(--map-bg);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.map-box svg{display:block;width:100%;height:auto}
+.map-box .legend{position:absolute;bottom:8px;right:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:.7rem;color:var(--muted)}
+.map-box .balady{position:absolute;top:8px;right:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:.72rem;color:var(--heading);font-weight:600}
+.poi{cursor:pointer}
+.poi:hover circle.p{stroke-width:3}
+.layer-toggle{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:.86rem}
+.layer-toggle input{accent-color:var(--accent)}
+.sw{width:12px;height:12px;border-radius:4px;display:inline-block;flex:none}
+
+/* Steps (pipelines) */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.step{text-align:center;font-size:.78rem;color:var(--muted);position:relative}
+.step .c{width:38px;height:38px;border-radius:99px;border:2px solid var(--line);margin:0 auto 4px;display:grid;place-items:center;font-weight:700;background:var(--surface);color:var(--muted);font-family:var(--f-display)}
+.step.done .c{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.step.cur .c{border-color:var(--accent);color:var(--accent)}
+.step.done,.step.cur{color:var(--ink)}
+
+/* Table */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.78rem;background:var(--soft)}
+
+/* Twin */
+#twin3d{width:100%;height:440px;display:block;background:var(--map-bg);border-radius:var(--r);touch-action:none;cursor:grab}
+
+/* Modal + toast */
+.scrim{position:fixed;inset:0;background:rgba(0,20,14,.45);display:grid;place-items:center;z-index:60;padding:16px}
+.modal{background:var(--surface);border-radius:14px;max-width:520px;width:100%;max-height:85vh;overflow:auto;padding:20px;border:1px solid var(--line)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.x{border:0;background:var(--soft);width:30px;height:30px;border-radius:8px;color:var(--ink)}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--brand-bg);color:var(--on-brand);padding:10px 18px;border-radius:10px;z-index:70;font-size:.88rem;box-shadow:0 6px 20px rgba(0,0,0,.2);max-width:calc(100% - 32px)}
+.drop{position:absolute;top:52px;left:16px;width:320px;max-width:calc(100vw - 32px);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.15);padding:12px;z-index:40}
+
+.timeline{position:relative;padding-inline-start:22px}
+.timeline:before{content:"";position:absolute;inset-inline-start:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl{position:relative;padding-bottom:14px}
+.tl:before{content:"";position:absolute;inset-inline-start:-20px;top:6px;width:12px;height:12px;border-radius:99px;background:var(--accent);border:2px solid var(--surface)}
+.tl b{font-family:var(--f-display);color:var(--heading)}
+
+.opt{display:block;width:100%;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:9px;padding:8px 12px;margin-top:6px}
+.opt.right{border-color:var(--accent);background:var(--accent-soft)}
+.opt.wrong{border-color:var(--danger);background:var(--danger-soft)}
+
+.phase{border-inline-start:3px solid var(--line);padding-inline-start:14px}
+.phase.now{border-color:var(--accent)}
+
+.sadu{height:14px;background:var(--navy);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat-x;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat-x;opacity:.9}
+.hero{padding-bottom:38px}
+.hero:after{content:"";position:absolute;inset:auto 0 0 0;height:14px;background:var(--mint);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat-x;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat-x;opacity:.55}
+.brand-mark{background:transparent!important;color:var(--mint)!important;border:1.5px solid color-mix(in srgb,var(--mint) 50%,transparent)}
+.brand-mark svg{width:22px;height:22px}
+.user-chip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border-radius:99px;padding:3px 12px 3px 4px;font-size:.8rem;white-space:nowrap}
+.user-chip i{width:28px;height:28px;border-radius:99px;background:var(--mint);color:#1E211D;display:grid;place-items:center;font-style:normal;font-weight:700;font-family:var(--f-display)}
+.user-chip small{opacity:.7;display:block;line-height:1.1}
+body.locked .topbar,body.locked .sadu,body.locked .shell,body.locked #guide-root{display:none}
+.login{min-height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);background:var(--bg)}
+.login-art{background:var(--brand-bg);color:var(--on-brand);padding:40px 36px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;position:relative;overflow:hidden}
+.login-art:before{content:"";position:absolute;inset:0;background:var(--mint);opacity:.07;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='14'%3E%3Cpath d='M0 14 8 5 16 14ZM16 14 24 5 32 14Z'/%3E%3Cpath d='M16 0 19 3 16 6 13 3Z'/%3E%3Crect y='0' width='32' height='1.4'/%3E%3C/svg%3E") repeat;-webkit-mask-size:64px 28px;mask-size:64px 28px}
+.login-art>*{position:relative}
+.login-art h1{color:var(--on-brand);font-size:2.3rem;line-height:1.25}
+.login-art .gold{color:var(--mint)}
+.login-art .arch{width:64px;height:64px;color:var(--mint)}
+.login-pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;font-size:.85rem;opacity:.9}
+.login-pillars span{border-top:1px solid color-mix(in srgb,var(--mint) 35%,transparent);padding-top:8px}
+.login-form{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:18px;max-width:520px;width:100%;margin:0 auto}
+.login-form input{font-size:1rem;padding:10px 12px}
+.login-err{color:var(--danger);font-size:.85rem;min-height:1.3em}
+.personas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.persona-btn{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 8px;text-align:center;font-size:.78rem;color:var(--muted)}
+.persona-btn b{display:block;color:var(--ink);font-size:.86rem}
+.persona-btn.on{border-color:var(--accent);background:var(--accent-soft)}
+.disclaimer{font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:860px){.login{grid-template-columns:minmax(0,1fr)}.login-art{padding:28px 20px}.login-art h1{font-size:1.7rem}.login-form{padding:24px 16px}.personas{grid-template-columns:repeat(2,minmax(0,1fr))}.user-chip small{display:none}}
+.guide{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);width:min(780px,calc(100% - 32px));background:var(--surface);border:1px solid var(--accent);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.18);padding:12px 14px;z-index:50;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+body.guiding main{padding-bottom:190px}
+body.guiding .toast{bottom:auto;top:calc(76px + env(safe-area-inset-top,0px))}
+.hl{outline:3px solid var(--accent)!important;outline-offset:3px;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{outline-color:transparent}}
+.pick{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:6px 14px;font-size:.86rem;color:var(--ink)}
+.pick.on{background:var(--accent-soft);border-color:var(--accent);color:var(--heading);font-weight:600}
+.qr{background:#FFFFFF;padding:10px;border-radius:10px;display:inline-block;line-height:0}
+.persona{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:18px}
+.jsteps{counter-reset:s;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.jsteps li{counter-increment:s;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start}
+.jsteps li:before{content:counter(s);width:26px;height:26px;border-radius:99px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font-weight:700;font-size:.8rem;font-family:var(--f-display)}
+.search-in{font-size:1.05rem;padding:10px 12px}
+.res{display:flex;justify-content:space-between;gap:10px;width:100%;text-align:start;border:0;border-bottom:1px solid var(--line);background:none;padding:9px 4px;color:var(--ink)}
+.res:hover{background:var(--soft)}
+@media (max-width:860px){.persona{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:1100px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.map-wrap{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:860px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .side{position:sticky;top:0;height:auto;border:0;border-bottom:1px solid var(--line);padding:8px 12px;z-index:20}
+  .side h5{display:none}
+  .nav{display:flex;gap:6px;overflow-x:auto}
+  .nav a{white-space:nowrap;padding:6px 10px;font-size:.82rem;border:1px solid var(--line)}
+  .g3,.g2,.hero{grid-template-columns:minmax(0,1fr)}
+  main{padding:16px 16px 60px}
+  .topbar{padding:10px 16px;position:relative}
+  .steps{grid-template-columns:repeat(5,minmax(0,1fr));font-size:.7rem}
+  .step .c{width:30px;height:30px}
+}
+@media (max-width:480px){.poc{display:none}.g4{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.brand small{display:none}.ev{grid-template-columns:52px minmax(0,1fr)}.ev>:last-child{grid-column:1/-1}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M6 28V14a10 10 0 0 1 20 0v14" stroke-width="2.4"/><path d="M11.5 28V16.5a4.5 4.5 0 0 1 9 0V28" stroke-width="1.8"/><path d="M3 28h26" stroke-width="2.4"/><path d="M16 4.5v-2" stroke-width="1.8"/></svg></div>
+    <div><b>المجلس الرقمي</b><small>وسط الرياض · التراث والمجتمع والاستدامة</small></div>
+    <span class="poc" title="نموذج أولي للعرض أعدّته NHC Innovation">نموذج أولي · POC</span>
+  </div>
+  <div class="top-actions">
+    <span class="user-chip" id="user-chip"></span>
+    <button class="icon-btn" id="search-btn" aria-label="بحث"></button><button class="icon-btn" id="acc-btn" data-go="account" aria-label="حسابي"></button><button class="icon-btn" id="bell" aria-label="الإشعارات"></button><button class="icon-btn" id="logout" aria-label="تسجيل الخروج"></button>
+  </div>
+  <div id="bell-drop" class="drop" hidden></div>
+</header>
+<div class="sadu" aria-hidden="true"></div>
+<section class="login" id="login" hidden>
+  <div class="login-art">
+    <div class="arch"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round"><path d="M6 28V14a10 10 0 0 1 20 0v14" stroke-width="2.4"/><path d="M11.5 28V16.5a4.5 4.5 0 0 1 9 0V28" stroke-width="1.8"/><path d="M3 28h26" stroke-width="2.4"/><path d="M16 4.5v-2" stroke-width="1.8"/></svg></div>
+    <div><div class="kicker" style="color:var(--mint)">وسط الرياض</div><h1>المجلس <span class="gold">الرقمي</span></h1>
+    <p style="opacity:.85;margin-top:10px;max-width:42ch">مساحة مشتركة يسهم فيها السكان والزوار والأعمال في إحياء وسط الرياض: يشاركون أفكارهم، ويصلون إلى الخدمات لحظياً، ويدعمون القضايا المجتمعية.</p></div>
+    <div class="login-pillars"><span>ربط التراث</span><span>إشراك المجتمع</span><span>الاستدامة والأثر</span><span>التفعيل الاقتصادي</span></div>
+  </div>
+  <form class="login-form" id="login-form" autocomplete="on">
+    <div><h2>تسجيل الدخول</h2><p class="muted small" style="margin-top:4px">اختر حساباً تجريبياً أو أدخل بياناتك.</p></div>
+    <div class="personas" id="personas"></div>
+    <label class="f">اسم المستخدم<input type="text" id="lg-user" autocomplete="username" dir="ltr" required></label>
+    <label class="f">كلمة المرور<input type="password" id="lg-pass" autocomplete="current-password" dir="ltr" required></label>
+    <label class="layer-toggle small"><input type="checkbox" id="lg-show"> إظهار كلمة المرور</label>
+    <div class="login-err" id="lg-err" role="alert"></div>
+    <button class="btn" type="submit" style="justify-content:center;padding:10px">دخول</button>
+    <p class="disclaimer">نموذج أولي للعرض والتحقق من المفهوم، أعدّته NHC Innovation. ليس تطبيقاً رسمياً، وجميع البيانات تجريبية وتُحفظ في متصفحك فقط.</p>
+  </form>
+</section>
+
+<div class="shell">
+  <aside class="side"><nav class="nav" id="nav"></nav></aside>
+  <main id="main"></main>
+</div>
+<div id="modal-root"></div>
+<div id="guide-root"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+"use strict";
+/* ============ Icons ============ */
+const IC={
+ home:'<path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/>',
+ cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>',
+ map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',
+ info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+ heritage:'<path d="M3 10h18L12 4 3 10zM5 10v8M9 10v8M15 10v8M19 10v8M3 20h18"/>',
+ chat:'<path d="M4 5h16v10H9l-5 4V5z"/>',
+ leaf:'<path d="M5 19C5 10 11 5 20 4c0 9-5 15-14 15zM5 19l7-7"/>',
+ store:'<path d="M4 9l1-5h14l1 5M4 9h16v11H4zM10 20v-5h4v5"/>',
+ heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/>',
+ cubes:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3zM12 12l8-4.5M12 12v9M12 12L4 7.5"/>',
+ twin:'<path d="M4 20V9l5-3v14M9 20V6l6 3v11M15 20v-8l5-2v10M2 20h20"/>',
+ grid:'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+ shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/>',
+ bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2zM10 20h4"/>',
+ pin:'<path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+ route:'<circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h6a3 3 0 0 0 0-6h-4a3 3 0 0 1 0-6h6"/>',
+ layers:'<path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/>',
+ chart:'<path d="M4 20V10M10 20V4M16 20v-7M2 20h20"/>',
+ doc:'<path d="M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h7"/>',
+ users:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5M16 5a3 3 0 0 1 0 6M18 15c2 .5 3 2 3 5"/>',
+ logout:'<path d="M9 4H5v16h4M14 8l4 4-4 4M18 12H8"/>',
+ search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/>',
+ flag:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+ award:'<circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/>',
+ ticket:'<path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/>',
+};
+const icon=(k,s='')=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" ${s}>${IC[k]||''}</svg>`;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=n=>Number(n).toLocaleString('en-US');
+const $=s=>document.querySelector(s);
+
+/* ============ Time (Riyadh) ============ */
+function riyadhNow(){const d=new Date();return new Date(d.getTime()+(3*60+d.getTimezoneOffset())*60000)}
+const NOW=riyadhNow();
+const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const WD=['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const ymd=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const addDays=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
+const dOf=s=>{const [y,m,dd]=s.split('-').map(Number);return new Date(y,m-1,dd)};
+const dayLabel=s=>{const d=dOf(s);return `${WD[d.getDay()]} ${d.getDate()} ${MONTHS[d.getMonth()]}`};
+
+/* ============ Map geometry ============ */
+const XS=[90,250,410,570,730], YS=[70,190,310,430,530];
+const NODES=[];XS.forEach((x,c)=>YS.forEach((y,r)=>NODES.push({id:c+','+r,x,y,c,r})));
+const nodeById=id=>NODES.find(n=>n.id===id);
+function neighbors(n){return NODES.filter(m=>(m.c===n.c&&Math.abs(m.r-n.r)===1)||(m.r===n.r&&Math.abs(m.c-n.c)===1))}
+const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+function nearestNode(p){return NODES.reduce((b,n)=>dist(n,p)<dist(b,p)?n:b,NODES[0])}
+function roadPath(a,b){
+  const s=nearestNode(a), t=nearestNode(b);
+  const D={},P={},Q=new Set(NODES.map(n=>n.id));NODES.forEach(n=>D[n.id]=Infinity);D[s.id]=0;
+  while(Q.size){let u=null;Q.forEach(id=>{if(u===null||D[id]<D[u])u=id});Q.delete(u);if(u===t.id)break;
+    neighbors(nodeById(u)).forEach(v=>{const nd=D[u]+dist(nodeById(u),v);if(nd<D[v.id]){D[v.id]=nd;P[v.id]=u}})}
+  const chain=[];let cur=t.id;while(cur){chain.unshift(nodeById(cur));cur=P[cur]}
+  return [a,...chain,b];
+}
+const pathLen=pts=>pts.slice(1).reduce((s,p,i)=>s+dist(pts[i],p),0);
+const toMeters=u=>Math.round(u*2.3);
+
+/* ============ Static data (sample) ============ */
+const PLACES=[
+ {id:'masmak',name:'قصر المصمك',en:'Masmak Fortress',type:'landmark',x:485,y:375,hours:[8,21],desc:'حصن طيني تاريخي بُني نحو عام 1865، ومحطة رئيسة في قصة استعادة الرياض عام 1902.'},
+ {id:'hokm',name:'قصر الحكم',en:'Qasr Al Hokm',type:'landmark',x:335,y:360,hours:[0,24],desc:'قلب منطقة قصر الحكم التاريخية وساحاتها العامة.'},
+ {id:'mosque',name:'جامع الإمام تركي',en:'Imam Turki bin Abdullah Mosque',type:'landmark',x:285,y:395,up:true,hours:[0,24],desc:'الجامع الكبير في منطقة قصر الحكم.'},
+ {id:'adl',name:'ساحة العدل',en:'Al Adl Square',type:'landmark',x:375,y:395,hours:[0,24],desc:'ساحة مفتوحة تستضيف الأسواق والفعاليات المجتمعية.'},
+ {id:'zal',name:'سوق الزل',en:'Souq Al Zal',type:'landmark',x:475,y:480,hours:[9,22],desc:'من أقدم أسواق الرياض للسجاد والبشوت والتحف.'},
+ {id:'murabba',name:'قصر المربع',en:'Murabba Palace',type:'landmark',x:330,y:125,hours:[8,20],desc:'قصر الملك عبدالعزيز، اكتمل بناؤه نحو عام 1938.'},
+ {id:'museum',name:'المتحف الوطني',en:'National Museum',type:'landmark',x:485,y:120,hours:[9,20],desc:'ضمن مركز الملك عبدالعزيز التاريخي، افتُتح عام 1999.'},
+ {id:'garden',name:'حديقة المربع التاريخية',en:'Murabba Historical Park',type:'landmark',x:650,y:130,hours:[6,24],desc:'مساحة خضراء للعائلات والمشي.'},
+ {id:'c1',name:'مقهى الديرة',en:'Al Dirah Café',type:'cafe',x:530,y:455,hours:[7,24],desc:'قهوة سعودية ومختصة بإطلالة على السوق.'},
+ {id:'c2',name:'قهوة المربع',en:'Murabba Coffee',type:'cafe',x:440,y:165,hours:[7,23],desc:'محمصة محلية قرب المتحف.'},
+ {id:'c3',name:'مقهى الساحة',en:'Al Saha Café',type:'cafe',x:195,y:255,hours:[16,26],desc:'جلسات خارجية مسائية.'},
+ {id:'r1',name:'مطعم الزل الشعبي',en:'Al Zal Kitchen',type:'restaurant',x:430,y:500,hours:[12,24],desc:'أكلات نجدية تقليدية.'},
+ {id:'r2',name:'مخبز الحِرَف',en:'Hiraf Bakery',type:'restaurant',x:625,y:255,hours:[6,14],desc:'خبز طازج وحلويات محلية.'},
+ {id:'r3',name:'مطعم البطحاء',en:'Batha Grill',type:'restaurant',x:655,y:395,hours:[11,25],desc:'مشويات ووجبات عائلية.'},
+ {id:'p1',name:'موقف المربع',type:'parking',x:160,y:125,cap:320,free:112},
+ {id:'p2',name:'موقف سوق الزل',type:'parking',x:625,y:475,cap:260,free:18},
+ {id:'p3',name:'موقف قصر الحكم',type:'parking',x:175,y:475,cap:410,free:156},
+ {id:'m1',name:'محطة المربع',type:'metro',x:170,y:318},
+ {id:'m2',name:'محطة قصر الحكم',type:'metro',x:330,y:318},
+ {id:'m3',name:'محطة الديرة',type:'metro',x:490,y:318},
+ {id:'m4',name:'محطة البطحاء',type:'metro',x:650,y:318},
+ {id:'b1',name:'موقف حافلات الثميري',type:'bus',x:258,y:150},
+ {id:'b2',name:'موقف حافلات قصر الحكم',type:'bus',x:258,y:440},
+ {id:'k1',name:'محطة دراجات الساحة',type:'bike',x:360,y:255,bikes:8,scooters:5},
+ {id:'k2',name:'محطة دراجات المصمك',type:'bike',x:540,y:400,bikes:3,scooters:9},
+ {id:'k3',name:'محطة دراجات الحديقة',type:'bike',x:690,y:170,bikes:12,scooters:2},
+];
+const P=id=>PLACES.find(p=>p.id===id);
+const TYPE={
+ landmark:{label:'المعالم',color:'#304884'},
+ cafe:{label:'المقاهي',color:'#8A5A2B'},
+ restaurant:{label:'المطاعم',color:'#B5532F'},
+ parking:{label:'المواقف',color:'#2563A8'},
+ metro:{label:'المترو',color:'#7A3E9D'},
+ bus:{label:'الحافلات',color:'#8C6A2E'},
+ bike:{label:'الدراجات والسكوتر',color:'#5F7442'},
+};
+const TRAILS=[
+ {id:'t1',name:'مسار الديرة التاريخي',stops:['masmak','hokm','mosque','adl','zal'],mins:75,desc:'من حصن المصمك إلى سوق الزل عبر ساحات قصر الحكم.'},
+ {id:'t2',name:'مسار المربع والمتحف',stops:['murabba','museum','garden'],mins:60,desc:'قصر المربع والمتحف الوطني ثم الحديقة التاريخية.'},
+ {id:'t3',name:'مسار الأسواق القديمة',stops:['zal','c1','adl','hokm'],mins:45,desc:'جولة قصيرة بين الأسواق والمقاهي الشعبية.'},
+];
+const EVENTS=[
+ {id:'e1',title:'سوق الديرة الليلي',cat:'مجتمعية',d:0,time:'19:00',place:'adl',seats:150,price:0,desc:'أسر منتجة وحرفيون ومأكولات محلية.'},
+ {id:'e2',title:'أمسية شعرية في قصر المربع',cat:'ثقافية',d:1,time:'20:00',place:'murabba',seats:80,price:0,desc:'قراءات من الشعر النبطي مع فرقة موسيقية.'},
+ {id:'e3',title:'حملة زراعة الأشجار',cat:'مجتمعية',d:2,time:'07:00',place:'garden',seats:200,price:0,desc:'زراعة 300 شتلة محلية مع المتطوعين.'},
+ {id:'e4',title:'جولة المصمك المسائية',cat:'ثقافية',d:2,time:'18:30',place:'masmak',seats:30,price:25,desc:'جولة بإرشاد راوٍ محلي عن ليلة استعادة الرياض.'},
+ {id:'e5',title:'معرض الحرف اليدوية',cat:'ثقافية',d:4,time:'16:00',place:'zal',seats:400,price:0,desc:'السدو والخوص وصناعة البشوت.'},
+ {id:'e6',title:'ورشة القهوة السعودية',cat:'ثقافية',d:5,time:'17:00',place:'c2',seats:20,price:60,desc:'من التحميص إلى التقديم.'},
+ {id:'e7',title:'سوق المزارعين',cat:'مجتمعية',d:7,time:'08:00',place:'adl',seats:300,price:0,desc:'منتجات طازجة من مزارع المنطقة.'},
+ {id:'e8',title:'عرض الصقور التراثي',cat:'ثقافية',d:9,time:'17:30',place:'garden',seats:250,price:0,desc:'عرض حي ولقاء مع الصقارين.'},
+ {id:'e9',title:'مهرجان العائلة في الساحة',cat:'مجتمعية',d:11,time:'16:00',place:'hokm',seats:600,price:0,desc:'ألعاب ومسرح أطفال وأنشطة.'},
+];
+EVENTS.forEach(e=>e.date=ymd(addDays(NOW,e.d)));
+const HISTORY=[
+ {y:'1824',t:'الرياض عاصمة للدولة السعودية الثانية',d:'اتخذ الإمام تركي بن عبدالله الرياض مقراً للحكم.'},
+ {y:'1865',t:'بناء قصر المصمك',d:'حصن من الطين واللبن يتوسط البلدة القديمة.'},
+ {y:'1902',t:'استعادة الرياض',d:'دخول الملك عبدالعزيز إلى المصمك وبداية تأسيس الدولة الحديثة.'},
+ {y:'1938',t:'الانتقال إلى قصر المربع',d:'خروج الحكم من أسوار البلدة القديمة إلى المربع.'},
+ {y:'1999',t:'افتتاح المتحف الوطني',d:'ضمن مركز الملك عبدالعزيز التاريخي في الذكرى المئوية.'},
+];
+const QUIZ=[
+ {q:'في أي عام كانت استعادة الرياض؟',o:['1902','1932','1865'],a:0},
+ {q:'ما المعلم الذي يُعد حصناً من الطين في قلب الديرة؟',o:['قصر المربع','قصر المصمك','المتحف الوطني'],a:1},
+ {q:'أين يقع المتحف الوطني؟',o:['حي البطحاء','مركز الملك عبدالعزيز التاريخي','سوق الزل'],a:1},
+ {q:'بمَ يشتهر سوق الزل؟',o:['السجاد والبشوت','الإلكترونيات','الذهب فقط'],a:0},
+];
+const OFFERS=[
+ {biz:'مقهى الديرة',t:'خصم 20% على القهوة المختصة',code:'DIRAH20',resident:true},
+ {biz:'مطعم الزل الشعبي',t:'طبق مجاني لكل طاولة عائلية',code:'ZAL-FAM',resident:true},
+ {biz:'مخبز الحِرَف',t:'اشترِ 5 واحصل على 1',code:'HIRAF6',resident:false},
+ {biz:'موقف المربع',t:'الساعة الأولى مجاناً للسكان',code:'PARK1',resident:true},
+];
+const FEATURED=[
+ {biz:'مطعم البطحاء',tag:'إعلان مميز',t:'قائمة موسم الشتاء متاحة الآن',place:'r3'},
+ {biz:'قهوة المربع',tag:'ترويج فعالية',t:'ورشة القهوة السعودية · الأحد',place:'c2'},
+ {biz:'متجر السدو',tag:'قائمة مميزة',t:'منسوجات يدوية من حرفيات المنطقة',place:'zal'},
+];
+const JOBS=[
+ {t:'مرشد سياحي (دوام جزئي)',org:'شركة تطوير وسط الرياض',type:'جزئي'},
+ {t:'باريستا',org:'مقهى الديرة',type:'كامل'},
+ {t:'منسق فعاليات',org:'منصة الفعاليات',type:'عقد 6 أشهر'},
+ {t:'بائع في متجر حرف',org:'سوق الزل',type:'كامل'},
+];
+const CHARITIES=[{id:'ch1',n:'جمعية إطعام',impact:'وجبة لكل 15 ريال',per:15,unit:'وجبة'},{id:'ch2',n:'جمعية التشجير',impact:'شجرة لكل 50 ريال',per:50,unit:'شجرة'},{id:'ch3',n:'جمعية رعاية الحرفيين',impact:'ساعة تدريب لكل 40 ريال',per:40,unit:'ساعة تدريب'}];
+const TIPS=[
+ {t:'استخدم المترو',d:'رحلة 3 كم بالمترو توفر نحو 0.5 كجم من الانبعاثات مقارنة بالسيارة.'},
+ {t:'أحضر كوبك',d:'مقاهي الوجهة تقدم خصماً لمن يحضر كوبه الخاص.'},
+ {t:'افرز نفاياتك',d:'حاويات الفرز متاحة في الساحات الأربع الرئيسة.'},
+ {t:'امشِ المسارات',d:'مسارات المشي مظللة ومزودة بنقاط مياه.'},
+];
+const CAMPAIGNS=[{id:'cp1',t:'أسبوع بلا بلاستيك',p:0.62,n:'1,240 مشاركاً'},{id:'cp2',t:'تشجير الديرة',p:0.41,n:'300 شتلة مستهدفة'},{id:'cp3',t:'تحدي المشي 10 آلاف خطوة',p:0.78,n:'860 مشاركاً'}];
+const SURPLUS=[{id:'s1',biz:'مخبز الحِرَف',item:'سلة مخبوزات نهاية اليوم',price:12,left:6,until:'14:00'},{id:'s2',biz:'مطعم الزل الشعبي',item:'وجبة كبسة فائضة',price:15,left:4,until:'23:30'},{id:'s3',biz:'مقهى الديرة',item:'معجنات صباحية',price:8,left:9,until:'23:00'}];
+const RESOURCES=[{t:'سلم ألومنيوم',o:'أبو خالد · حي الديرة'},{t:'كراسي ومظلات لمناسبة',o:'أم سارة · المربع'},{t:'كتب أطفال',o:'مكتبة الحي'},{t:'عربة نقل يدوية',o:'سالم · البطحاء'}];
+const POLLS=[
+ {id:'q1',q:'ما أكثر ما تحتاجه الوجهة في المساء؟',o:['إضاءة أفضل','مقاعد وظلال','فعاليات أكثر','مواقف أقرب'],base:[42,31,55,38]},
+ {id:'q2',q:'كيف وصلت اليوم؟',o:['سيارة','مترو','حافلة','مشي/دراجة'],base:[61,28,9,17]},
+];
+const INFRA=[
+ {id:'el',n:'شبكة الكهرباء',c:'#D98E04',pts:[[90,196],[730,196]],pts2:[[416,70],[416,530]]},
+ {id:'wa',n:'شبكة المياه',c:'#2B7BD6',pts:[[90,304],[730,304]],pts2:[[576,70],[576,530]]},
+ {id:'sw',n:'شبكة الصرف',c:'#8B5E3C',pts:[[90,436],[730,436]],pts2:[[244,70],[244,530]]},
+ {id:'tc',n:'الاتصالات',c:'#8E44AD',pts:[[90,184],[730,184]],pts2:[[404,70],[404,530]]},
+];
+const CLASHES=[
+ {x:410,y:190,t:'تقاطع كهرباء واتصالات',sev:'عالية',a:'مشروع إعادة رصف شارع الإمام تركي'},
+ {x:570,y:310,t:'خط مياه أسفل منطقة حفر',sev:'متوسطة',a:'تمديد محطة مترو الديرة'},
+ {x:250,y:430,t:'تعارض صرف مع أساسات مظلات',sev:'منخفضة',a:'مظلات ساحة قصر الحكم'},
+];
+const MODULES=[
+ {k:'events',t:'منصة الفعاليات والتفعيل',ic:'cal',b:['تقويم الفعاليات','الحجز والإشعارات','الأجندة الثقافية','فعاليات مجتمعية: أسواق وحفلات وزراعة أشجار']},
+ {k:'maps',t:'الخرائط الذكية والتنقل',ic:'map',b:['خرائط الفضاء العام والمواقف','مسارات المشي والإرشاد إلى الوجهات','النقل العام: المترو والحافلات والدراجات','حجز التنقل الأخضر وتخطيط الرحلة']},
+ {k:'dest',t:'معلومات الوجهة',ic:'info',b:['المقاهي والمطاعم وأوقات العمل','المعالم والفعاليات القادمة','حفظ الأماكن المفضلة والتعليق عليها','إتمام المعاملات من منصة واحدة']},
+ {k:'heritage',t:'اكتشاف التراث والثقافة',ic:'heritage',b:['مسارات المشي التراثية','السرد التاريخي','أداة تعليمية للتعريف بوسط الرياض']},
+ {k:'community',t:'المشاركة المجتمعية',ic:'chat',b:['الملاحظات والمقترحات','استطلاعات الرأي','مقترحات تحسين الحي والوجهة','مشاركة الموارد بين السكان']},
+ {k:'sustain',t:'الاستدامة والأثر',ic:'leaf',b:['إرشادات الاستدامة والمحتوى التوعوي','الحملات المجتمعية','حساب البصمة الكربونية وتعويضها','الحد من هدر الطعام والاقتصاد الدائري']},
+ {k:'business',t:'الأعمال والاقتصاد المحلي',ic:'store',b:['الترويج للخدمات والفعاليات','الإعلانات والقوائم المميزة','عروض وخصومات حصرية للسكان','الإعلان عن الفرص الوظيفية']},
+ {k:'donate',t:'التبرعات والشراكات',ic:'heart',b:['التبرع للجمعيات ومبادرات الأثر','التمويل الجماعي للمشاريع المجتمعية','عرض أثر المساهمات','الشراكات والرعايات والخدمات المميزة']},
+ {k:'future',t:'التوسع المستقبلي',ic:'cubes',b:['المرحلة الثانية: توسيع نطاق المنصة','المرحلة الثالثة: التوأم الرقمي والتكامل مع المدينة الذكية']},
+];
+const SOLUTIONS=[
+ {n:'الثاني',t:'وسط الرياض على خرائط بلدي',sub:'حضور رقمي مبكر لوجهات وسط الرياض ومعالمه يسبق إطلاق المجلس الرقمي',steps:[['حصر المحتوى','الوجهات والمعالم والمسارات التراثية والمرافق'],['تجهيز البيانات','توحيد المواقع والأسماء والصور والأوصاف باللغتين'],['المراجعة والاعتماد','التحقق من دقة المحتوى واعتماده من الشركة'],['النشر على الخريطة','إتاحة طبقة وسط الرياض في خرائط بلدي'],['التحديث المستمر','تحديث دوري للمحتوى وفق آلية معتمدة']],out:['طبقة وجهات وسط الرياض في بلدي+','مسارات تراثية قابلة للملاحة','آلية تحديث معتمدة'],roles:['NHCI: تجهيز البيانات ونشرها وتحديثها','الشركة: توفير المحتوى واعتماده'],ctrl:['مواءمة المحتوى مع معايير بلدي','الاعتماد المسبق من الشركة قبل النشر','إبراز هوية الشركة في طبقتها'],go:'admin:content'},
+ {n:'الثالث',t:'خرائط بلدي للمجلس الرقمي',sub:'اعتماد خرائط بلدي المحلية أساساً لخدمات الخرائط والملاحة في المجلس الرقمي',steps:[['تحديد الاحتياج','خصائص الخرائط المطلوبة في النسخة الأولى'],['اتفاقية الاستخدام','تحديد النطاق والصلاحيات ومستوى الخدمة'],['الربط بالتطبيق','تضمين الخرائط وخدمات الملاحة والمواقف'],['طبقات الشركة','الفعاليات ومناطق التفعيل والمسارات التراثية'],['الاختبار والإطلاق','ضمن التشغيل التجريبي للنسخة الأولى']],out:['خرائط وملاحة جاهزة داخل المجلس','طبقات خاصة بالشركة','تجربة خرائط موحدة مع بلدي+'],roles:['NHCI: إتاحة الخرائط والخدمات والدعم الفني','الشركة ومقدم الخدمة: الربط وتطوير الطبقات'],ctrl:['اتفاقية تحدد النطاق ومستوى الخدمة','الالتزام بنظام حماية البيانات الشخصية','المحافظة على هوية المجلس وتجربته'],go:'maps'},
+ {n:'الرابع',t:'إشراك المجتمع عبر الخريطة',sub:'مرئيات المستفيدين المرتبطة بالموقع تصل إلى الشركة بصورة منظمة',steps:[['إبداء الرأي','تقييم المواقع وإضافة الملاحظات من السكان والزوار'],['التصنيف','حسب الموقع ونوع الملاحظة'],['التوجيه','إحالة الملاحظة إلى الشركة أو الجهة المختصة'],['المعالجة والإفادة','متابعة المعالجة وإبلاغ صاحب الملاحظة'],['التحليل','مؤشرات دورية لتحسين الوجهة']],out:['قناة مرئيات مرتبطة بالموقع','لوحة مؤشرات للملاحظات','تقارير دورية للشركة'],roles:['NHCI: قناة المرئيات وتصنيفها وتقاريرها','الشركة: معالجة الملاحظات والإفادة'],ctrl:['إحالة البلاغات البلدية إلى قنوات بلدي','حماية بيانات المستفيدين','تحديد جهة المعالجة لكل فئة'],go:'community'},
+ {n:'الخامس',t:'بيانات المرافق والبنية التحتية',sub:'توحيد البيانات الهندسية للمرافق',steps:[['حصر المصادر','المخططات والنماذج الهندسية بمختلف صيغها'],['التوحيد والمواءمة','تحويل البيانات إلى مرجع مكاني موحد'],['العرض على الخريطة','طبقات المرافق والبنية التحتية على خرائط بلدي'],['التنسيق بين التخصصات','رصد التعارضات وتنسيق أعمال التطوير'],['التقارير','تقارير موحدة تدعم المتابعة واتخاذ القرار']],out:['طبقات موحدة للمرافق والبنية التحتية','تقارير التنسيق بين التخصصات','أساس بيانات للتوأم الرقمي'],roles:['NHCI: توحيد البيانات وعرضها وإعداد التقارير','الشركة: توفير المخططات وتحديد الصلاحيات'],ctrl:['إتاحة البيانات للفرق المخولة فقط','معايير موحدة لتنسيق البيانات','التكامل مع أنظمة الشركة القائمة'],go:'admin:infra'},
+ {n:'السادس',t:'التوأم الرقمي للوجهة',sub:'توفير تجربة افتراضية للزوار لمباني وسط الرياض عبر الإنترنت بمحتوى ثلاثي الأبعاد',steps:[['الأساس ثلاثي الأبعاد','مباني وسط الرياض وطرقه'],['دمج البيانات','نماذج ثلاثية الأبعاد للمباني من الداخل ولطرق وسط الرياض'],['المحاكاة والتحليل','مسارات الرحلات لأبرز الوجهات'],['لوحات المؤشرات','متابعة مؤشرات عدد الزوار ومدى رضاهم'],['التكامل الذكي','النشر والربط مع خرائط بلدي عند طلب الاستعراض']],out:['نموذج رقمي لمباني وسط الرياض','أدوات محاكاة لتجربة الزوار الافتراضية','لوحات مؤشرات أداء الوجهة'],roles:['NHCI: الأساس ثلاثي الأبعاد ودمج البيانات واللوحات','الشركة: تحديد حالات الاستخدام وتوفير البيانات'],ctrl:['جاهزية البيانات والأنظمة','ربط تدريجي بمصادر البيانات'],go:'twin'},
+];
+const FB_STAGES=['تم الاستلام','مُصنّفة','مُحالة','قيد المعالجة','تمت المعالجة'];
+const CT_STAGES=['حصر المحتوى','تجهيز البيانات','المراجعة والاعتماد','منشور على بلدي+','تحديث مستمر'];
+
+/* ============ State ============ */
+const KEY='majlis-poc-v3';
+const USERS={'sara':{name:'سارة',persona:'visitor',label:'زائرة',home:'home',hash:'3202c778a84d094c65ff97b6cfcff2f11ec6a75b74e8ca17bc7bb01131c1f530'},'abukhalid':{name:'أبو خالد',persona:'resident',label:'ساكن موثّق',home:'home',hash:'cef9d5502c9204bbca0ddbb224d0c692a790e64c80f6a5104150966a0b86c321'},'munira':{name:'منيرة',persona:'business',label:'صاحبة نشاط تجاري',home:'business',hash:'ffcfa9389f6a158158c4ea27c5bf559e7fe6569476f8f4112bf0408c646a3d58'},'partner':{name:'شريك الأثر',persona:'partner',label:'شريك ومتبرع',home:'donate',hash:'f392b8114667301eb11e6fa212b7686bdb75bfe6055724cd181007bddf74dfc1'},'cadc.ops':{name:'فريق التشغيل',persona:'cadc',label:'فريق الشركة',home:'admin',hash:'6703257d1c6dfe01d82d5cc496e11f796ee5b54bc43b160f2df5c60823aa9581'},'nhci.admin':{name:'فريق NHCI',persona:'nhci',label:'مدير العرض',home:'journeys',hash:'0f02b86406c76559e5646e1e70c95ee070e59a121729277400d2e63e5ad6690c'}};
+const PUBLIC=['home','plan','events','maps','dest','heritage','community','sustain','business','donate','twin','account'];
+const ACCESS={visitor:PUBLIC,resident:PUBLIC,business:PUBLIC,partner:PUBLIC,cadc:[...PUBLIC,'admin','future','solutions','journeys'],nhci:'all'};
+let CUR=null;
+const persona=()=>CUR?USERS[CUR].persona:null;
+const can=v=>!!CUR&&(ACCESS[persona()]==='all'||ACCESS[persona()].includes(v));
+const PER=['role','bookings','favs','notifPrefs','notes','votes','upvoted','joined','reserved','myDon','quiz','rides','txns','points','pointLog','verified','itinerary','trailRun','badges','redeemed'];
+function seed(){return{
+  role:'visitor', bookings:[], favs:['masmak','c1'], reviews:{masmak:[{r:5,t:'تجربة رائعة والإرشاد ممتاز',by:'زائر'}],c1:[{r:4,t:'قهوة ممتازة وجلسات مريحة',by:'ساكن'}]},
+  notifPrefs:{'ثقافية':true,'مجتمعية':true,'عروض':false},
+  notes:[{t:'مرحباً بك في النموذج الأولي للمجلس الرقمي',time:'الآن',read:false}],
+  feedback:[
+   {id:'FB-1041',x:480,y:420,cat:'إنارة',text:'إنارة ضعيفة في الممر خلف المصمك',stage:2,to:'بلدي 940',by:'ساكن',date:ymd(addDays(NOW,-3)),owner:'abukhalid'},
+   {id:'FB-1042',x:610,y:470,cat:'مواقف',text:'موقف سوق الزل ممتلئ معظم المساء',stage:3,to:'الشركة',by:'زائر',date:ymd(addDays(NOW,-2)),owner:null},
+   {id:'FB-1043',x:360,y:250,cat:'نظافة',text:'حاويات ممتلئة بعد سوق الليل',stage:4,to:'بلدي 940',by:'زائر',date:ymd(addDays(NOW,-5)),owner:null},
+   {id:'FB-1044',x:650,y:150,cat:'مرافق',text:'نحتاج مقاعد مظللة إضافية في الحديقة',stage:1,to:'الشركة',by:'ساكن',date:ymd(addDays(NOW,-1)),owner:'abukhalid'},
+   {id:'FB-1045',x:330,y:380,cat:'فعاليات',text:'نقترح عروضاً تراثية أسبوعية في الساحة',stage:0,to:'—',by:'زائر',date:ymd(NOW),owner:null},
+  ],
+  votes:{}, proposals:[{id:'pr1',t:'تشجير ممر شارع الثميري',v:184,owner:null},{id:'pr2',t:'نوافير مياه للشرب في الساحات',v:142,owner:null},{id:'pr3',t:'مسار دراجات يربط المربع بالديرة',v:221,owner:null}],
+  upvoted:[], joined:[], reserved:[], donated:{ch1:12450,ch2:8300,ch3:5120}, myDon:0,
+  projects:[{id:'pj1',t:'مكتبة الحي المفتوحة',goal:60000,got:41200},{id:'pj2',t:'ترميم واجهات السوق القديم',goal:150000,got:63500},{id:'pj3',t:'ملعب أطفال في ساحة العدل',goal:90000,got:82300}],
+  content:[
+   {n:'قصر المصمك',en:'Masmak Fortress',type:'معلم',stage:3},{n:'قصر المربع',en:'Murabba Palace',type:'معلم',stage:3},
+   {n:'مسار الديرة التاريخي',en:'Dirah Heritage Trail',type:'مسار تراثي',stage:2},{n:'سوق الزل',en:'Souq Al Zal',type:'معلم',stage:2},
+   {n:'مواقف قصر الحكم',en:'Qasr Al Hokm Parking',type:'مرفق',stage:1},{n:'حديقة المربع التاريخية',en:'Murabba Historical Park',type:'مرفق',stage:0},
+   {n:'المتحف الوطني',en:'National Museum',type:'معلم',stage:4},
+  ],
+  quiz:{}, rides:[], txns:[],
+  points:120, pointLog:[{n:120,why:'رصيد ترحيبي'}], verified:false, itinerary:null, trailRun:null, badges:[], redeemed:[],
+  ads:[{id:'ad1',biz:'متجر السدو',t:'تخفيضات نهاية الموسم على المنسوجات اليدوية',type:'قائمة مميزة · 300 ريال/شهر',st:'بانتظار المراجعة',views:0,owner:'munira'}],
+}}
+function sharedSeed(){const b=seed();PER.forEach(k=>delete b[k]);return b}
+function userSeed(u){const b=seed(),o={};PER.forEach(k=>o[k]=b[k]);const p=USERS[u].persona;
+  if(p==='resident'){o.role='resident';o.verified=true}
+  o.notes=[{t:'مرحباً '+USERS[u].name+'، أهلاً بك في المجلس الرقمي',time:'الآن',read:false}];return o}
+let STORE=null;try{STORE=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!STORE||!STORE.shared||!STORE.users)STORE={shared:sharedSeed(),users:{}};
+const S=new Proxy({},{get:(t,k)=>PER.includes(k)?STORE.users[CUR][k]:STORE.shared[k],set:(t,k,v)=>{(PER.includes(k)?STORE.users[CUR]:STORE.shared)[k]=v;return true}});
+function save(){try{localStorage.setItem(KEY,JSON.stringify(STORE))}catch(e){}}
+function notifyUser(u,t){if(!USERS[u])return;if(!STORE.users[u])STORE.users[u]=userSeed(u);STORE.users[u].notes.unshift({t,time:`${String(riyadhNow().getHours()).padStart(2,'0')}:${String(riyadhNow().getMinutes()).padStart(2,'0')}`,read:false});save();if(u===CUR)renderBell()}
+function notify(t){S.notes.unshift({t,time:`${String(riyadhNow().getHours()).padStart(2,'0')}:${String(riyadhNow().getMinutes()).padStart(2,'0')}`,read:false});save();renderBell()}
+function addPoints(n,why){S.points+=n;S.pointLog.unshift({n,why});save()}
+const ref=p=>p+'-'+Math.floor(100000+Math.random()*899999);
+
+/* ============ UI helpers ============ */
+function toast(msg){document.querySelectorAll('.toast').forEach(x=>x.remove());const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2800)}
+function modal(title,body,onMount){
+  const root=$('#modal-root');
+  root.innerHTML=`<div class="scrim" id="scrim"><div class="modal" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="modal-head"><h3>${esc(title)}</h3><button class="x" id="mx" aria-label="إغلاق">✕</button></div><div id="mbody">${body}</div></div></div>`;
+  $('#mx').onclick=closeModal;$('#scrim').onclick=e=>{if(e.target.id==='scrim')closeModal()};
+  onMount&&onMount($('#mbody'));
+}
+function closeModal(){$('#modal-root').innerHTML=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function isOpen(p){if(!p.hours)return null;const h=NOW.getHours()+NOW.getMinutes()/60;const [a,b]=p.hours;return b>24?(h>=a||h<b-24):(h>=a&&h<b)}
+const hrs=p=>p.hours?(p.hours[0]===0&&p.hours[1]===24?'24 ساعة':`${String(p.hours[0]).padStart(2,'0')}:00 – ${String(p.hours[1]%24).padStart(2,'0')}:00`):'';
+const stars=n=>'★'.repeat(Math.round(n))+'☆'.repeat(5-Math.round(n));
+function avgRating(id){const r=S.reviews[id]||[];return r.length?r.reduce((s,x)=>s+x.r,0)/r.length:0}
+function stepsHTML(labels,cur){return `<div class="steps">${labels.map((l,i)=>`<div class="step ${i<cur?'done':i===cur?'cur':''}"><div class="c num">${i<cur?'✓':i+1}</div>${esc(l)}</div>`).join('')}</div>`}
+function bars(data,{h=170,suffix=''}={}){
+  const w=Math.max(260,data.length*54),max=Math.max(...data.map(d=>d.v))*1.15,bw=Math.min(34,(w/data.length)*.55);
+  return `<div class="tbl-wrap"><svg viewBox="0 0 ${w} ${h+34}" width="100%" style="min-width:${Math.min(w,420)}px" role="img">
+   ${[0.25,0.5,0.75,1].map(f=>`<line x1="0" x2="${w}" y1="${h-h*f*0.87}" y2="${h-h*f*0.87}" stroke="var(--line)" stroke-dasharray="3 4"/>`).join('')}
+   ${data.map((d,i)=>{const slot=w/data.length,x=w-slot*(i+.5)-bw/2,bh=(d.v/max)*h;return `<rect x="${x}" y="${h-bh}" width="${bw}" height="${bh}" rx="4" fill="${d.hi?'var(--accent)':'color-mix(in srgb,var(--accent) 45%,var(--soft))'}"/><text x="${x+bw/2}" y="${h-bh-6}" text-anchor="middle" font-size="11" fill="var(--ink)" class="num">${fmt(d.v)}${suffix}</text><text x="${x+bw/2}" y="${h+18}" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(d.l)}</text>`}).join('')}
+  </svg></div>`;
+}
+
+/* ============ Map renderer ============ */
+function mapSVG(o={}){
+  const L=o.layers||new Set(['landmark','cafe','restaurant','parking','metro','bus','bike']);
+  let s=`<svg viewBox="0 0 820 600" role="img" aria-label="خريطة وسط الرياض التوضيحية">
+  <rect x="0" y="0" width="820" height="600" fill="var(--map-bg)"/>`;
+  // blocks
+  for(let c=0;c<XS.length-1;c++)for(let r=0;r<YS.length-1;r++){
+    const park=(c===3&&r===0)||(c===0&&r===1);
+    s+=`<rect x="${XS[c]+11}" y="${YS[r]+11}" width="${XS[c+1]-XS[c]-22}" height="${YS[r+1]-YS[r]-22}" rx="6" fill="${park?'var(--park)':'var(--block)'}"/>`;
+  }
+  s+=`<rect x="20" y="20" width="58" height="560" rx="6" fill="var(--block)"/><rect x="742" y="20" width="58" height="560" rx="6" fill="var(--block)"/>`;
+  // roads
+  XS.forEach(x=>{s+=`<line x1="${x}" y1="20" x2="${x}" y2="580" stroke="var(--road-edge)" stroke-width="16"/><line x1="${x}" y1="20" x2="${x}" y2="580" stroke="var(--road)" stroke-width="13"/>`});
+  YS.forEach(y=>{s+=`<line x1="20" y1="${y}" x2="800" y2="${y}" stroke="var(--road-edge)" stroke-width="16"/><line x1="20" y1="${y}" x2="800" y2="${y}" stroke="var(--road)" stroke-width="13"/>`});
+  // district labels
+  s+=`<g font-size="13" fill="var(--map-text)" font-weight="600" opacity=".7"><text x="330" y="60" text-anchor="middle">حي المربع</text><text x="330" y="595" text-anchor="middle">الديرة</text><text x="780" y="300" text-anchor="middle" transform="rotate(-90 780 300)">البطحاء</text></g>`;
+  // infra layers
+  if(o.infra){INFRA.forEach(l=>{if(!o.infra.has(l.id))return;[l.pts,l.pts2].forEach(p=>{s+=`<polyline points="${p.map(q=>q.join(',')).join(' ')}" fill="none" stroke="${l.c}" stroke-width="3.5" stroke-dasharray="${l.id==='tc'?'2 5':l.id==='sw'?'9 4':'0'}" opacity=".9"/>`})});
+    if(o.clashes)CLASHES.forEach((c,i)=>{s+=`<g class="poi" data-clash="${i}"><circle cx="${c.x}" cy="${c.y}" r="14" fill="var(--danger)" opacity=".2"/><circle cx="${c.x}" cy="${c.y}" r="7" fill="var(--danger)"/><text x="${c.x}" y="${c.y+4}" text-anchor="middle" font-size="10" fill="#fff" font-weight="700">!</text></g>`})}
+  // metro & bus lines
+  if(L.has('metro'))s+=`<line x1="30" y1="318" x2="790" y2="318" stroke="${TYPE.metro.color}" stroke-width="4" stroke-dasharray="10 5" opacity=".75"/>`;
+  if(L.has('bus'))s+=`<polyline points="258,20 258,580" fill="none" stroke="${TYPE.bus.color}" stroke-width="3" stroke-dasharray="3 5" opacity=".8"/>`;
+  // heritage trail(s)
+  (o.trails||[]).forEach(tid=>{const t=TRAILS.find(x=>x.id===tid);let pts=[];t.stops.forEach((sid,i)=>{if(i){const seg=roadPath(P(t.stops[i-1]),P(sid));pts=pts.concat(i>1?seg.slice(1):seg)}});
+    s+=`<polyline points="${pts.map(p=>p.x+','+p.y).join(' ')}" fill="none" stroke="#A4472F" stroke-width="6" stroke-linejoin="round" stroke-linecap="round" opacity=".85"/>`;
+    t.stops.forEach((sid,i)=>{const p=P(sid);s+=`${o.cur===sid?`<circle cx="${p.x}" cy="${p.y}" r="22" fill="none" stroke="var(--accent)" stroke-width="4"/>`:''}<circle cx="${p.x}" cy="${p.y}" r="12" fill="#A4472F"/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="11" fill="#fff" font-weight="700" class="num">${i+1}</text>`})});
+  // route
+  if(o.route){s+=`<polyline points="${o.route.map(p=>p.x+','+p.y).join(' ')}" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/><polyline points="${o.route.map(p=>p.x+','+p.y).join(' ')}" fill="none" stroke="var(--surface)" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>`}
+  // events
+  if(L.has('event'))EVENTS.filter(e=>e.d<=7).forEach(e=>{const p=P(e.place);s+=`<g class="poi" data-ev="${e.id}"><rect x="${p.x+8}" y="${p.y-26}" width="18" height="18" rx="5" fill="var(--warn)"/><text x="${p.x+17}" y="${p.y-13}" text-anchor="middle" font-size="11" fill="#fff">★</text></g>`});
+  // POIs
+  PLACES.forEach(p=>{if(!L.has(p.type))return;const t=TYPE[p.type];const sel=o.sel===p.id;
+    s+=`<g class="poi" data-poi="${p.id}"><circle class="p" cx="${p.x}" cy="${p.y}" r="${sel?11:p.type==='landmark'?9:7}" fill="${t.color}" stroke="var(--surface)" stroke-width="2"/>${p.type==='parking'?`<text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">P</text>`:p.type==='metro'?`<text x="${p.x}" y="${p.y+3.5}" text-anchor="middle" font-size="9" fill="#fff" font-weight="700">M</text>`:''}
+    ${(p.type==='landmark'||sel)?`<text x="${p.x}" y="${p.up?p.y-14:p.y+24}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)" paint-order="stroke" stroke="var(--map-bg)" stroke-width="4">${esc(p.name)}</text>`:''}</g>`});
+  (o.stops||[]).forEach((sid,i)=>{const p=P(sid);s+=`<circle cx="${p.x}" cy="${p.y}" r="13" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/><text x="${p.x}" y="${p.y+4.5}" text-anchor="middle" font-size="12" fill="var(--on-accent)" font-weight="700" class="num">${i+1}</text>`});
+  // feedback pins
+  if(o.feedback)S.feedback.forEach(f=>{s+=`<g class="poi" data-fb="${f.id}"><path d="M${f.x} ${f.y} l-8 -14 a9 9 0 1 1 16 0z" fill="${(f.owner===CUR)?'var(--accent)':'var(--info)'}" stroke="var(--surface)" stroke-width="1.5"/><circle cx="${f.x}" cy="${f.y-17}" r="3" fill="var(--surface)"/></g>`});
+  if(o.pick)s+=`<g><path d="M${o.pick.x} ${o.pick.y} l-10 -17 a11 11 0 1 1 20 0z" fill="var(--danger)" stroke="var(--surface)" stroke-width="2"/></g>`;
+  s+=`</svg>`;
+  return `<div class="map-box">${s}<span class="balady">طبقة وسط الرياض · خرائط بلدي</span><span class="legend">خريطة توضيحية · بيانات تجريبية</span></div>`;
+}
+function svgPoint(svg,e){const pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const r=pt.matrixTransform(svg.getScreenCTM().inverse());return{x:Math.round(r.x),y:Math.round(r.y)}}
+
+/* ============ Navigation ============ */
+const NAV=[
+ {g:'التطبيق'},
+ {k:'home',t:'الرئيسية',ic:'home'},
+ {k:'plan',t:'خطط زيارتك',ic:'route'},
+ {k:'events',t:'الفعاليات والتفعيل',ic:'cal'},
+ {k:'maps',t:'الخرائط الذكية والتنقل',ic:'map'},
+ {k:'dest',t:'معلومات الوجهة',ic:'info'},
+ {k:'heritage',t:'التراث والثقافة',ic:'heritage'},
+ {k:'community',t:'المشاركة المجتمعية',ic:'chat'},
+ {k:'sustain',t:'الاستدامة والأثر',ic:'leaf'},
+ {k:'business',t:'الأعمال والاقتصاد المحلي',ic:'store'},
+ {k:'donate',t:'التبرعات والشراكات',ic:'heart'},
+ {k:'twin',t:'التوأم الرقمي',ic:'twin'},
+ {k:'future',t:'التوسع المستقبلي',ic:'cubes'},
+ {k:'account',t:'حسابي',ic:'user'},
+ {g:'الشركة و NHCI'},
+ {k:'journeys',t:'رحلات المستخدم',ic:'flag'},
+ {k:'admin',t:'لوحة الشركة',ic:'chart'},
+ {k:'solutions',t:'حلول NHCI المقترحة',ic:'grid'},
+];
+let view='home', sub=null;
+function go(k){let [v,s]=k.split(':');if(!can(v)){toast('هذه الصفحة غير متاحة لحسابك');v='home';s=null}view=v;sub=s||null;try{history.replaceState(null,'','#'+v)}catch(e){}render();window.scrollTo(0,0)}
+function renderNav(){const items=[];let grp=null;NAV.forEach(n=>{if(n.g){grp=n;return}if(!can(n.k))return;if(grp){items.push(grp);grp=null}items.push(n)});$('#nav').innerHTML=items.map(n=>n.g?`<h5>${n.g}</h5>`:`<a href="#${n.k}" data-go="${n.k}" class="${view===n.k?'on':''}">${icon(n.ic)}<span>${n.t}</span></a>`).join('')}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-go]');if(a){e.preventDefault();go(a.dataset.go)}});
+
+function renderBell(){
+  const U=USERS[CUR];$('#user-chip').innerHTML=`<i>${U.name.slice(0,1)}</i><span>${esc(U.name)}<small>${esc(U.label)}${S.role==='resident'&&U.persona!=='resident'?' · ساكن موثّق':''}</small></span>`;$('#logout').innerHTML=icon('logout','width="18" height="18"');
+  $('#search-btn').innerHTML=icon('search','width="18" height="18"');$('#acc-btn').innerHTML=icon('user','width="18" height="18"');
+  const n=S.notes.filter(x=>!x.read).length;
+  $('#bell').innerHTML=icon('bell','width="18" height="18"')+(n?`<span class="dot num">${n}</span>`:'');
+  document.querySelectorAll('.topbar .seg button').forEach(b=>b.classList.toggle('on',b.dataset.role===S.role));
+}
+$('#bell').onclick=()=>{const d=$('#bell-drop');if(!d.hidden){d.hidden=true;return}
+  d.innerHTML=`<div class="row between" style="margin-bottom:6px"><h4>الإشعارات</h4><button class="btn sm quiet" id="clear-n">تعليم الكل كمقروء</button></div><div class="list">${S.notes.slice(0,8).map(x=>`<div class="li"><span>${esc(x.t)}</span><small class="muted num">${esc(x.time)}</small></div>`).join('')||'<p class="muted">لا توجد إشعارات</p>'}</div>`;
+  d.hidden=false;$('#clear-n').onclick=()=>{S.notes.forEach(x=>x.read=true);save();renderBell();d.hidden=true}};
+document.addEventListener('click',e=>{if(!e.target.closest('#bell-drop')&&!e.target.closest('#bell'))$('#bell-drop').hidden=true});
+document.querySelectorAll('.topbar .seg button').forEach(b=>b.onclick=()=>{const r=b.dataset.role;if(r==='resident'&&!S.verified){verifyResident();return}S.role=r;save();renderBell();render();toast(r==='resident'?'تم التبديل إلى حساب ساكن موثّق':'تم التبديل إلى حساب زائر')});
+function verifyResident(){modal('توثيق حساب الساكن',`<form id="vf" class="stack"><p class="small muted">التحقق عبر النفاذ الوطني الموحد لإثبات السكن في نطاق وسط الرياض. محاكاة فقط: لا تُحفظ أي بيانات.</p><label class="f">رقم الهوية الوطنية أو الإقامة<input type="text" id="vf-id" inputmode="numeric" maxlength="10" placeholder="1XXXXXXXXX" dir="ltr" required></label><button class="btn" type="submit">متابعة عبر نفاذ</button></form>`,m=>{m.querySelector('#vf').onsubmit=e=>{e.preventDefault();const code=10+Math.floor(Math.random()*89);
+  m.innerHTML=`<div class="stack" style="text-align:center"><p>افتح تطبيق نفاذ واختر الرقم</p><b class="num" style="font-size:3rem;font-family:var(--f-display);color:var(--heading)">${code}</b><p class="small muted">بانتظار التأكيد…</p><button class="btn" id="vf-ok">تم التأكيد في نفاذ</button></div>`;
+  m.querySelector('#vf-ok').onclick=()=>{m.innerHTML=`<div class="stack"><p class="small muted">العنوان الوطني المسجل</p><div class="card" style="box-shadow:none"><b>حي الديرة · الرياض</b><div class="small" style="color:var(--accent)">ضمن نطاق وسط الرياض ✓</div></div><button class="btn" id="vf-done">تأكيد السكن وتفعيل الحساب</button></div>`;
+   m.querySelector('#vf-done').onclick=()=>{S.verified=true;S.role='resident';addPoints(30,'توثيق حساب الساكن');closeModal();notify('وُثّق حسابك كساكن. فُعّلت العروض الحصرية ومشاركة الموارد');renderBell();render();toast('تم توثيق حسابك كساكن')}}}})}
+
+function head(k,t,l){return `<div class="page-head"><div><div class="kicker">${k}</div><h1>${t}</h1>${l?`<p class="lede">${l}</p>`:''}</div></div>`}
+
+/* ============ Views ============ */
+const V={};
+
+V.home=()=>{
+  const up=EVENTS.slice(0,4);
+  const openCount=PLACES.filter(p=>(p.type==='cafe'||p.type==='restaurant')&&isOpen(p)).length;
+  return `<section class="hero">
+   <div><div class="kicker" style="color:var(--mint)">${dayLabel(ymd(NOW))}</div><h1>أهلاً بك في <span class="mint">وسط الرياض</span></h1>
+   <p>فعاليات الأسبوع، الخرائط والتنقل، المعالم والتراث، وخدماتك في تطبيق واحد.</p>
+   <div class="row" style="margin-top:16px"><button class="btn" data-go="plan" style="background:var(--mint);border-color:var(--mint);color:#1E211D">${icon('route','width="16"')} خطط زيارتك</button><button class="btn ghost" data-go="events" style="color:var(--on-brand);border-color:rgba(255,255,255,.4)">تصفح الفعاليات</button></div>
+   <div class="row" style="margin-top:18px;gap:22px"><div><b style="font-size:1.4rem;font-family:var(--f-display)" class="num">${EVENTS.filter(e=>e.d<=7).length}</b><br><small style="opacity:.75">فعاليات هذا الأسبوع</small></div><div><b style="font-size:1.4rem;font-family:var(--f-display)" class="num">${openCount}</b><br><small style="opacity:.75">مقاهٍ ومطاعم مفتوحة الآن</small></div><div><b style="font-size:1.4rem;font-family:var(--f-display)" class="num">${PLACES.filter(p=>p.type==='parking').reduce((s,p)=>s+p.free,0)}</b><br><small style="opacity:.75">موقفاً متاحاً</small></div></div></div>
+   <div class="hero-list"><small style="opacity:.75">القادم قريباً</small>${up.map(e=>`<button class="hero-ev" data-ev-open="${e.id}"><span><b>${esc(e.title)}</b><br><small>${esc(P(e.place).name)} · ${esc(e.time)}</small></span><small>${e.d===0?'اليوم':e.d===1?'غداً':dayLabel(e.date)}</small></button>`).join('')}</div>
+  </section>
+  ${can('journeys')?`<div class="card" style="margin-top:16px"><div class="row between"><div><div class="kicker">عرض توضيحي</div><h3 style="margin:0">جرّب رحلات المستخدم خطوة بخطوة</h3></div><button class="btn sm ghost" data-go="journeys">كل الرحلات</button></div><div class="row" style="margin-top:10px;gap:6px">${JOURNEYS.map(j=>`<button class="pick" data-journey="${j.id}">${icon('flag','width="14" style="vertical-align:-2px;color:var(--accent)"')} ${j.persona}</button>`).join('')}</div></div>`:''}
+  <div class="page-head" style="margin-top:24px"><div><div class="kicker">نطاق النموذج الأولي</div><h2>وحدات المجلس الرقمي</h2></div><button class="btn quiet sm" id="reset">إعادة ضبط البيانات التجريبية</button></div>
+  <div class="grid g3">${MODULES.map(m=>`<button class="card mod" data-go="${m.k}"><div class="row"><span class="ico">${icon(m.ic)}</span><h3 style="margin:0">${m.t}</h3></div><ul>${m.b.map(x=>`<li>${x}</li>`).join('')}</ul></button>`).join('')}</div>`;
+};
+function bindHome(){$('#reset').onclick=()=>{STORE={shared:sharedSeed(),users:{}};STORE.users[CUR]=userSeed(CUR);save();renderBell();render();toast('تمت إعادة ضبط البيانات التجريبية')};bindEvOpen()}
+function bindEvOpen(){document.querySelectorAll('[data-ev-open]').forEach(b=>b.onclick=()=>openEvent(b.dataset.evOpen))}
+
+/* --- Events --- */
+let evDay=null, evCat='الكل';
+function booked(id){return S.bookings.find(b=>b.ev===id)}
+function seatsLeft(e){return e.seats-Math.floor(e.seats*0.62)-(booked(e.id)?booked(e.id).n:0)}
+V.events=()=>{
+  const days=[...Array(14)].map((_,i)=>ymd(addDays(NOW,i)));
+  let list=EVENTS.filter(e=>(!evDay||e.date===evDay)&&(evCat==='الكل'||e.cat===evCat));
+  return head('منصة الفعاليات والتفعيل','تقويم الفعاليات','احجز مقعدك، فعّل الإشعارات، وتابع الأجندة الثقافية والفعاليات المجتمعية.')+
+  `<div class="card"><div class="row between" style="margin-bottom:10px"><h3 style="margin:0">${MONTHS[NOW.getMonth()]} ${NOW.getFullYear()}</h3><button class="btn sm quiet" id="all-days">كل الأيام</button></div>
+   <div class="days">${days.map(d=>{const dd=dOf(d);const has=EVENTS.some(e=>e.date===d);return `<button class="day ${evDay===d?'on':''}" data-day="${d}">${WD[dd.getDay()].replace('ال','')}<b class="num">${dd.getDate()}</b>${has?'<i></i>':''}</button>`}).join('')}</div></div>
+  <div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr);margin-top:14px" id="ev-grid">
+   <div class="card"><div class="tabs">${['الكل','ثقافية','مجتمعية'].map(c=>`<button class="${evCat===c?'on':''}" data-cat="${c}">${c==='ثقافية'?'الأجندة الثقافية':c==='مجتمعية'?'فعاليات مجتمعية':'الكل'}</button>`).join('')}</div>
+    <div class="list" id="ev-list">${list.map(e=>{const b=booked(e.id);const dd=dOf(e.date);return `<div class="li ev"><div class="ev-date"><b class="num">${dd.getDate()}</b>${MONTHS[dd.getMonth()]}</div><div style="min-width:0"><div class="row" style="gap:6px"><h4>${esc(e.title)}</h4><span class="chip ${e.cat==='ثقافية'?'info':'ok'}">${e.cat}</span></div><div class="small muted">${esc(P(e.place).name)} · <span class="num">${e.time}</span> · ${e.price?`<span class="num">${e.price}</span> ريال`:'مجاني'} · متبقٍ <span class="num">${seatsLeft(e)}</span> مقعد</div></div><div>${b?`<span class="chip ok">محجوز · ${b.n}</span>`:`<button class="btn sm" data-ev-open="${e.id}">احجز</button>`}</div></div>`}).join('')||'<p class="muted" style="padding:20px 0">لا توجد فعاليات في هذا اليوم. اختر يوماً آخر.</p>'}</div></div>
+   <div class="stack">
+    <div class="card"><h3>حجوزاتي</h3><div class="list">${S.bookings.map(b=>{const e=EVENTS.find(x=>x.id===b.ev);return `<div class="li"><div><b>${esc(e.title)}</b><div class="small muted">${dayLabel(e.date)} · <span class="num">${e.time}</span> · ${b.n} أشخاص</div><div class="small num muted">${b.ref}</div></div><div class="row" style="gap:4px"><button class="btn sm" data-ticket="${b.ev}">التذكرة</button><button class="btn sm quiet" data-cancel="${b.ev}">إلغاء</button></div></div>`}).join('')||'<p class="muted small">لم تحجز أي فعالية بعد.</p>'}</div></div>
+    <div class="card"><h3>إعدادات الإشعارات</h3>${Object.keys(S.notifPrefs).map(k=>`<label class="layer-toggle"><input type="checkbox" id="np-${k}" data-np="${k}" ${S.notifPrefs[k]?'checked':''}> إشعارات ${k==='عروض'?'العروض والخصومات':'الفعاليات ال'+k}</label>`).join('')}<p class="small muted" style="margin-top:6px">تذكير قبل الفعالية بساعتين وعند تغيير الموعد.</p></div>
+   </div></div>`;
+};
+function nearestOf(type,p){return PLACES.filter(x=>x.type===type).reduce((b,x)=>dist(x,p)<dist(b,p)?x:b)}
+function openEvent(id){const e=EVENTS.find(x=>x.id===id),p=P(e.place);const b0=booked(id);
+  modal(e.title,`<div class="stack"><div class="row"><span class="chip ${e.cat==='ثقافية'?'info':'ok'}">${e.cat}</span><span class="small muted">${dayLabel(e.date)} · <span class="num">${e.time}</span></span></div><p>${esc(e.desc)}</p><p class="small muted">${icon('pin','width="14" style="vertical-align:-2px"')} ${esc(p.name)} · متبقٍ <span class="num">${seatsLeft(e)}</span> مقعد</p>
+   ${b0?`<button class="btn" id="bk-ticket">${icon('ticket','width="16"')} عرض التذكرة</button>`:`<label class="f">عدد الأشخاص<select id="bk-n">${[1,2,3,4,5,6].map(n=>`<option>${n}</option>`).join('')}</select></label><label class="layer-toggle"><input type="checkbox" id="bk-rem" checked> ذكّرني قبل الفعالية بساعتين</label>
+   <div class="row between"><span class="num" id="bk-total">${e.price?e.price+' ريال':'مجاني'}</span><button class="btn" id="bk-go">${e.price?'متابعة للدفع':'تأكيد الحجز'}</button></div>`}
+   <button class="btn ghost sm" id="bk-map">${icon('route','width="14"')} الاتجاهات إلى الموقع</button></div>`,b=>{
+   const n=b.querySelector('#bk-n');if(n)n.onchange=()=>b.querySelector('#bk-total').textContent=e.price?(e.price*n.value)+' ريال':'مجاني';
+   const t=b.querySelector('#bk-ticket');if(t)t.onclick=()=>showTicket(b0);
+   const g=b.querySelector('#bk-go');if(g)g.onclick=()=>{const cnt=+n.value;
+     const finish=()=>{const r=ref('EV');const bk={ev:id,n:cnt,ref:r};S.bookings.push(bk);addPoints(10,'حجز '+e.title);notify(`تأكيد حجز: ${e.title} · ${r}`);showTicket(bk);if(['events','home','account','plan'].includes(view))render()};
+     if(!e.price){finish();return}
+     b.innerHTML=`<div class="stack"><div class="row between"><span>${esc(e.title)} × <span class="num">${cnt}</span></span><b class="num">${e.price*cnt} ريال</b></div><p class="small muted">شامل ضريبة القيمة المضافة</p>${['مدى','Apple Pay','STC Pay'].map((m,i)=>`<label class="layer-toggle card" style="box-shadow:none;padding:10px"><input type="radio" name="pm" id="pm-${i}" ${i===0?'checked':''}> ${m}</label>`).join('')}<button class="btn" id="pay">ادفع <span class="num">${e.price*cnt}</span> ريال</button><p class="small muted">بوابة دفع تجريبية: لا يُخصم أي مبلغ.</p></div>`;
+     b.querySelector('#pay').onclick=ev=>{ev.currentTarget.disabled=true;ev.currentTarget.textContent='جارٍ المعالجة…';setTimeout(finish,700)}};
+   b.querySelector('#bk-map').onclick=()=>{closeModal();mapState.to=e.place;if(mapState.from===e.place)mapState.from='m2';computeRoute();go('maps')}})}
+function qrSVG(text){let h=7;for(const c of text)h=(h*31+c.charCodeAt(0))>>>0;const R=rng(h),N=25,c=6;let s=`<svg viewBox="0 0 ${N*c} ${N*c}" width="150" height="150" role="img" aria-label="رمز QR للتذكرة"><rect width="100%" height="100%" fill="#FFFFFF"/>`;
+  const finder=(x,y)=>`<rect x="${x*c}" y="${y*c}" width="${7*c}" height="${7*c}" fill="#16241E"/><rect x="${(x+1)*c}" y="${(y+1)*c}" width="${5*c}" height="${5*c}" fill="#FFFFFF"/><rect x="${(x+2)*c}" y="${(y+2)*c}" width="${3*c}" height="${3*c}" fill="#16241E"/>`;
+  for(let y=0;y<N;y++)for(let x=0;x<N;x++){const inF=(x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9);if(!inF&&R()>.52)s+=`<rect x="${x*c}" y="${y*c}" width="${c}" height="${c}" fill="#16241E"/>`}
+  return s+finder(0,0)+finder(N-7,0)+finder(0,N-7)+'</svg>'}
+function showTicket(bk){if(!bk)return;const e=EVENTS.find(x=>x.id===bk.ev),p=P(e.place),pk=nearestOf('parking',p),mt=nearestOf('metro',p);
+  modal('تذكرتك',`<div class="stack" style="text-align:center"><div><span class="qr">${qrSVG(bk.ref)}</span></div><h3>${esc(e.title)}</h3><p class="small muted">${dayLabel(e.date)} · <span class="num">${e.time}</span> · ${esc(p.name)} · <span class="num">${bk.n}</span> أشخاص</p><b class="num" dir="ltr">${bk.ref}</b>
+   <div class="card" style="box-shadow:none;text-align:start"><h4>خطط وصولك</h4><div class="list"><div class="li"><div><b class="small">${esc(mt.name)}</b><div class="small muted">مترو · <span class="num">${fmt(toMeters(pathLen(roadPath(mt,p))))}</span> م مشياً إلى الموقع</div></div><button class="btn sm ghost" id="tk-metro">المسار</button></div><div class="li"><div><b class="small">${esc(pk.name)}</b><div class="small muted">متاح <span class="num">${pk.free}</span> موقفاً</div></div><button class="btn sm ghost" id="tk-park">احجز موقفاً</button></div></div></div>
+   <button class="btn quiet" id="tk-cal">${icon('cal','width="16"')} أضف إلى التقويم</button></div>`,m=>{
+   m.querySelector('#tk-metro').onclick=()=>{closeModal();mapState.from=mt.id;mapState.to=e.place;mapState.mode='walk';computeRoute();go('maps')};
+   m.querySelector('#tk-park').onclick=()=>openTxn('parking',pk.id);
+   m.querySelector('#tk-cal').onclick=()=>toast('أُضيفت الفعالية إلى تقويمك مع تذكير قبل ساعتين')})}
+function bindEvents(){
+  document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{evDay=b.dataset.day===evDay?null:b.dataset.day;render()});
+  $('#all-days').onclick=()=>{evDay=null;render()};
+  document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>{evCat=b.dataset.cat;render()});
+  document.querySelectorAll('[data-cancel]').forEach(b=>b.onclick=()=>{S.bookings=S.bookings.filter(x=>x.ev!==b.dataset.cancel);save();toast('تم إلغاء الحجز');render()});
+  document.querySelectorAll('[data-np]').forEach(c=>c.onchange=()=>{S.notifPrefs[c.dataset.np]=c.checked;save();toast(c.checked?'تم تفعيل الإشعارات':'تم إيقاف الإشعارات')});
+  bindEvOpen();
+  if(innerWidth<1000)$('#ev-grid').style.gridTemplateColumns='minmax(0,1fr)';
+}
+
+/* --- Maps --- */
+const mapState={layers:new Set(['landmark','cafe','restaurant','parking','metro','bus','bike','event']),from:'m2',to:'masmak',mode:'walk',sel:null,route:null};
+V.maps=()=>{
+  const opts=PLACES.filter(p=>['landmark','cafe','restaurant','parking','metro'].includes(p.type));
+  const r=mapState.route;let info='';
+  if(r){const m=toMeters(pathLen(r));const sp={walk:80,bike:230,scooter:250}[mapState.mode];const min=Math.max(1,Math.round(m/sp));const co2=(m/1000*0.17).toFixed(2);
+    info=`<div class="row" style="gap:16px;margin-top:8px"><div class="stat"><b class="num">${min}</b><span>دقيقة</span></div><div class="stat"><b class="num">${fmt(m)}</b><span>متر</span></div><div class="stat"><b class="num">${co2}</b><span>كجم CO₂ موفّرة</span></div></div>`}
+  const sel=mapState.sel&&P(mapState.sel);
+  return head('الخرائط الذكية والتنقل','خريطة وسط الرياض','خرائط الفضاء العام والمواقف، الإرشاد للوجهات، النقل العام، وحجز التنقل الأخضر — مبنية على خرائط بلدي.')+
+  `<div class="map-wrap"><div class="stack">${mapSVG({layers:mapState.layers,route:r,sel:mapState.sel})}
+    <div class="card" id="poi-card">${sel?poiCard(sel):'<p class="muted small">اضغط على أي نقطة في الخريطة لعرض التفاصيل.</p>'}</div></div>
+   <div class="stack">
+    <div class="card"><h3>${icon('route','width="18" style="vertical-align:-3px;color:var(--accent)"')} تخطيط الرحلة</h3>
+     <div class="stack"><label class="f">من<select id="r-from">${opts.map(p=>`<option value="${p.id}" ${p.id===mapState.from?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label>
+     <label class="f">إلى<select id="r-to">${opts.map(p=>`<option value="${p.id}" ${p.id===mapState.to?'selected':''}>${esc(p.name)}</option>`).join('')}</select></label>
+     <div class="seg" style="background:var(--soft)">${[['walk','مشي'],['bike','دراجة'],['scooter','سكوتر']].map(([k,l])=>`<button data-mode="${k}" class="${mapState.mode===k?'on':''}" style="color:var(--ink)">${l}</button>`).join('')}</div>
+     <button class="btn" id="r-go">عرض المسار</button>${info}</div></div>
+    <div class="card"><h3>${icon('layers','width="18" style="vertical-align:-3px;color:var(--accent)"')} طبقات الخريطة</h3>
+     ${[...Object.entries(TYPE),['event',{label:'الفعاليات',color:'var(--warn)'}]].map(([k,t])=>`<label class="layer-toggle"><input type="checkbox" id="ly-${k}" data-ly="${k}" ${mapState.layers.has(k)?'checked':''}><span class="sw" style="background:${t.color}"></span>${t.label}</label>`).join('')}</div>
+    <div class="card"><h3>التنقل الأخضر</h3><div class="list">${PLACES.filter(p=>p.type==='bike').map(p=>`<div class="li"><div><b>${esc(p.name)}</b><div class="small muted"><span class="num">${p.bikes}</span> دراجة · <span class="num">${p.scooters}</span> سكوتر</div></div><button class="btn sm" data-ride="${p.id}">احجز</button></div>`).join('')}</div></div>
+    <div class="card"><h3>المواقف الآن</h3>${PLACES.filter(p=>p.type==='parking').map(p=>{const pc=p.free/p.cap;return `<div style="margin-bottom:8px"><div class="row between small"><span>${esc(p.name)}</span><span class="num ${pc<.1?'':'muted'}" style="${pc<.1?'color:var(--danger)':''}">${p.free} / ${p.cap}</span></div><div class="bar"><i style="width:${(1-pc)*100}%;background:${pc<.1?'var(--danger)':'var(--accent)'}"></i></div></div>`}).join('')}</div>
+   </div></div>`;
+};
+function poiCard(p){const t=TYPE[p.type];const fav=S.favs.includes(p.id);const op=isOpen(p);
+  let extra='';
+  if(p.type==='parking')extra=`<p class="small">متاح <b class="num">${p.free}</b> من <span class="num">${p.cap}</span></p><button class="btn sm" data-txn="parking" data-ctx="${p.id}">احجز موقفاً</button>`;
+  else if(p.type==='bike')extra=`<button class="btn sm" data-ride="${p.id}">احجز دراجة أو سكوتر</button>`;
+  else if(p.type==='metro'||p.type==='bus')extra=`<p class="small muted">الرحلة القادمة بعد <b class="num">${3+(p.x%7)}</b> دقائق · ثم كل <span class="num">8</span> دقائق</p>`;
+  else extra=`<p class="small muted">${esc(p.desc||'')}</p>`;
+  return `<div class="row between"><div><span class="chip" style="color:${t.color}">${t.label}</span><h3 style="margin-top:4px">${esc(p.name)}</h3>${p.en?`<div class="small muted" dir="ltr" style="text-align:end">${p.en}</div>`:''}</div>${p.hours?`<span class="chip ${op?'ok':'bad'}">${op?'مفتوح الآن':'مغلق'} · <span class="num">${hrs(p)}</span></span>`:''}</div>
+  <div class="stack" style="margin-top:8px">${extra}<div class="row"><button class="btn sm ghost" data-route-to="${p.id}">المسار إلى هنا</button>${p.hours?`<button class="btn sm quiet" data-fav="${p.id}">${fav?'♥ في المفضلة':'♡ أضف للمفضلة'}</button>`:''}</div></div>`}
+function bindPoiActions(scope){
+  scope.querySelectorAll('[data-route-to]').forEach(b=>b.onclick=()=>{mapState.to=b.dataset.routeTo;computeRoute();if(view!=='maps')go('maps');else render()});
+  scope.querySelectorAll('[data-fav]').forEach(b=>b.onclick=()=>{toggleFav(b.dataset.fav);render()});
+  scope.querySelectorAll('[data-ride]').forEach(b=>b.onclick=()=>openRide(b.dataset.ride));
+  scope.querySelectorAll('[data-txn]').forEach(b=>b.onclick=()=>openTxn(b.dataset.txn,b.dataset.ctx));
+}
+function toggleFav(id){if(S.favs.includes(id)){S.favs=S.favs.filter(x=>x!==id);toast('أُزيل من المفضلة')}else{S.favs.push(id);toast('أُضيف إلى المفضلة')}save()}
+function computeRoute(){const a=P(mapState.from),b=P(mapState.to);mapState.route=roadPath(a,b)}
+function openRide(id){const p=P(id);modal('حجز التنقل الأخضر',`<div class="stack"><p class="muted small">${esc(p.name)}</p><label class="f">نوع المركبة<select id="rd-t"><option value="bike">دراجة (${p.bikes} متاحة)</option><option value="scooter">سكوتر كهربائي (${p.scooters} متاح)</option></select></label><label class="f">المدة<select id="rd-d"><option value="30">30 دقيقة · 8 ريال</option><option value="60">ساعة · 14 ريال</option><option value="120">ساعتان · 24 ريال</option></select></label><button class="btn" id="rd-go">تأكيد وفتح القفل</button></div>`,b=>{
+  b.querySelector('#rd-go').onclick=()=>{const r=ref('GR');S.rides.push({p:id,t:b.querySelector('#rd-t').value,ref:r});addPoints(20,'رحلة تنقل أخضر');notify('حجز تنقل أخضر · رمز الفتح '+r.slice(-4));b.innerHTML=`<div class="stack" style="text-align:center"><div class="ico" style="margin:0 auto">${icon('leaf')}</div><h3>تم الحجز</h3><p>رمز فتح القفل</p><b style="font-size:2rem;font-family:var(--f-display);letter-spacing:.2em" class="num">${r.slice(-4)}</b><p class="small muted">أُضيفت 20 نقطة أثر إلى حسابك.</p></div>`}})}
+function bindMaps(){
+  const svg=document.querySelector('.map-box svg');
+  svg.addEventListener('click',e=>{const g=e.target.closest('[data-poi]');const ev=e.target.closest('[data-ev]');
+    if(ev){openEvent(ev.dataset.ev);return}
+    if(g){mapState.sel=g.dataset.poi;render()}});
+  $('#r-from').onchange=e=>mapState.from=e.target.value;$('#r-to').onchange=e=>mapState.to=e.target.value;
+  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{mapState.mode=b.dataset.mode;if(mapState.route)computeRoute();render()});
+  $('#r-go').onclick=()=>{if(mapState.from===mapState.to){toast('اختر نقطتين مختلفتين');return}computeRoute();render()};
+  document.querySelectorAll('[data-ly]').forEach(c=>c.onchange=()=>{c.checked?mapState.layers.add(c.dataset.ly):mapState.layers.delete(c.dataset.ly);render()});
+  bindPoiActions(document.querySelector('main'));
+}
+
+/* --- Destination --- */
+let destTab='cafe';
+const TXNS={
+ parking:{t:'حجز موقف',f:[['الموقف','select',PLACES.filter(p=>p.type==='parking').map(p=>p.name)],['المدة','select',['ساعة','3 ساعات','يوم كامل']]],p:'PK'},
+ permit:{t:'طلب تصريح فعالية أو تصوير',f:[['نوع التصريح','select',['تصوير','فعالية خاصة','بسطة موسمية']],['التاريخ','text',[]]],p:'PR'},
+ tour:{t:'حجز جولة مرشدة',f:[['المسار','select',TRAILS.map(t=>t.name)],['عدد الأشخاص','select',['1','2','3','4','5+']]],p:'TR'},
+ report:{t:'بلاغ بلدي (940)',f:[['نوع البلاغ','select',['نظافة','إنارة','حفريات','تشوه بصري']],['الوصف','textarea',[]]],p:'940'},
+ fee:{t:'سداد رسوم خدمة',f:[['الخدمة','select',['رسوم موقف','رسوم تصريح','اشتراك السكان']],['المبلغ','text',[]]],p:'PAY'},
+};
+function openTxn(k,ctx){const t=TXNS[k];modal(t.t,`<form id="txf" class="stack">${t.f.map(([l,ty,o],i)=>`<label class="f">${l}${ty==='select'?`<select id="tx${i}">${o.map(x=>`<option ${ctx&&P(ctx)&&P(ctx).name===x?'selected':''}>${esc(x)}</option>`).join('')}</select>`:ty==='textarea'?`<textarea id="tx${i}" required></textarea>`:`<input type="text" id="tx${i}" required placeholder="${l==='التاريخ'?ymd(addDays(NOW,3)):''}">`}</label>`).join('')}<p class="small muted">يتم الدفع والتوثيق عبر النفاذ الوطني الموحد في النسخة الفعلية.</p><button class="btn" type="submit">إرسال الطلب</button></form>`,b=>{
+  b.querySelector('#txf').onsubmit=e=>{e.preventDefault();const r=ref(t.p);S.txns.unshift({t:t.t,ref:r,date:ymd(NOW),st:k==='report'?'محال إلى بلدي':'مكتمل'});save();notify(`${t.t} · ${r}`);b.innerHTML=`<div class="stack" style="text-align:center"><h3>تم استلام طلبك</h3><p>رقم المرجع</p><b class="num" style="font-size:1.4rem">${r}</b><p class="small muted">تابع حالة الطلب من «معاملاتي».</p></div>`;if(view==='dest')setTimeout(render,50)}})}
+V.dest=()=>{
+  const types={cafe:'المقاهي',restaurant:'المطاعم',landmark:'المعالم',fav:'المفضلة'};
+  const list=destTab==='fav'?PLACES.filter(p=>S.favs.includes(p.id)):PLACES.filter(p=>p.type===destTab);
+  return head('معلومات الوجهة','اكتشف وسط الرياض','المقاهي والمطاعم وأوقات العمل، المعالم والفعاليات القادمة، المفضلة والتقييمات، ومعاملاتك من منصة واحدة.')+
+  `<div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr)" id="dest-grid"><div class="card"><div class="tabs">${Object.entries(types).map(([k,l])=>`<button class="${destTab===k?'on':''}" data-dt="${k}">${l}${k==='fav'?` (${S.favs.length})`:''}</button>`).join('')}</div>
+   <div class="grid g2" id="dest-list">${list.map(p=>{const op=isOpen(p);const av=avgRating(p.id);const nxt=EVENTS.find(e=>e.place===p.id);return `<div class="card" style="box-shadow:none"><div class="row between"><h4>${esc(p.name)}</h4><button class="btn sm quiet" data-fav="${p.id}" aria-label="مفضلة">${S.favs.includes(p.id)?'♥':'♡'}</button></div>
+     <div class="row small" style="gap:6px;margin:4px 0"><span class="chip ${op?'ok':'bad'}">${op?'مفتوح':'مغلق'}</span><span class="muted num">${hrs(p)}</span></div>
+     <p class="small muted">${esc(p.desc||'')}</p>${nxt?`<p class="small" style="margin-top:6px">${icon('cal','width="13" style="vertical-align:-2px;color:var(--accent)"')} ${esc(nxt.title)} · ${nxt.d===0?'اليوم':dayLabel(nxt.date)}</p>`:''}
+     <div class="row between" style="margin-top:8px"><span class="small" style="color:var(--warn)">${av?stars(av)+` <span class="muted num">(${(S.reviews[p.id]||[]).length})</span>`:'<span class="muted">لا تقييمات</span>'}</span><button class="btn sm ghost" data-rev="${p.id}">قيّم وعلّق</button></div></div>`}).join('')||'<p class="muted">لا توجد أماكن محفوظة بعد. اضغط ♡ لحفظ مكان.</p>'}</div></div>
+   <div class="stack"><div class="card"><h3>المعاملات من منصة واحدة</h3><div class="stack">${Object.entries(TXNS).map(([k,t])=>`<button class="btn quiet" style="justify-content:space-between" data-txn="${k}">${t.t}<span>‹</span></button>`).join('')}</div></div>
+    <div class="card"><h3>معاملاتي</h3><div class="list">${S.txns.slice(0,5).map(t=>`<div class="li"><div><b class="small">${esc(t.t)}</b><div class="small muted num">${t.ref}</div></div><span class="chip ${t.st==='مكتمل'?'ok':'info'}">${t.st}</span></div>`).join('')||'<p class="small muted">لا توجد معاملات بعد.</p>'}</div></div></div></div>`;
+};
+function bindDest(){document.querySelectorAll('[data-dt]').forEach(b=>b.onclick=()=>{destTab=b.dataset.dt;render()});bindPoiActions(document.querySelector('main'));
+  document.querySelectorAll('[data-rev]').forEach(b=>b.onclick=()=>{const id=b.dataset.rev;const p=P(id);let r=5;modal('تقييم: '+p.name,`<div class="stack"><div class="list">${(S.reviews[id]||[]).map(x=>`<div class="li"><span>${esc(x.t)}</span><span style="color:var(--warn)">${stars(x.r)}</span></div>`).join('')}</div><div class="row" id="rv-stars" style="font-size:1.6rem;color:var(--warn);gap:2px">${[1,2,3,4,5].map(i=>`<button data-s="${i}" style="border:0;background:none;color:inherit;font-size:inherit;padding:0 2px">★</button>`).join('')}</div><textarea id="rv-t" placeholder="اكتب تعليقك"></textarea><button class="btn" id="rv-go">نشر التقييم</button></div>`,m=>{
+   m.querySelectorAll('[data-s]').forEach(s=>s.onclick=()=>{r=+s.dataset.s;m.querySelectorAll('[data-s]').forEach(x=>x.textContent=+x.dataset.s<=r?'★':'☆')});
+   m.querySelector('#rv-go').onclick=()=>{(S.reviews[id]=S.reviews[id]||[]).push({r,t:m.querySelector('#rv-t').value||'بدون تعليق',by:S.role==='resident'?'ساكن':'زائر'});addPoints(5,'تقييم '+p.name);closeModal();toast('تم نشر تقييمك · +5 نقاط');render()}})});
+  if(innerWidth<1000)$('#dest-grid').style.gridTemplateColumns='minmax(0,1fr)'}
+
+/* --- Heritage --- */
+let trailSel='t1';
+V.heritage=()=>{const t=TRAILS.find(x=>x.id===trailSel);let len=0;t.stops.forEach((s,i)=>{if(i)len+=pathLen(roadPath(P(t.stops[i-1]),P(s)))});
+  return head('اكتشاف التراث والثقافة','مسارات وسط الرياض التراثية','مسارات مشي مُرشدة، سرد تاريخي للأماكن، وأداة تعليمية للتعريف بوسط الرياض.')+
+  `<div class="map-wrap"><div class="stack">${mapSVG({layers:new Set(['landmark']),trails:[trailSel],cur:S.trailRun&&S.trailRun.id===trailSel?t.stops[S.trailRun.i]:null})}
+   <div class="card" id="trail-card"><div class="row between"><div><h3>${t.name}</h3><p class="small muted">${t.desc}</p></div><div class="row" style="gap:16px"><div class="stat"><b class="num">${fmt(toMeters(len))}</b><span>متر</span></div><div class="stat"><b class="num">${t.mins}</b><span>دقيقة</span></div></div></div>
+   <ol style="margin:10px 0 0;padding-inline-start:20px">${t.stops.map(s=>`<li style="margin-bottom:4px"><b>${esc(P(s).name)}</b> <span class="small muted">— ${esc(P(s).desc||'')}</span></li>`).join('')}</ol>
+   ${trailRunHTML(t)}</div></div>
+   <div class="stack"><div class="card"><h3>المسارات</h3><div class="stack">${TRAILS.map(x=>`<button class="opt ${x.id===trailSel?'right':''}" data-tr="${x.id}"><b>${x.name}</b><div class="small muted">${x.stops.length} محطات · <span class="num">${x.mins}</span> دقيقة</div></button>`).join('')}</div></div>
+   <div class="card"><h3>السرد التاريخي</h3><div class="timeline">${HISTORY.map(h=>`<div class="tl"><b class="num">${h.y}</b> · ${h.t}<div class="small muted">${h.d}</div></div>`).join('')}</div></div></div></div>
+   <div class="card" style="margin-top:14px"><div class="row between"><h3>اختبر معلوماتك عن وسط الرياض</h3><span class="chip info">أداة تعليمية</span></div><div class="grid g2" style="margin-top:8px">${QUIZ.map((q,i)=>{const a=S.quiz[i];return `<div><b class="small">${i+1}. ${q.q}</b>${q.o.map((o,j)=>`<button class="opt ${a!==undefined?(j===q.a?'right':a===j?'wrong':''):''}" data-qz="${i}:${j}" ${a!==undefined?'disabled':''}>${o}</button>`).join('')}</div>`}).join('')}</div>
+   <p class="small" style="margin-top:10px">النتيجة: <b class="num">${Object.entries(S.quiz).filter(([i,a])=>QUIZ[i].a===a).length} / ${QUIZ.length}</b> ${Object.keys(S.quiz).length?'<button class="btn sm quiet" id="qz-r">أعد المحاولة</button>':''}</p></div>`};
+function bindHeritage(){document.querySelectorAll('[data-tr]').forEach(b=>b.onclick=()=>{trailSel=b.dataset.tr;render()});
+  document.querySelectorAll('[data-qz]').forEach(b=>b.onclick=()=>{const [i,j]=b.dataset.qz.split(':').map(Number);S.quiz[i]=j;save();render()});
+  const r=$('#qz-r');if(r)r.onclick=()=>{S.quiz={};save();render()};
+  const ts=$('#tr-start');if(ts)ts.onclick=()=>{S.trailRun={id:trailSel,i:0};save();toast('بدأ المسار. اتبع الخط على الخريطة');render()};
+  const tp=$('#tr-stop');if(tp)tp.onclick=()=>{S.trailRun=null;save();render()};
+  const tn=$('#tr-next');if(tn)tn.onclick=()=>{const t=TRAILS.find(x=>x.id===trailSel);if(S.trailRun.i<t.stops.length-1){S.trailRun.i++;save();render();return}
+    S.trailRun=null;if(!S.badges.includes(t.name)){S.badges.push(t.name);addPoints(50,'إكمال '+t.name)}save();notify('أكملت '+t.name+' وحصلت على شارة المستكشف');render();
+    modal('أحسنت!',`<div class="stack" style="text-align:center"><div class="ico" style="margin:0 auto;width:56px;height:56px">${icon('award')}</div><h3>شارة: ${esc(t.name)}</h3><p class="small muted">أُضيفت 50 نقطة أثر إلى حسابك</p><div class="row" style="justify-content:center"><button class="btn" id="cm-rate">قيّم تجربتك</button><button class="btn quiet" id="cm-acc">حسابي</button></div></div>`,m=>{m.querySelector('#cm-rate').onclick=()=>{closeModal();destTab='landmark';go('dest')};m.querySelector('#cm-acc').onclick=()=>{closeModal();go('account')}})};
+  bindPoiActions(document.querySelector('main'))}
+
+/* --- Community --- */
+let pick=null, commTab='feedback';
+function classify(t){const k=[['إنارة',/إنار|ضوء|مظلم/],['نظافة',/نظاف|حاوي|نفاي|قمام/],['مواقف',/موقف|مواقف|سيار/],['مرافق',/مقعد|مقاعد|دورة|مرفق|ظل/],['فعاليات',/فعالي|عرض|حفل/]];for(const [c,r] of k)if(r.test(t))return c;return 'عام'}
+const routeOf=c=>['إنارة','نظافة'].includes(c)?'بلدي 940':'الشركة';
+V.community=()=>{if(sub){commTab=sub;sub=null}
+  return head('المشاركة المجتمعية','صوتك يصنع الوجهة','ملاحظات مرتبطة بالموقع، استطلاعات رأي، مقترحات لتحسين الحي، ومشاركة الموارد بين السكان.')+
+  `<div class="tabs">${[['feedback','الملاحظات على الخريطة'],['polls','استطلاعات الرأي'],['proposals','مقترحات التحسين'],['share','مشاركة الموارد']].map(([k,l])=>`<button class="${commTab===k?'on':''}" data-ct="${k}">${l}</button>`).join('')}</div>`+
+  ({feedback:()=>{const mine=S.feedback.filter(f=>(f.owner===CUR));return `<div class="map-wrap"><div class="stack"><p class="small muted">اضغط على الخريطة لتحديد موقع ملاحظتك.</p>${mapSVG({layers:new Set(['landmark']),feedback:true,pick})}</div>
+    <div class="stack"><div class="card"><h3>أضف ملاحظة</h3><form id="fb-f" class="stack"><div class="small ${pick?'':'muted'}">${pick?'✓ تم تحديد الموقع على الخريطة':'لم يُحدد الموقع بعد'}</div><label class="f">تقييم الموقع<select id="fb-r"><option>5 · ممتاز</option><option>4 · جيد</option><option>3 · مقبول</option><option>2 · ضعيف</option><option>1 · سيئ</option></select></label><label class="f">الملاحظة<textarea id="fb-t" required placeholder="مثال: الإنارة ضعيفة في الممر المؤدي للسوق"></textarea></label><button class="btn" type="submit">إرسال</button></form></div>
+    <div class="card" id="my-fb"><h3>ملاحظاتي</h3><div class="stack">${mine.map(f=>`<div><div class="row between"><b class="small">${esc(f.text)}</b><span class="chip">${f.cat}</span></div><div class="small muted num" style="margin:4px 0 8px">${f.id} · مُحالة إلى: ${f.to}</div>${stepsHTML(FB_STAGES,f.stage)}${f.stage>=4?(f.rated?`<p class="small" style="margin-top:6px">شكراً، تقييمك للمعالجة: <b>${f.rated}</b></p>`:`<div class="row" style="margin-top:8px"><span class="small">هل أنت راضٍ عن المعالجة؟</span><button class="btn sm" data-rate="${f.id}:راضٍ">نعم</button><button class="btn sm quiet" data-rate="${f.id}:غير راضٍ">لا</button></div>`):""}</div>`).join('<hr style="border:0;border-top:1px solid var(--line)">')||'<p class="small muted">لم ترسل ملاحظات بعد.</p>'}</div></div></div></div>`},
+  polls:()=>`<div class="grid g2">${POLLS.map(p=>{const v=S.votes[p.id];const counts=p.base.map((b,i)=>b+(v===i?1:0));const tot=counts.reduce((a,b)=>a+b,0);return `<div class="card"><h3>${p.q}</h3><div class="stack">${p.o.map((o,i)=>v===undefined?`<button class="opt" data-vote="${p.id}:${i}">${o}</button>`:`<div><div class="row between small"><span>${o}${v===i?' ✓':''}</span><span class="num">${Math.round(counts[i]/tot*100)}%</span></div><div class="bar"><i style="width:${counts[i]/tot*100}%"></i></div></div>`).join('')}</div><p class="small muted" style="margin-top:8px"><span class="num">${fmt(tot)}</span> مشاركة</p></div>`}).join('')}</div>`,
+  proposals:()=>`<div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr)" class="pp"><div class="card"><h3>مقترحات تحسين الحي والوجهة</h3><div class="list">${[...S.proposals].sort((a,b)=>b.v-a.v).map(p=>`<div class="li"><div><b>${esc(p.t)}</b>${(p.owner===CUR)?' <span class="chip ok">مقترحك</span>':''}<div class="small muted">${p.v>=200?'تجاوز حد المراجعة وأُحيل للشركة':'يحتاج '+(200-p.v)+' صوتاً للمراجعة'}</div></div><button class="btn sm ${S.upvoted.includes(p.id)?'':'ghost'}" data-up="${p.id}">▲ <span class="num">${p.v}</span></button></div>`).join('')}</div></div>
+   <div class="card"><h3>قدّم مقترحاً</h3><form id="pp-f" class="stack"><textarea id="pp-t" required placeholder="ما الذي تقترحه لتحسين الحي؟"></textarea><button class="btn" type="submit">نشر المقترح</button></form></div></div>`,
+  share:()=>`<div class="grid" style="grid-template-columns:minmax(0,2fr) minmax(0,1fr)"><div class="card"><h3>موارد متاحة بين السكان</h3><div class="list">${RESOURCES.map((r,i)=>`<div class="li"><div><b>${r.t}</b><div class="small muted">${r.o}</div></div><button class="btn sm" data-borrow="${i}" ${S.role!=='resident'?'disabled title="للسكان فقط"':''}>طلب استعارة</button></div>`).join('')}</div>${S.role!=='resident'?'<p class="note" style="margin-top:8px">مشاركة الموارد متاحة للسكان الموثّقين. بدّل إلى «ساكن» من الأعلى للتجربة.</p>':''}</div>
+   <div class="card"><h3>شارك مورداً</h3><form id="rs-f" class="stack"><input type="text" id="rs-t" required placeholder="اسم الأداة أو المورد"><select id="rs-d"><option>إعارة مجانية</option><option>تبادل</option><option>تأجير رمزي</option></select><button class="btn" type="submit" ${S.role!=='resident'?'disabled':''}>نشر</button></form></div></div>`
+  })[commTab]();
+};
+function bindCommunity(){document.querySelectorAll('[data-rate]').forEach(b=>b.onclick=()=>{const [id,r]=b.dataset.rate.split(':');S.feedback.find(f=>f.id===id).rated=r;save();toast('شكراً لتقييمك');render()});document.querySelectorAll('[data-ct]').forEach(b=>b.onclick=()=>{commTab=b.dataset.ct;render()});
+  if(commTab==='feedback'){const svg=document.querySelector('.map-box svg');svg.style.cursor='crosshair';svg.addEventListener('click',e=>{pick=svgPoint(svg,e);render()});
+    $('#fb-f').onsubmit=e=>{e.preventDefault();if(!pick){toast('حدد موقع الملاحظة على الخريطة أولاً');return}const t=$('#fb-t').value.trim();const c=classify(t);const id='FB-'+(1046+S.feedback.length);
+      S.feedback.unshift({id,x:pick.x,y:pick.y,cat:c,text:t,stage:2,to:routeOf(c),by:USERS[CUR].label,date:ymd(NOW),owner:CUR});pick=null;addPoints(10,'ملاحظة مجتمعية');notify(`استلمنا ملاحظتك ${id} وصُنّفت «${c}» وأُحيلت إلى ${routeOf(c)}`);toast('شكراً لك. صُنّفت ملاحظتك «'+c+'» وأُحيلت إلى '+routeOf(c));render()}}
+  document.querySelectorAll('[data-vote]').forEach(b=>b.onclick=()=>{const [p,i]=b.dataset.vote.split(':');S.votes[p]=+i;save();render()});
+  document.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{const p=S.proposals.find(x=>x.id===b.dataset.up);if(S.upvoted.includes(p.id)){S.upvoted=S.upvoted.filter(x=>x!==p.id);p.v--}else{S.upvoted.push(p.id);p.v++}save();render()});
+  const pf=$('#pp-f');if(pf)pf.onsubmit=e=>{e.preventDefault();S.proposals.push({id:'pr'+Date.now(),t:$('#pp-t').value,v:1,owner:CUR});save();toast('نُشر مقترحك');render()};
+  document.querySelectorAll('[data-borrow]').forEach(b=>b.onclick=()=>{notify('أُرسل طلب استعارة: '+RESOURCES[b.dataset.borrow].t);toast('أُرسل الطلب إلى صاحب المورد')});
+  const rf=$('#rs-f');if(rf)rf.onsubmit=e=>{e.preventDefault();RESOURCES.unshift({t:$('#rs-t').value,o:'أنت · '+$('#rs-d').value});toast('نُشر المورد');render()};
+  document.querySelectorAll('.grid').forEach(g=>{if(innerWidth<1000&&g.style.gridTemplateColumns.includes('2fr'))g.style.gridTemplateColumns='minmax(0,1fr)'})}
+
+/* --- Sustainability --- */
+const calc={car:6,metro:0,walk:2};
+V.sustain=()=>{const kg=(calc.car*0.17+calc.metro*0.04).toFixed(2);const saved=(calc.metro*0.13+calc.walk*0.17).toFixed(2);const trees=Math.max(1,Math.ceil(kg/0.06/30));
+  return head('الاستدامة والأثر','وجهة أنظف وأخف أثراً','إرشادات توعوية، حملات مجتمعية، حاسبة البصمة الكربونية وتعويضها، والحد من هدر الطعام.')+
+  `<div class="grid g4">${TIPS.map(t=>`<div class="card"><div class="ico" style="margin-bottom:8px">${icon('leaf')}</div><h4>${t.t}</h4><p class="small muted">${t.d}</p></div>`).join('')}</div>
+  <div class="grid g2" style="margin-top:14px"><div class="card"><h3>حاسبة البصمة الكربونية لزيارتك</h3><div class="stack">
+   ${[['car','بالسيارة (كم)'],['metro','بالمترو أو الحافلة (كم)'],['walk','مشياً أو بالدراجة (كم)']].map(([k,l])=>`<label class="f">${l} <b class="num" id="cv-${k}" style="color:var(--ink)">${calc[k]}</b><input type="range" id="cr-${k}" data-calc="${k}" min="0" max="40" value="${calc[k]}" style="accent-color:var(--accent)"></label>`).join('')}
+   <div class="row" style="gap:20px"><div class="stat"><b class="num" id="c-kg">${kg}</b><span>كجم CO₂ انبعاثات</span></div><div class="stat"><b class="num" id="c-sv">${saved}</b><span>كجم موفّرة مقارنة بالسيارة</span></div></div>
+   <div class="row between note"><span>عوّض بصمتك بزراعة <b class="num" id="c-tr">${trees}</b> شتلة عبر جمعية التشجير</span><button class="btn sm" id="offset">عوّض الآن</button></div></div></div>
+   <div class="card"><h3>الحملات المجتمعية</h3><div class="stack">${CAMPAIGNS.map(c=>`<div><div class="row between"><b>${c.t}</b><button class="btn sm ${S.joined.includes(c.id)?'quiet':''}" data-join="${c.id}">${S.joined.includes(c.id)?'✓ منضم':'انضم'}</button></div><div class="small muted">${c.n}</div><div class="bar" style="margin-top:6px"><i style="width:${c.p*100}%"></i></div></div>`).join('')}</div></div></div>
+  <div class="card" style="margin-top:14px"><div class="row between"><h3>الحد من هدر الطعام</h3><span class="chip ok">الاقتصاد الدائري</span></div><p class="small muted">وجبات ومخبوزات فائضة من مطاعم الوجهة بسعر رمزي قبل نهاية اليوم.</p>
+   <div class="grid g3" style="margin-top:10px">${SURPLUS.map(s=>`<div class="card" style="box-shadow:none"><b>${s.item}</b><div class="small muted">${s.biz} · حتى <span class="num">${s.until}</span></div><div class="row between" style="margin-top:8px"><span class="num"><b>${s.price}</b> ريال · متبقٍ ${s.left - (S.reserved.includes(s.id)?1:0)}</span><button class="btn sm" data-res="${s.id}" ${S.reserved.includes(s.id)?'disabled':''}>${S.reserved.includes(s.id)?'محجوز':'احجز'}</button></div></div>`).join('')}</div></div>`};
+function bindSustain(){document.querySelectorAll('[data-calc]').forEach(r=>r.oninput=()=>{calc[r.dataset.calc]=+r.value;$('#cv-'+r.dataset.calc).textContent=r.value;const kg=(calc.car*0.17+calc.metro*0.04);$('#c-kg').textContent=kg.toFixed(2);$('#c-sv').textContent=(calc.metro*0.13+calc.walk*0.17).toFixed(2);$('#c-tr').textContent=Math.max(1,Math.ceil(kg/0.06/30))});
+  $('#offset').onclick=()=>{const n=+$('#c-tr').textContent;S.donated.ch2+=n*50;S.myDon+=n*50;addPoints(n*5,'تعويض البصمة الكربونية');notify(`عوّضت بصمتك بـ ${n} شتلة`);toast(`شكراً لك. سُجلت ${n} شتلة باسمك`)};
+  document.querySelectorAll('[data-join]').forEach(b=>b.onclick=()=>{const id=b.dataset.join;S.joined.includes(id)?S.joined=S.joined.filter(x=>x!==id):S.joined.push(id);save();render()});
+  document.querySelectorAll('[data-res]').forEach(b=>b.onclick=()=>{S.reserved.push(b.dataset.res);save();toast('حُجزت الوجبة. استلمها قبل الموعد المحدد');render()})}
+
+/* --- Business --- */
+V.business=()=>{const res=S.role==='resident';
+  return head('الأعمال والاقتصاد المحلي','أعمال وسط الرياض','ترويج الخدمات والفعاليات، القوائم المميزة، عروض حصرية للسكان، والفرص الوظيفية.')+
+  `<div class="grid g3">${[...S.ads.filter(a=>a.st==='منشور').map(a=>({biz:a.biz,tag:a.type.split(' ·')[0],t:a.t,place:'zal'})),...FEATURED].map(f=>`<div class="card"><span class="chip warn">${f.tag}</span><h3 style="margin-top:8px">${f.t}</h3><p class="small muted">${f.biz}</p><button class="btn sm ghost" style="margin-top:8px" data-route-to="${f.place}">الذهاب إلى الموقع</button></div>`).join('')}</div>
+  <div class="grid g2" style="margin-top:14px"><div class="card" id="offers"><div class="row between"><h3>عروض وخصومات</h3><span class="chip ${res?'ok':''}">${res?'ساكن موثّق':'زائر'}</span></div><div class="list">${OFFERS.map((o,i)=>`<div class="li"><div><b>${o.t}</b><div class="small muted">${o.biz}${o.resident?' · حصري للسكان':''}</div></div>${o.resident&&!res?'<span class="chip">🔒 للسكان</span>':`<button class="btn sm" data-code="${i}">عرض الرمز</button>`}</div>`).join('')}</div>${!res?'<p class="note" style="margin-top:8px">بدّل إلى «ساكن» من الأعلى لعرض الخصومات الحصرية.</p>':''}</div>
+   <div class="card" id="jobs"><h3>الفرص الوظيفية</h3><div class="list">${JOBS.map((j,i)=>`<div class="li"><div><b>${j.t}</b><div class="small muted">${j.org} · ${j.type}</div></div><button class="btn sm ghost" data-job="${i}">تقدّم</button></div>`).join('')}</div></div></div>
+  <div class="card" style="margin-top:14px" id="my-ads"><div class="row between"><div><h3>لأصحاب الأعمال: روّج لنشاطك</h3><p class="small muted">أضف إعلاناً مميزاً أو فعالية تظهر في التطبيق والخريطة بعد مراجعة الشركة.</p></div>${['business','nhci'].includes(persona())?'<button class="btn" id="biz-ad">أنشئ إعلاناً</button>':'<span class="chip">متاح لحسابات الأعمال</span>'}</div>${S.ads.some(a=>(a.owner===CUR))?`<div class="list" style="margin-top:8px">${S.ads.filter(a=>(a.owner===CUR)).map(a=>`<div class="li"><div><b>${esc(a.t)}</b><div class="small muted">${esc(a.type)}</div></div><div class="row" style="gap:8px">${a.st==='منشور'?`<span class="small muted"><span class="num">${fmt(a.views)}</span> مشاهدة · <span class="num">${fmt(Math.round(a.views*.07))}</span> نقرة</span>`:''}<span class="chip ${a.st==='منشور'?'ok':a.st==='مرفوض'?'bad':'warn'}">${a.st}</span></div></div>`).join('')}</div>`:''}</div>`};
+function bindBusiness(){bindPoiActions(document.querySelector('main'));
+  document.querySelectorAll('[data-code]').forEach(b=>b.onclick=()=>{const o=OFFERS[b.dataset.code];modal(o.biz,`<div style="text-align:center" class="stack"><p>${o.t}</p><b class="num" style="font-size:1.8rem;letter-spacing:.1em;font-family:var(--f-display)" dir="ltr">${o.code}</b><p class="small muted">أبرز الرمز عند الدفع · صالح حتى نهاية الشهر</p></div>`)});
+  document.querySelectorAll('[data-job]').forEach(b=>b.onclick=()=>{const j=JOBS[b.dataset.job];modal('التقدم: '+j.t,`<form id="jf" class="stack"><label class="f">الاسم<input type="text" id="jf-n" required></label><label class="f">رقم الجوال<input type="text" id="jf-p" required dir="ltr"></label><label class="f">نبذة مختصرة<textarea id="jf-b"></textarea></label><button class="btn" type="submit">إرسال الطلب</button></form>`,m=>m.querySelector('#jf').onsubmit=e=>{e.preventDefault();notify('أُرسل طلبك لوظيفة '+j.t);closeModal();toast('أُرسل طلبك إلى '+j.org)})});
+  const ba=$('#biz-ad');if(ba)ba.onclick=()=>modal('إعلان جديد',`<form id="adf" class="stack"><label class="f">اسم النشاط<input type="text" id="ad-n" required value="${persona()==='business'?'متجر منيرة للمنسوجات':''}"></label><label class="f">نوع الإعلان<select id="ad-t"><option>قائمة مميزة · 300 ريال/شهر</option><option>ترويج فعالية · 150 ريال</option><option>إعلان في الخريطة · 500 ريال/شهر</option></select></label><label class="f">نص الإعلان<textarea id="ad-x" required></textarea></label><button class="btn" type="submit">إرسال للمراجعة</button></form>`,m=>m.querySelector('#adf').onsubmit=e=>{e.preventDefault();S.ads.unshift({id:'ad'+Date.now(),biz:m.querySelector('#ad-n').value,t:m.querySelector('#ad-x').value,type:m.querySelector('#ad-t').value,st:'بانتظار المراجعة',views:0,owner:CUR});save();notify('استلمت الشركة إعلانك وهو قيد المراجعة');closeModal();toast('أُرسل الإعلان لمراجعة الشركة');render()})}
+
+/* --- Donations --- */
+V.donate=()=>{const tot=Object.values(S.donated).reduce((a,b)=>a+b,0);
+  return head('التبرعات والشراكات','أثرك في وسط الرياض','التبرع للجمعيات ومبادرات الأثر، التمويل الجماعي للمشاريع المجتمعية، عرض الأثر، والشراكات والرعايات.')+
+  `<div class="grid g4"><div class="card stat"><b class="num">${fmt(tot)}</b><span>ريال إجمالي التبرعات</span></div>${CHARITIES.map(c=>`<div class="card stat"><b class="num">${fmt(Math.floor(S.donated[c.id]/c.per))}</b><span>${c.unit} · ${c.n}</span></div>`).join('')}</div>
+  <div class="grid g2" style="margin-top:14px"><div class="card"><h3>تبرّع لجمعية</h3><div class="list">${CHARITIES.map(c=>`<div class="li"><div><b>${c.n}</b><div class="small muted">${c.impact}</div></div><button class="btn sm" data-don="${c.id}">تبرّع</button></div>`).join('')}</div>${S.myDon?`<p class="note" style="margin-top:8px">مساهماتك: <b class="num">${fmt(S.myDon)}</b> ريال</p>`:''}</div>
+   <div class="card" id="crowd"><h3>التمويل الجماعي للمشاريع المجتمعية</h3><div class="stack">${S.projects.map(p=>`<div><div class="row between"><b>${p.t}</b><button class="btn sm ghost" data-fund="${p.id}">ساهم</button></div><div class="small muted num">${fmt(p.got)} من ${fmt(p.goal)} ريال · ${Math.round(p.got/p.goal*100)}%</div><div class="bar" style="margin-top:6px"><i style="width:${Math.min(100,p.got/p.goal*100)}%"></i></div></div>`).join('')}</div></div></div>
+  <div class="card" style="margin-top:14px" id="spons"><h3>الشراكات والرعايات والخدمات المميزة</h3><div class="grid g3" style="margin-top:8px">${[['شريك برونزي','25,000','شعار في صفحة الفعالية · ذكر في الإشعارات'],['شريك فضي','75,000','رعاية فعالية شهرية · طبقة على الخريطة'],['شريك ذهبي','200,000','رعاية موسم كامل · لوحة أثر مخصصة · خدمات مميزة']].map(([n,p,d])=>`<div class="card" style="box-shadow:none"><h4>${n}</h4><b class="num" style="font-family:var(--f-display);font-size:1.3rem;color:var(--heading)">${p}</b> <span class="small muted">ريال/سنة</span><p class="small muted" style="margin:6px 0">${d}</p><button class="btn sm ghost" data-spons="${n}">طلب شراكة</button></div>`).join('')}</div></div>`};
+function amountModal(title,cb){modal(title,`<div class="stack"><div class="row">${[50,100,250,500].map(a=>`<button class="btn quiet" data-amt="${a}"><span class="num">${a}</span> ريال</button>`).join('')}</div><label class="f">مبلغ آخر<input type="number" id="amt" min="5" value="100"></label><button class="btn" id="amt-go">تأكيد التبرع</button></div>`,m=>{m.querySelectorAll('[data-amt]').forEach(b=>b.onclick=()=>m.querySelector('#amt').value=b.dataset.amt);m.querySelector('#amt-go').onclick=()=>{const v=+m.querySelector('#amt').value;if(!(v>0))return;cb(v);closeModal()}})}
+function bindDonate(){document.querySelectorAll('[data-don]').forEach(b=>b.onclick=()=>{const c=CHARITIES.find(x=>x.id===b.dataset.don);amountModal('تبرع: '+c.n,v=>{S.donated[c.id]+=v;S.myDon+=v;addPoints(Math.floor(v/10),'تبرع لـ'+c.n);notify(`شكراً لتبرعك بـ ${v} ريال لـ${c.n}`);toast(`أثرك: ${Math.floor(v/c.per)} ${c.unit}`);render()})});
+  document.querySelectorAll('[data-fund]').forEach(b=>b.onclick=()=>{const p=S.projects.find(x=>x.id===b.dataset.fund);amountModal('مساهمة: '+p.t,v=>{p.got+=v;S.myDon+=v;save();toast('شكراً لمساهمتك');render()})});
+  document.querySelectorAll('[data-spons]').forEach(b=>b.onclick=()=>{toast('أُرسل طلب '+b.dataset.spons+' إلى فريق الشراكات')})}
+
+/* --- Twin --- */
+let twin=null, twinMode='normal';
+V.twin=()=>{const days=['أحد','اثنين','ثلاثاء','أربعاء','خميس','جمعة','سبت'];const vis=[18.2,14.6,15.1,16.8,24.5,31.2,28.4];
+  return head('التوأم الرقمي للوجهة','وسط الرياض ثلاثي الأبعاد','تجربة افتراضية لمباني وسط الرياض وطرقه، محاكاة رحلات الزوار، ولوحات مؤشرات الأداء.')+
+  `<div class="map-wrap"><div class="stack"><div style="position:relative"><canvas id="twin3d" aria-label="نموذج ثلاثي الأبعاد لوسط الرياض"></canvas><div id="twin-fallback" class="note" hidden style="position:absolute;inset:auto 12px 12px 12px">تعذّر تحميل محرك العرض ثلاثي الأبعاد في هذا المتصفح.</div><span class="legend" style="position:absolute;bottom:8px;right:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:3px 8px;font-size:.72rem;color:var(--muted)">اسحب للتدوير · مرّر للتكبير</span></div>
+   <div class="row"><div class="seg" style="background:var(--soft)">${[['normal','المباني'],['heat','كثافة الزوار'],['sim','محاكاة رحلة']].map(([k,l])=>`<button data-tm="${k}" class="${twinMode===k?'on':''}" style="color:var(--ink)">${l}</button>`).join('')}</div><button class="btn sm ghost" id="tw-pub">النشر على خرائط بلدي</button></div>
+   ${twinMode==='heat'?'<div class="row small muted"><span class="sw" style="background:#2E7D5B"></span>منخفضة<span class="sw" style="background:#E0B43A"></span>متوسطة<span class="sw" style="background:#D9472B"></span>مرتفعة</div>':''}
+   ${twinMode==='sim'?`<p class="small muted">محاكاة زائر على «مسار الديرة التاريخي»: ${TRAILS[0].stops.map(s=>P(s).name).join(' ← ')}</p>`:''}</div>
+   <div class="stack"><div class="grid g2"><div class="card stat"><b class="num">148.8K</b><span>زائر هذا الأسبوع</span></div><div class="card stat"><b class="num">4.4</b><span>متوسط الرضا من 5</span></div><div class="card stat"><b class="num">42</b><span>دقيقة متوسط الزيارة</span></div><div class="card stat"><b class="num">63%</b><span>زوار المسارات التراثية</span></div></div>
+   <div class="card"><h4>الزوار يومياً (بالآلاف)</h4>${bars(days.map((d,i)=>({l:d,v:vis[i],hi:i===5})),{h:140})}</div>
+   <div class="card"><h4>أعلى الوجهات زيارةً</h4>${[['قصر المصمك',.92],['سوق الزل',.81],['المتحف الوطني',.74],['ساحة العدل',.58]].map(([n,v])=>`<div style="margin-top:6px"><div class="row between small"><span>${n}</span><span class="num">${Math.round(v*100)}%</span></div><div class="bar"><i style="width:${v*100}%"></i></div></div>`).join('')}</div></div></div>`};
+function bindTwin(){document.querySelectorAll('[data-tm]').forEach(b=>b.onclick=()=>{twinMode=b.dataset.tm;render()});
+  $('#tw-pub').onclick=()=>toast('أُرسل طلب النشر إلى خرائط بلدي للاستعراض');
+  initTwin()}
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function initTwin(){
+  const cv=$('#twin3d');if(twin){cancelAnimationFrame(twin.raf);twin.r.dispose();twin=null}
+  if(!window.THREE){$('#twin-fallback').hidden=false;return}
+  const T=THREE;const dark=getComputedStyle(document.documentElement).getPropertyValue('--map-bg').trim();
+  const w=cv.clientWidth,h=cv.clientHeight;const r=new T.WebGLRenderer({canvas:cv,antialias:true});r.setPixelRatio(Math.min(2,devicePixelRatio));r.setSize(w,h,false);
+  const sc=new T.Scene();sc.background=new T.Color(dark||'#E7EFEA');
+  const cam=new T.PerspectiveCamera(42,w/h,1,4000);
+  sc.add(new T.HemisphereLight(0xffffff,0x8899aa,.85));const dl=new T.DirectionalLight(0xffffff,.7);dl.position.set(300,500,200);sc.add(dl);
+  const toW=(x,y)=>[(410-x),(y-300)];
+  const ground=new T.Mesh(new T.PlaneGeometry(820,600),new T.MeshLambertMaterial({color:0xD8D0BF}));ground.rotation.x=-Math.PI/2;sc.add(ground);
+  const roadM=new T.MeshLambertMaterial({color:0x8E8B84});
+  XS.forEach(x=>{const m=new T.Mesh(new T.PlaneGeometry(14,560),roadM);m.rotation.x=-Math.PI/2;m.position.set(410-x,.3,0);sc.add(m)});
+  YS.forEach(y=>{const m=new T.Mesh(new T.PlaneGeometry(780,14),roadM);m.rotation.x=-Math.PI/2;m.position.set(0,.3,y-300);sc.add(m)});
+  const R=rng(7);const blds=[];
+  const hot=[P('masmak'),P('zal'),P('museum'),P('adl')];
+  const heat=(x,y)=>Math.max(...hot.map(p=>Math.max(0,1-dist(p,{x,y})/180)));
+  const heatCol=v=>new T.Color().setHSL((0.38-0.38*v),0.62,0.48);
+  for(let c=0;c<XS.length-1;c++)for(let rr=0;rr<YS.length-1;rr++){
+    const park=(c===3&&rr===0)||(c===0&&rr===1);
+    const x0=XS[c]+14,x1=XS[c+1]-14,y0=YS[rr]+14,y1=YS[rr+1]-14;
+    if(park){const g=new T.Mesh(new T.BoxGeometry(x1-x0,1,y1-y0),new T.MeshLambertMaterial({color:0x7FB58C}));const [wx,wz]=toW((x0+x1)/2,(y0+y1)/2);g.position.set(wx,.6,wz);sc.add(g);
+      for(let i=0;i<14;i++){const t=new T.Mesh(new T.SphereGeometry(5,8,6),new T.MeshLambertMaterial({color:0x3E8A57}));const [tx,tz]=toW(x0+R()*(x1-x0),y0+R()*(y1-y0));t.position.set(tx,7,tz);sc.add(t)}continue}
+    const nx=3,ny=2;for(let i=0;i<nx;i++)for(let j=0;j<ny;j++){
+      const bw=(x1-x0)/nx-6,bd=(y1-y0)/ny-6;const cx=x0+(i+.5)*(x1-x0)/nx,cy=y0+(j+.5)*(y1-y0)/ny;
+      const near=PLACES.find(p=>p.type==='landmark'&&Math.abs(p.x-cx)<bw/1.4&&Math.abs(p.y-cy)<bd/1.4);
+      const hgt=near?(near.id==='masmak'?16:near.id==='mosque'?22:14):(8+R()*(rr<1?40:18));
+      const base=near?0xC9A46C:0xE8DCC6;
+      const m=new T.Mesh(new T.BoxGeometry(bw,hgt,bd),new T.MeshLambertMaterial({color:base}));const [wx,wz]=toW(cx,cy);m.position.set(wx,hgt/2,wz);sc.add(m);
+      blds.push({m,base,hv:heat(cx,cy)});
+      if(near&&near.id==='masmak'){[[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,b])=>{const t=new T.Mesh(new T.CylinderGeometry(4,5,24,10),new T.MeshLambertMaterial({color:0xBF9A60}));t.position.set(wx+a*bw/2,12,wz+b*bd/2);sc.add(t)})}
+    }}
+  blds.forEach(b=>b.m.material.color.set(twinMode==='heat'?heatCol(b.hv):new T.Color(b.base)));
+  // metro line
+  const ml=new T.Mesh(new T.BoxGeometry(760,2,4),new T.MeshLambertMaterial({color:0x7A3E9D}));ml.position.set(0,1.2,18);sc.add(ml);
+  // sim path
+  let path=[],walker=null;
+  if(twinMode==='sim'){const t=TRAILS[0];t.stops.forEach((s,i)=>{if(i){const seg=roadPath(P(t.stops[i-1]),P(s));path=path.concat(i>1?seg.slice(1):seg)}});
+    const pts=path.map(p=>{const [x,z]=toW(p.x,p.y);return new T.Vector3(x,3,z)});
+    const line=new T.Line(new T.BufferGeometry().setFromPoints(pts),new T.LineBasicMaterial({color:0x5F7442}));sc.add(line);
+    walker=new T.Mesh(new T.SphereGeometry(7,16,12),new T.MeshLambertMaterial({color:0x5F7442,emissive:0x2E3A1F}));sc.add(walker);
+    t.stops.forEach(s=>{const [x,z]=toW(P(s).x,P(s).y);const pin=new T.Mesh(new T.ConeGeometry(5,14,10),new T.MeshLambertMaterial({color:0xC27C0E}));pin.rotation.x=Math.PI;pin.position.set(x,40,z);sc.add(pin)});
+    path=pts}
+  let theta=0.6,phi=0.95,radius=760,drag=null;
+  const place=()=>{cam.position.set(radius*Math.sin(phi)*Math.sin(theta),radius*Math.cos(phi),radius*Math.sin(phi)*Math.cos(theta));cam.lookAt(0,0,0)};
+  cv.onpointerdown=e=>{drag={x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing'};
+  cv.onpointermove=e=>{if(!drag)return;theta-=(e.clientX-drag.x)*.006;phi=Math.min(1.35,Math.max(.25,phi-(e.clientY-drag.y)*.005));drag={x:e.clientX,y:e.clientY}};
+  cv.onpointerup=()=>{drag=null;cv.style.cursor='grab'};
+  cv.onwheel=e=>{e.preventDefault();radius=Math.min(1300,Math.max(250,radius+e.deltaY*.6))};
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;let t0=performance.now();
+  const loop=now=>{if(!drag&&!reduce)theta+=0.0012;
+    if(walker&&path.length>1){const total=path.length-1;const f=((now-t0)/1000*0.35)%total;const i=Math.floor(f),k=f-i;walker.position.lerpVectors(path[i],path[Math.min(i+1,total)],k)}
+    place();r.render(sc,cam);twin.raf=requestAnimationFrame(loop)};
+  twin={r,raf:0};twin.raf=requestAnimationFrame(loop);
+}
+
+/* --- Future --- */
+V.future=()=>head('التوسع المستقبلي','خارطة طريق المجلس الرقمي','مراحل التوسع من النسخة الأولى إلى التوأم الرقمي والتكامل مع المدينة الذكية.')+
+ `<div class="grid g3">${[
+  ['المرحلة الأولى','النسخة الأولى (هذا النموذج)',true,['منصة الفعاليات والحجز','الخرائط والتنقل على خرائط بلدي','معلومات الوجهة والمعاملات','التراث والمشاركة المجتمعية','الاستدامة والأعمال والتبرعات']],
+  ['المرحلة الثانية','توسيع نطاق المنصة',false,['إضافة أحياء ووجهات مجاورة','برنامج ولاء ونقاط موحد','تكامل الدفع والتذاكر مع الجهات','لوحة شركاء ذاتية الخدمة','واجهات برمجية مفتوحة للشركاء']],
+  ['المرحلة الثالثة','التوأم الرقمي والتكامل مع المدينة الذكية',false,['توأم رقمي حي متصل بالحساسات','محاكاة الحشود وإدارة الفعاليات','ربط بيانات المرافق والبنية التحتية','مؤشرات تشغيلية لحظية','تكامل مع منصات المدينة الذكية']],
+ ].map(([k,t,now,b])=>`<div class="card phase ${now?'now':''}"><div class="row between"><span class="kicker">${k}</span>${now?'<span class="chip ok">قيد التجربة</span>':'<span class="chip">مخطط</span>'}</div><h3 style="margin-top:4px">${t}</h3><ul class="small muted" style="padding-inline-start:18px;margin:8px 0 0">${b.map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('')}</div>
+ <div class="card" style="margin-top:14px"><div class="row between"><div><h3>جرّب ملامح المرحلة الثالثة الآن</h3><p class="small muted">عرض تجريبي للتوأم الرقمي ضمن هذا النموذج.</p></div><button class="btn" data-go="twin">افتح التوأم الرقمي</button></div></div>`;
+
+/* --- Admin --- */
+let admTab='overview', infraOn=new Set(['el','wa','sw','tc']);
+V.admin=()=>{if(sub){admTab=sub;sub=null}
+  const tabs=[['overview','نظرة عامة'],['feedback','الملاحظات'],['ads','الإعلانات'],['content','محتوى طبقة بلدي+'],['infra','المرافق والبنية التحتية'],['maps','خدمات الخرائط']];
+  return head('لوحة الشركة','شركة تطوير وسط الرياض','إدارة المحتوى والملاحظات والمؤشرات — نموذج عرض لصلاحيات الشركة.')+
+  `<div class="tabs">${tabs.map(([k,l])=>`<button class="${admTab===k?'on':''}" data-at="${k}">${l}</button>`).join('')}</div>`+ADM[admTab]()};
+const ADM={
+ overview:()=>{const open=S.feedback.filter(f=>f.stage<4).length;const bk=S.bookings.reduce((s,b)=>s+b.n,0)+1284;const cats={};S.feedback.forEach(f=>cats[f.cat]=(cats[f.cat]||0)+1);
+  return `<div class="grid g4"><div class="card stat"><b class="num">148.8K</b><span>زائر هذا الأسبوع</span></div><div class="card stat"><b class="num">${fmt(bk)}</b><span>حجز فعاليات</span></div><div class="card stat"><b class="num">${open}</b><span>ملاحظة مفتوحة</span></div><div class="card stat"><b class="num">4.4</b><span>رضا الزوار</span></div></div>
+  <div class="grid g2" style="margin-top:14px"><div class="card"><h4>الملاحظات حسب الفئة</h4>${bars(Object.entries(cats).map(([l,v])=>({l,v})))}</div>
+  <div class="card"><h4>إشغال الفعاليات القادمة</h4>${EVENTS.slice(0,6).map(e=>{const pc=(e.seats-seatsLeft(e))/e.seats;return `<div style="margin-top:6px"><div class="row between small"><span>${esc(e.title)}</span><span class="num">${Math.round(pc*100)}%</span></div><div class="bar"><i style="width:${pc*100}%"></i></div></div>`}).join('')}</div></div>`},
+ feedback:()=>`${stepsHTML(['إبداء الرأي','التصنيف','التوجيه','المعالجة والإفادة','التحليل'],5)}<div class="card" style="margin-top:14px" id="fb-table"><div class="tbl-wrap"><table><thead><tr><th>الإجراء</th><th>المرحلة</th><th>الجهة المختصة</th><th>الفئة</th><th>الملاحظة</th><th>الرقم</th></tr></thead><tbody>${S.feedback.map((f,i)=>`<tr><td>${f.stage<4?`<button class="btn sm" data-adv="${i}">${f.stage===0?'تصنيف':f.stage===1?'إحالة':f.stage===2?'بدء المعالجة':'إغلاق وإفادة'}</button>`:'<span class="chip ok">مغلقة</span>'}</td><td><span class="chip ${f.stage>=4?'ok':f.stage>=2?'info':'warn'}">${FB_STAGES[f.stage]}</span></td><td><select data-to="${i}" id="to-${i}" style="min-width:110px">${['—','الشركة','بلدي 940','إدارة المرور','الدفاع المدني'].map(o=>`<option ${f.to===o?'selected':''}>${o}</option>`).join('')}</select></td><td>${f.cat}</td><td style="min-width:200px">${esc(f.text)}${(f.owner===CUR)?' <span class="chip ok">من حسابك</span>':''}<div class="small muted">${f.by} · <span class="num">${f.date}</span></div></td><td class="num">${f.id}</td></tr>`).join('')}</tbody></table></div><p class="note" style="margin-top:10px">ضابط: البلاغات البلدية (نظافة، إنارة) تُحال تلقائياً إلى قنوات بلدي 940، وتُخفى بيانات المستفيد عن الجهات الخارجية.</p></div>`,
+ ads:()=>`<div class="card" id="ads-table"><h3>إعلانات أصحاب الأعمال</h3><div class="tbl-wrap"><table><thead><tr><th>الإجراء</th><th>الحالة</th><th>النوع</th><th>الإعلان</th><th>النشاط</th></tr></thead><tbody>${S.ads.map((a,i)=>`<tr><td>${a.st==='بانتظار المراجعة'?`<div class="row" style="gap:4px"><button class="btn sm" data-ad-ok="${i}">اعتماد ونشر</button><button class="btn sm quiet" data-ad-no="${i}">رفض</button></div>`:'—'}</td><td><span class="chip ${a.st==='منشور'?'ok':a.st==='مرفوض'?'bad':'warn'}">${a.st}</span></td><td>${esc(a.type)}</td><td style="min-width:180px">${esc(a.t)}</td><td><b>${esc(a.biz)}</b>${(a.owner===CUR)?' <span class="chip ok">من حسابك</span>':''}</td></tr>`).join('')}</tbody></table></div><p class="note" style="margin-top:10px">ضابط: تُراجع الإعلانات للتحقق من مواءمتها مع هوية الوجهة قبل ظهورها في التطبيق والخريطة.</p></div>`,
+ content:()=>`<p class="lede" style="margin-bottom:12px">آلية نشر طبقة وجهات وسط الرياض في بلدي+ — الاعتماد المسبق من الشركة قبل النشر.</p><div class="card" id="ct-table"><div class="tbl-wrap"><table><thead><tr><th>الإجراء</th><th>المرحلة</th><th>النوع</th><th>الاسم (EN)</th><th>الاسم</th></tr></thead><tbody>${S.content.map((c,i)=>`<tr><td>${c.stage===2?`<button class="btn sm" data-ct-adv="${i}">اعتماد الشركة</button>`:c.stage<2?`<button class="btn sm quiet" data-ct-adv="${i}">${c.stage===0?'تجهيز البيانات':'إرسال للمراجعة'}</button>`:c.stage===3?`<button class="btn sm ghost" data-ct-adv="${i}">جدولة تحديث</button>`:'<span class="chip ok">محدّث</span>'}</td><td><span class="chip ${c.stage>=3?'ok':c.stage===2?'warn':''}">${CT_STAGES[c.stage]}</span></td><td>${c.type}</td><td dir="ltr" style="text-align:end">${c.en}</td><td><b>${c.n}</b></td></tr>`).join('')}</tbody></table></div></div>
+  <div class="grid g3" style="margin-top:14px"><div class="card stat"><b class="num">${S.content.filter(c=>c.stage>=3).length} / ${S.content.length}</b><span>عنصر منشور على بلدي+</span></div><div class="card stat"><b class="num">${S.content.filter(c=>c.stage===2).length}</b><span>بانتظار اعتماد الشركة</span></div><div class="card stat"><b>ربع سنوي</b><span>دورة التحديث المعتمدة</span></div></div>`,
+ infra:()=>`<div class="row" style="margin-bottom:10px"><span class="chip bad">${icon('shield','width="12"')} مقيّد للفرق المخوّلة</span><span class="small muted">مرجع مكاني موحد · مصادر: CAD، BIM، GIS</span></div><div class="map-wrap"><div class="stack">${mapSVG({layers:new Set(['landmark']),infra:infraOn,clashes:true})}</div>
+  <div class="stack"><div class="card"><h3>الطبقات</h3>${INFRA.map(l=>`<label class="layer-toggle"><input type="checkbox" id="if-${l.id}" data-if="${l.id}" ${infraOn.has(l.id)?'checked':''}><span class="sw" style="background:${l.c}"></span>${l.n}</label>`).join('')}</div>
+  <div class="card"><h3>التعارضات المرصودة</h3><div class="list">${CLASHES.map((c,i)=>`<div class="li"><div><b class="small">${c.t}</b><div class="small muted">${c.a}</div></div><span class="chip ${c.sev==='عالية'?'bad':c.sev==='متوسطة'?'warn':''}">${c.sev}</span></div>`).join('')}</div><button class="btn" id="inf-rep" style="margin-top:8px">إنشاء تقرير التنسيق</button></div></div></div>`,
+ maps:()=>`<div class="grid g4"><div class="card stat"><b class="num">99.7%</b><span>توفر الخدمة (المستهدف 99.5%)</span></div><div class="card stat"><b class="num">180ms</b><span>متوسط زمن الاستجابة</span></div><div class="card stat"><b class="num">1.2M</b><span>طلب خرائط هذا الشهر</span></div><div class="card stat"><b class="num">4</b><span>طبقات خاصة بالشركة</span></div></div>
+  <div class="grid g2" style="margin-top:14px"><div class="card"><h3>اتفاقية استخدام خرائط بلدي</h3><div class="list">${[['النطاق','خرائط الأساس، البحث، الملاحة، المواقف'],['الصلاحيات','عرض وملاحة للمستخدمين · تحرير الطبقات لفريق الشركة'],['مستوى الخدمة','توفر 99.5% · دعم فني 24/7'],['حماية البيانات','الالتزام بنظام حماية البيانات الشخصية'],['الهوية','واجهة المجلس وألوانه فوق خرائط بلدي']].map(([k,v])=>`<div class="li"><span class="muted">${k}</span><b class="small" style="text-align:end">${v}</b></div>`).join('')}</div></div>
+  <div class="card"><h3>طبقات الشركة على الخريطة</h3><div class="list">${[['مناطق الفعاليات والتفعيل','منشورة'],['المسارات التراثية','منشورة'],['مواقف الشركة الذكية','منشورة'],['مناطق التطوير المستقبلية','قيد الاختبار']].map(([k,v])=>`<div class="li"><span>${k}</span><span class="chip ${v==='منشورة'?'ok':'warn'}">${v}</span></div>`).join('')}</div></div></div>`,
+};
+function bindAdmin(){document.querySelectorAll('[data-ad-ok]').forEach(b=>b.onclick=()=>{const a=S.ads[b.dataset.adOk];a.st='منشور';a.views=800+Math.floor(Math.random()*2400);save();if(a.owner)notifyUser(a.owner,'تمت الموافقة على إعلانك ونُشر في القوائم المميزة');toast('نُشر الإعلان في التطبيق');render()});document.querySelectorAll('[data-ad-no]').forEach(b=>b.onclick=()=>{const a=S.ads[b.dataset.adNo];a.st='مرفوض';save();if(a.owner)notifyUser(a.owner,'لم يُعتمد إعلانك. راجع ملاحظات الشركة وأعد الإرسال');render()});
+  document.querySelectorAll('[data-at]').forEach(b=>b.onclick=()=>{admTab=b.dataset.at;render()});
+  document.querySelectorAll('[data-adv]').forEach(b=>b.onclick=()=>{const f=S.feedback[b.dataset.adv];if(f.stage===0)f.cat=classify(f.text)==='عام'?f.cat:classify(f.text);if(f.stage===1&&f.to==='—')f.to=routeOf(f.cat);f.stage++;save();if(f.owner)notifyUser(f.owner,`تحديث على ملاحظتك ${f.id}: ${FB_STAGES[f.stage]}${f.stage===4?' — شكراً لمساهمتك في تحسين الوجهة':''}`);if(f.stage===4)toast('أُغلقت الملاحظة وأُبلغ صاحبها بإشعار');render()});
+  document.querySelectorAll('[data-to]').forEach(s=>s.onchange=()=>{S.feedback[s.dataset.to].to=s.value;save();toast('تم تحديث الجهة المختصة')});
+  document.querySelectorAll('[data-ct-adv]').forEach(b=>b.onclick=()=>{const c=S.content[b.dataset.ctAdv];c.stage++;save();if(c.stage===3)toast(c.n+' نُشر على طبقة وسط الرياض في بلدي+');render()});
+  document.querySelectorAll('[data-if]').forEach(c=>c.onchange=()=>{c.checked?infraOn.add(c.dataset.if):infraOn.delete(c.dataset.if);render()});
+  const svg=document.querySelector('.map-box svg');if(svg)svg.addEventListener('click',e=>{const g=e.target.closest('[data-clash]');if(g){const c=CLASHES[g.dataset.clash];modal('تعارض: '+c.t,`<div class="stack"><p>الأولوية: <span class="chip ${c.sev==='عالية'?'bad':'warn'}">${c.sev}</span></p><p class="small muted">الأعمال المتأثرة: ${c.a}</p><button class="btn" id="cl-a">إسناد للتنسيق بين التخصصات</button></div>`,m=>m.querySelector('#cl-a').onclick=()=>{closeModal();toast('أُسند التعارض إلى فريق التنسيق')})}});
+  const rp=$('#inf-rep');if(rp)rp.onclick=()=>modal('تقرير التنسيق بين التخصصات',`<div class="stack small"><p><b>التاريخ:</b> <span class="num">${ymd(NOW)}</span></p><p><b>الطبقات المشمولة:</b> ${INFRA.filter(l=>infraOn.has(l.id)).map(l=>l.n).join('، ')}</p><p><b>عدد التعارضات:</b> <span class="num">${CLASHES.length}</span> (عالية <span class="num">1</span>، متوسطة <span class="num">1</span>، منخفضة <span class="num">1</span>)</p><div class="list">${CLASHES.map(c=>`<div class="li"><span>${c.t}</span><span class="muted">${c.a}</span></div>`).join('')}</div><p class="muted">التوصية: إيقاف الحفر في تقاطع الكهرباء والاتصالات حتى اعتماد مخطط إعادة التوجيه.</p></div>`)}
+
+/* --- Solutions --- */
+V.solutions=()=>head('حلول NHC Innovation','الحلول المقترحة للمجلس الرقمي','كل حل مرتبط بشاشة حية في هذا النموذج.')+
+ `<div class="stack">${SOLUTIONS.map(s=>`<div class="card"><div class="row between"><div><div class="kicker">الحل ${s.n}</div><h2>${s.t}</h2><p class="small muted">${s.sub}</p></div><button class="btn" data-go="${s.go}">عرض في النموذج</button></div>
+  <div style="margin:14px 0">${stepsHTML(s.steps.map(x=>x[0]),5)}</div>
+  <div class="grid g3"><div><h4>المخرجات</h4><ul class="small muted" style="padding-inline-start:18px;margin:4px 0">${s.out.map(x=>`<li>${x}</li>`).join('')}</ul></div><div><h4>الأدوار</h4><ul class="small muted" style="padding-inline-start:18px;margin:4px 0">${s.roles.map(x=>`<li>${x}</li>`).join('')}</ul></div><div><h4>ضوابط التنفيذ</h4><ul class="small muted" style="padding-inline-start:18px;margin:4px 0">${s.ctrl.map(x=>`<li>${x}</li>`).join('')}</ul></div></div></div>`).join('')}</div>`;
+
+/* --- Plan your visit --- */
+const INTERESTS={heritage:{l:'التراث والتاريخ',p:['masmak','hokm','murabba','museum','mosque']},food:{l:'القهوة والطعام',p:['c1','r1','c2','r2','c3']},events:{l:'الفعاليات',p:[]},shop:{l:'الأسواق والحِرف',p:['zal','adl']},family:{l:'العائلة والحدائق',p:['garden','adl']}};
+const planSel={ints:['heritage','food','events'],dur:'half',arrive:'metro',day:NOW.getHours()>=19?1:0};
+let planRes=null;
+function buildPlan(){
+  const count={short:3,half:5,full:7}[planSel.dur];
+  const nowM=NOW.getHours()*60+NOW.getMinutes();const evM=e=>+e.time.slice(0,2)*60+ +e.time.slice(3);
+  const ev=planSel.ints.includes('events')?EVENTS.find(e=>e.d===planSel.day&&(planSel.day>0||evM(e)>nowM+60)):null;
+  const lists=planSel.ints.filter(k=>k!=='events').map(k=>[...INTERESTS[k].p]);
+  const picks=[];if(ev)picks.push(ev.place);
+  let guard=0;while(picks.length<count&&lists.some(l=>l.length)&&guard++<60){for(const l of lists){const x=l.shift();if(x&&!picks.includes(x)&&picks.length<count)picks.push(x)}}
+  if(!picks.length)picks.push('masmak','zal');
+  const start=P(planSel.arrive==='car'?'p3':planSel.arrive==='metro'?'m2':'hokm');
+  let rest=picks.filter(x=>!(ev&&x===ev.place)),ordered=[],cur=start;
+  while(rest.length){rest.sort((a,b)=>dist(P(a),cur)-dist(P(b),cur));const n=rest.shift();ordered.push(n);cur=P(n)}
+  if(ev)ordered.push(ev.place);
+  let t=(planSel.day===0?Math.max(NOW.getHours()+1,10):10)*60;const late=planSel.day===0&&NOW.getHours()>=21;
+  if(ev){let pre=0,pv=start;ordered.slice(0,-1).forEach(id=>{const p=P(id);pre+=Math.max(2,Math.round(toMeters(pathLen(roadPath(pv,p)))/80))+(p.type==='landmark'?40:45);pv=p});pre+=Math.max(2,Math.round(toMeters(pathLen(roadPath(pv,P(ev.place))))/80));const lead=evM(ev)-pre;if(lead>=t||planSel.day>0)t=Math.max(lead,8*60)}
+  const stops=[];let prev=start,walk=0,route=[start];
+  ordered.forEach(id=>{const p=P(id);const seg=roadPath(prev,p);const m=toMeters(pathLen(seg));const mins=Math.max(2,Math.round(m/80));walk+=m;t+=mins;route=route.concat(seg.slice(1));
+    const isEv=ev&&id===ev.place;if(isEv){const et=+ev.time.slice(0,2)*60+ +ev.time.slice(3);if(et>t)t=et}
+    const dwell=isEv?60:p.type==='landmark'?40:45;stops.push({id,at:t,walk:mins,ev:isEv?ev.id:null,dwell});t+=dwell;prev=p});
+  return {late,start:start.id,stops,walk,end:t,day:planSel.day,route:route.map(p=>({x:p.x,y:p.y}))};
+}
+const hm=m=>`${String(Math.floor(m/60)%24).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
+V.plan=()=>{const res=planRes||S.itinerary;
+  return head('خطط زيارتك','زيارة مصممة لك','اختر اهتماماتك ويومك ووقتك ووسيلة وصولك، ونقترح لك برنامجاً بالمسار والفعاليات والحجوزات.')+
+  `<div class="map-wrap" style="grid-template-columns:340px minmax(0,1fr)" id="plan-grid"><div class="card stack">
+   <div><h4>ماذا تحب؟</h4><div class="row" style="margin-top:6px;gap:6px">${Object.entries(INTERESTS).map(([k,v])=>`<button class="pick ${planSel.ints.includes(k)?'on':''}" data-int="${k}" aria-pressed="${planSel.ints.includes(k)}">${v.l}</button>`).join('')}</div></div>
+   <div><h4>متى؟</h4><div class="days" style="margin-top:6px">${[0,1,2,3,4,5,6].map(d=>{const dd=addDays(NOW,d);const has=EVENTS.some(e=>e.d===d);return `<button class="day ${planSel.day===d?'on':''}" data-pday="${d}">${d===0?'اليوم':WD[dd.getDay()].replace('ال','')}<b class="num">${dd.getDate()}</b>${has?'<i></i>':''}</button>`}).join('')}</div></div>
+   <div><h4>كم من الوقت لديك؟</h4><div class="row" style="margin-top:6px;gap:6px">${[['short','ساعتان'],['half','نصف يوم'],['full','يوم كامل']].map(([k,l])=>`<button class="pick ${planSel.dur===k?'on':''}" data-dur="${k}">${l}</button>`).join('')}</div></div>
+   <div><h4>كيف ستصل؟</h4><div class="row" style="margin-top:6px;gap:6px">${[['metro','المترو'],['car','سيارة'],['walk','مشياً']].map(([k,l])=>`<button class="pick ${planSel.arrive===k?'on':''}" data-arr="${k}">${l}</button>`).join('')}</div></div>
+   <button class="btn" id="pl-go">أنشئ خطتي</button></div>
+   <div class="stack">${res?planResultHTML(res):`<div class="card"><p class="muted">اختر تفضيلاتك ثم اضغط «أنشئ خطتي» لعرض البرنامج المقترح على الخريطة.</p></div>${mapSVG({layers:new Set(['landmark'])})}`}</div></div>`};
+function planResultHTML(r){const saved=S.itinerary&&S.itinerary.end===r.end&&S.itinerary.day===r.day&&S.itinerary.stops.map(s=>s.id).join()===r.stops.map(s=>s.id).join();const t0=r.stops[0].at-r.stops[0].walk;
+  return `<div class="card"><div class="row between"><div><div class="kicker">${dayLabel(ymd(addDays(NOW,r.day)))}</div><h3 style="margin:0">برنامجك المقترح</h3></div><div class="row" style="gap:16px"><div class="stat"><b class="num">${r.stops.length}</b><span>محطات</span></div><div class="stat"><b class="num">${(r.walk/1000).toFixed(1)}</b><span>كم مشياً</span></div><div class="stat"><b class="num">${hm(t0)}</b><span>البداية</span></div><div class="stat"><b class="num">${hm(r.end)}</b><span>النهاية</span></div></div></div>${r.late?'<p class="note" style="margin-top:8px">الوقت متأخر اليوم وقد تُغلق بعض الأماكن. جرّب اختيار يوم الغد.</p>':''}
+   <div class="timeline" style="margin-top:12px"><div class="tl"><b class="num">${hm(t0)}</b> · الوصول إلى ${esc(P(r.start).name)}</div>${r.stops.map(s=>{const p=P(s.id);const e=s.ev&&EVENTS.find(x=>x.id===s.ev);return `<div class="tl"><b class="num">${hm(s.at)}</b> · ${e?esc(e.title)+' في '+esc(p.name):esc(p.name)} <span class="small muted">· <span class="num">${s.walk}</span> د مشياً · مدة <span class="num">${s.dwell}</span> د</span>${e?(booked(e.id)?' <span class="chip ok">محجوز</span>':` <button class="btn sm" data-ev-open="${e.id}">احجز</button>`):''}</div>`}).join('')}</div>
+   <div class="row" style="margin-top:6px">${saved?'<span class="chip ok">✓ محفوظة في حسابك</span>':'<button class="btn" id="pl-save">احفظ في حسابي</button>'}${P(r.start).type==='parking'?`<button class="btn quiet" data-txn="parking" data-ctx="${r.start}">احجز موقفاً</button>`:''}<button class="btn ghost" id="pl-nav">ابدأ الملاحة</button></div></div>
+   ${mapSVG({layers:new Set(['metro','parking']),route:r.route,stops:r.stops.map(s=>s.id)})}`}
+function bindPlan(){
+  document.querySelectorAll('[data-int]').forEach(b=>b.onclick=()=>{const k=b.dataset.int;planSel.ints=planSel.ints.includes(k)?planSel.ints.filter(x=>x!==k):[...planSel.ints,k];render()});
+  document.querySelectorAll('[data-pday]').forEach(b=>b.onclick=()=>{planSel.day=+b.dataset.pday;render()});
+  document.querySelectorAll('[data-dur]').forEach(b=>b.onclick=()=>{planSel.dur=b.dataset.dur;render()});
+  document.querySelectorAll('[data-arr]').forEach(b=>b.onclick=()=>{planSel.arrive=b.dataset.arr;render()});
+  $('#pl-go').onclick=()=>{if(!planSel.ints.length){toast('اختر اهتماماً واحداً على الأقل');return}planRes=buildPlan();render()};
+  const sv=$('#pl-save');if(sv)sv.onclick=()=>{S.itinerary=planRes||S.itinerary;save();notify('حُفظت خطة زيارتك ليوم '+dayLabel(ymd(addDays(NOW,S.itinerary.day))));render()};
+  const nv=$('#pl-nav');if(nv)nv.onclick=()=>{const r=planRes||S.itinerary;mapState.from=r.start;mapState.to=r.stops[0].id;mapState.mode='walk';computeRoute();toast('الملاحة إلى المحطة الأولى: '+P(r.stops[0].id).name);go('maps')};
+  bindEvOpen();
+  if(innerWidth<1100)$('#plan-grid').style.gridTemplateColumns='minmax(0,1fr)'}
+
+/* --- Account --- */
+const REWARDS=[{id:'rw1',t:'قهوة مجانية من مقهى الديرة',c:100},{id:'rw2',t:'ساعة موقف مجانية',c:150},{id:'rw3',t:'خصم 20% على تذكرة فعالية',c:200}];
+V.account=()=>{const res=S.role==='resident';
+ return head('حسابي','رحلتي في وسط الرياض','تذاكرك وخطتك ومعاملاتك وملاحظاتك ونقاطك في مكان واحد.')+
+ `<div class="grid g4"><div class="card"><div class="row"><span class="ico">${icon('user')}</span><div><b>${res?'ساكن موثّق':'زائر'}</b><div class="small muted">${res?'حي الديرة':S.verified?'حساب موثّق':'<button class="btn sm ghost" id="acc-verify">وثّق حسابك كساكن</button>'}</div></div></div></div>
+  <div class="card stat" id="acc-points"><b class="num">${fmt(S.points)}</b><span>نقاط الأثر</span></div><div class="card stat"><b class="num">${S.bookings.length}</b><span>تذاكر</span></div><div class="card stat"><b class="num">${S.badges.length}</b><span>شارات المستكشف</span></div></div>
+ <div class="grid g2" style="margin-top:14px">
+  <div class="card"><h3>تذاكري</h3><div class="list">${S.bookings.map(b=>{const e=EVENTS.find(x=>x.id===b.ev);return `<div class="li"><div><b>${esc(e.title)}</b><div class="small muted">${dayLabel(e.date)} · <span class="num">${e.time}</span></div></div><button class="btn sm" data-ticket="${b.ev}">التذكرة</button></div>`}).join('')||`<p class="small muted">لا توجد تذاكر بعد. <a href="#events" data-go="events">تصفح الفعاليات</a></p>`}</div></div>
+  <div class="card"><h3>خطة زيارتي</h3>${S.itinerary?`<p class="small muted">${dayLabel(ymd(addDays(NOW,S.itinerary.day)))} · <span class="num">${S.itinerary.stops.length}</span> محطات</p><p class="small">${S.itinerary.stops.map(s=>esc(P(s.id).name)).join(' ← ')}</p><button class="btn sm ghost" id="acc-plan" style="margin-top:8px">فتح الخطة</button>`:`<p class="small muted">لم تحفظ خطة بعد. <a href="#plan" data-go="plan">خطط زيارتك</a></p>`}</div>
+  <div class="card"><h3>استبدال النقاط</h3><div class="list">${REWARDS.map(r=>{const got=S.redeemed.find(x=>x.id===r.id);return `<div class="li"><div><b class="small">${r.t}</b><div class="small muted"><span class="num">${r.c}</span> نقطة</div></div>${got?`<b class="num" dir="ltr">${got.code}</b>`:`<button class="btn sm" data-redeem="${r.id}" ${S.points<r.c?'disabled':''}>استبدل</button>`}</div>`}).join('')}</div><p class="small muted" style="margin-top:6px">اكسب النقاط بالحجز، التنقل الأخضر، إكمال المسارات، التقييم والمشاركة.</p></div>
+  <div class="card"><h3>سجل النقاط</h3><div class="list">${S.pointLog.slice(0,6).map(p=>`<div class="li"><span class="small">${esc(p.why)}</span><b class="num" style="color:${p.n<0?'var(--danger)':'var(--accent)'}">${p.n>0?'+':''}${p.n}</b></div>`).join('')}</div></div>
+  <div class="card"><h3>ملاحظاتي</h3><div class="list">${S.feedback.filter(f=>(f.owner===CUR)).map(f=>`<div class="li"><div><b class="small">${esc(f.text)}</b><div class="small muted num">${f.id} · ${f.to}</div></div><span class="chip ${f.stage>=4?'ok':'info'}">${FB_STAGES[f.stage]}</span></div>`).join('')||`<p class="small muted">لا توجد ملاحظات. <a href="#community" data-go="community">شارك برأيك</a></p>`}</div></div>
+  <div class="card"><h3>معاملاتي وتنقلاتي</h3><div class="list">${[...S.txns.map(t=>({t:t.t,r:t.ref,s:t.st})),...S.rides.map(r=>({t:'تنقل أخضر · '+P(r.p).name,r:r.ref,s:'مكتمل'}))].slice(0,6).map(x=>`<div class="li"><div><b class="small">${esc(x.t)}</b><div class="small muted num">${x.r}</div></div><span class="chip ${x.s==='مكتمل'?'ok':'info'}">${x.s}</span></div>`).join('')||'<p class="small muted">لا توجد معاملات بعد.</p>'}</div></div>
+ </div>
+ <div class="card" style="margin-top:14px"><div class="row between"><h3 style="margin:0">المفضلة</h3><span class="small muted">مساهماتك في التبرعات: <b class="num">${fmt(S.myDon)}</b> ريال</span></div><div class="row" style="margin-top:8px;gap:6px">${S.favs.map(id=>`<button class="pick" data-route-to="${id}">${esc(P(id).name)}</button>`).join('')||'<span class="small muted">لا توجد أماكن مفضلة.</span>'}</div></div>`};
+function bindAccount(){const v=$('#acc-verify');if(v)v.onclick=verifyResident;
+  const p=$('#acc-plan');if(p)p.onclick=()=>{planRes=S.itinerary;go('plan')};
+  document.querySelectorAll('[data-redeem]').forEach(b=>b.onclick=()=>{const r=REWARDS.find(x=>x.id===b.dataset.redeem);if(S.points<r.c)return;S.points-=r.c;S.pointLog.unshift({n:-r.c,why:'استبدال: '+r.t});const code='RW-'+Math.random().toString(36).slice(2,7).toUpperCase();S.redeemed.push({id:r.id,code});save();notify('استبدلت '+r.t+' · الرمز '+code);render()});
+  bindPoiActions(document.querySelector('main'))}
+
+/* --- User journeys + guided demo --- */
+const JOURNEYS=[
+ {id:'j1',persona:'زائرة لأول مرة',who:'سارة، تزور وسط الرياض في عطلة نهاية الأسبوع مع صديقاتها',goal:'تخطط زيارتها، تحجز فعالية، تصل بسهولة وتستكشف التراث',kpi:'من فتح التطبيق إلى تذكرة مؤكدة في أقل من 3 دقائق',mods:['خطط زيارتك','الفعاليات','الخرائط','التراث','معلومات الوجهة','حسابي'],steps:[
+  {go:'home',t:'تفتح التطبيق',h:'الرئيسية تعرض فعاليات الأسبوع والأماكن المفتوحة والمواقف المتاحة الآن.',hl:'.hero'},
+  {go:'plan',t:'تخطط زيارتها',h:'اختر الاهتمامات واليوم والوقت ووسيلة الوصول، ثم «أنشئ خطتي» واحفظها في حسابك.',hl:'#pl-go'},
+  {go:'events',t:'تحجز فعالية وتدفع',h:'اضغط «احجز» على «جولة المصمك المسائية» وأكمل الدفع التجريبي لتظهر تذكرة QR مع خيارات الوصول.',hl:'#ev-list'},
+  {go:'maps',t:'تصل إلى الموقع',h:'اعرض مسار المشي من محطة المترو، أو اضغط على موقف في الخريطة واحجزه.',hl:'#r-go'},
+  {go:'heritage',t:'تمشي المسار التراثي',h:'اضغط «ابدأ المسار» وانتقل بين المحطات حتى تحصل على شارة المستكشف.',hl:'#trail-card'},
+  {go:'dest',t:'تقيّم تجربتها',h:'اضغط «قيّم وعلّق» على مكان زارته لتكسب نقاطاً.',hl:'#dest-list'},
+  {go:'account',t:'تراجع حسابها',h:'التذاكر والخطة والشارات والنقاط في مكان واحد، ويمكن استبدال النقاط بمكافآت.',hl:'#acc-points'}]},
+ {id:'j2',persona:'ساكن في الحي',who:'أبو خالد، يسكن في حي الديرة',goal:'يوثّق سكنه، يبلّغ عن مشكلة ويتابعها حتى المعالجة، ويشارك في تحسين الحي',kpi:'إبلاغ صاحب الملاحظة بكل تغيير في حالتها حتى الإغلاق',mods:['توثيق نفاذ','الأعمال','المشاركة المجتمعية','لوحة الشركة'],steps:[
+  {go:'account',t:'يوثّق حسابه',h:'اضغط «وثّق حسابك كساكن» وأكمل التحقق عبر نفاذ (محاكاة).',hl:'#acc-verify'},
+  {go:'business',t:'يستفيد من عروض السكان',h:'بعد التوثيق تظهر رموز الخصومات الحصرية للسكان.',hl:'#offers'},
+  {go:'community:feedback',t:'يبلّغ عن ملاحظة على الخريطة',h:'اضغط على الخريطة لتحديد الموقع، ثم اكتب مثلاً «الإنارة ضعيفة في الممر» وأرسلها. تُصنّف وتُحال تلقائياً.',hl:'#fb-f'},
+  {go:'admin:feedback',t:'الشركة تعالج الملاحظة',h:'من منظور الشركة: حرّك الملاحظة المعلّمة «من حسابك» عبر المراحل حتى الإغلاق. يصله إشعار بكل تحديث.',hl:'#fb-table'},
+  {go:'community:feedback',t:'يتابع ويقيّم المعالجة',h:'افتح الجرس في الأعلى لرؤية التحديثات، ثم قيّم المعالجة من «ملاحظاتي».',hl:'#my-fb'},
+  {go:'community:proposals',t:'يصوّت على مقترحات الحي',h:'صوّت على مقترح أو أضف مقترحك. ما يتجاوز 200 صوت يُحال للشركة.',hl:'#pp-f'},
+  {go:'community:share',t:'يشارك أدواته مع جيرانه',h:'انشر مورداً أو اطلب استعارة من جار.',hl:'#rs-f'}]},
+ {id:'j3',persona:'صاحبة نشاط تجاري',who:'منيرة، صاحبة متجر منسوجات في سوق الزل',goal:'تروّج لنشاطها وتصل إلى زوار الوجهة وسكانها',kpi:'اعتماد الإعلان ونشره خلال يوم عمل واحد',mods:['الأعمال','لوحة الشركة'],steps:[
+  {go:'business',t:'تنشئ إعلاناً',h:'اضغط «أنشئ إعلاناً» واملأ البيانات وأرسله للمراجعة.',hl:'#my-ads'},
+  {go:'admin:ads',t:'الشركة تراجع الإعلان',h:'من منظور الشركة: اضغط «اعتماد ونشر» على إعلانها.',hl:'#ads-table'},
+  {go:'business',t:'تتابع أداء الإعلان',h:'يظهر إعلانها في القوائم المميزة، وترى المشاهدات والنقرات في «لأصحاب الأعمال».',hl:'#my-ads'},
+  {go:'business',t:'تعلن عن فرصة وظيفية',h:'قسم الفرص الوظيفية يعرض وظائف أنشطة الوجهة للسكان والزوار.',hl:'#jobs'}]},
+ {id:'j4',persona:'فريق الشركة',who:'فريق التشغيل في شركة تطوير وسط الرياض',goal:'يدير المحتوى والملاحظات والبيانات ويقيس أداء الوجهة',kpi:'نشر المحتوى المعتمد على بلدي+ وإغلاق الملاحظات ضمن مستوى الخدمة',mods:['لوحة الشركة','بلدي+','المرافق','التوأم الرقمي'],steps:[
+  {go:'admin:overview',t:'يتابع المؤشرات',h:'الزوار والحجوزات والملاحظات المفتوحة والرضا في نظرة واحدة.',hl:'main .grid.g4'},
+  {go:'admin:content',t:'يعتمد محتوى بلدي+',h:'اضغط «اعتماد الشركة» على عنصر بانتظار الاعتماد لينشر في طبقة وسط الرياض.',hl:'#ct-table'},
+  {go:'admin:infra',t:'ينسّق بيانات المرافق',h:'فعّل الطبقات، اضغط على علامة التعارض الحمراء، ثم أنشئ تقرير التنسيق.',hl:'#inf-rep'},
+  {go:'twin',t:'يحلل الوجهة في التوأم الرقمي',h:'بدّل إلى «كثافة الزوار» ثم «محاكاة رحلة».',hl:'#twin3d'},
+  {go:'solutions',t:'يراجع الحلول المقترحة',h:'كل حل مرتبط بشاشته في هذا النموذج عبر «عرض في النموذج».',hl:'main .card'}]},
+ {id:'j5',persona:'متبرع أو شريك',who:'شركة محلية تبحث عن أثر مجتمعي في وسط الرياض',goal:'تساهم في مبادرات الوجهة وترى أثر مساهمتها',kpi:'عرض أثر كل مساهمة بوحدة ملموسة',mods:['التبرعات','الاستدامة'],steps:[
+  {go:'donate',t:'تتبرع لجمعية',h:'اختر جمعية وتبرّع؛ يتحول المبلغ إلى أثر ملموس (وجبات، أشجار، ساعات تدريب).',hl:'main .grid.g4'},
+  {go:'donate',t:'تموّل مشروعاً مجتمعياً',h:'ساهم في مشروع وراقب تقدمه نحو الهدف.',hl:'#crowd'},
+  {go:'sustain',t:'تعوّض البصمة الكربونية',h:'احسب البصمة واضغط «عوّض الآن».',hl:'#offset'},
+  {go:'donate',t:'تطلب شراكة',h:'اختر مستوى الرعاية المناسب وأرسل الطلب.',hl:'#spons'}]},
+];
+V.journeys=()=>head('رحلات المستخدم','من الفكرة إلى التجربة','خمس شخصيات تغطي جميع وحدات المجلس الرقمي. اضغط «ابدأ الرحلة» لعرض موجّه خطوة بخطوة.')+
+ `<div class="stack">${JOURNEYS.map(j=>`<div class="card persona"><div class="stack"><div class="row"><span class="ico">${icon('user')}</span><div><div class="kicker">${j.persona}</div><b>${j.who}</b></div></div><p class="small"><b>الهدف:</b> ${j.goal}</p><p class="small"><b>مؤشر النجاح:</b> ${j.kpi}</p><div class="row" style="gap:4px">${j.mods.map(m=>`<span class="chip">${m}</span>`).join('')}</div><div><button class="btn" data-journey="${j.id}">${icon('flag','width="16"')} ابدأ الرحلة</button></div></div>
+  <ol class="jsteps">${j.steps.map(s=>`<li><div><b class="small">${s.t}</b><div class="small muted">${s.h}</div></div></li>`).join('')}</ol></div>`).join('')}</div>`;
+let guide=null,lastHl='';
+function startGuide(id){guide={j:JOURNEYS.find(x=>x.id===id),i:0};lastHl='';closeModal();go(guide.j.steps[0].go)}
+function renderGuide(){const root=$('#guide-root');document.body.classList.toggle('guiding',!!guide);if(!guide){root.innerHTML='';return}
+  const {j,i}=guide,s=j.steps[i],n=j.steps.length;
+  root.innerHTML=`<div class="guide" role="region" aria-label="دليل الرحلة"><div style="flex:1;min-width:220px"><span class="kicker">${j.persona} · الخطوة <span class="num">${i+1}</span> من <span class="num">${n}</span></span><div><b>${s.t}</b></div><div class="small muted">${s.h}</div><div class="bar" style="margin-top:6px;height:5px"><i style="width:${(i+1)/n*100}%"></i></div></div><div class="row" style="gap:6px"><button class="btn sm quiet" id="g-prev" ${i===0?'disabled':''}>السابق</button>${i<n-1?'<button class="btn sm" id="g-next">التالي</button>':'<button class="btn sm" id="g-end">إنهاء الرحلة</button>'}<button class="x" id="g-x" aria-label="إغلاق الدليل">✕</button></div></div>`;
+  const step=k=>{guide.i+=k;lastHl='';closeModal();go(guide.j.steps[guide.i].go)};
+  $('#g-prev').onclick=()=>step(-1);const nx=$('#g-next');if(nx)nx.onclick=()=>step(1);
+  const en=$('#g-end');if(en)en.onclick=()=>{const nm=guide.j.persona;guide=null;renderGuide();toast('اكتملت رحلة: '+nm)};
+  $('#g-x').onclick=()=>{guide=null;renderGuide()};
+  const v=s.go.split(':')[0];if(view===v&&s.hl){const el=document.querySelector(s.hl);if(el){el.classList.add('hl');const key=j.id+i;if(lastHl!==key){lastHl=key;setTimeout(()=>el.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}),80)}}}}
+document.addEventListener('click',e=>{const j=e.target.closest('[data-journey]');if(j)startGuide(j.dataset.journey)});
+
+/* --- Global search --- */
+function openSearch(){modal('بحث',`<input type="text" id="sq" class="search-in" placeholder="ابحث عن مكان، فعالية، مسار أو خدمة" autocomplete="off"><div id="sr" style="margin-top:8px"></div>`,m=>{const q=m.querySelector('#sq'),out=m.querySelector('#sr');
+  const items=[...PLACES.map(p=>({k:'p',id:p.id,t:p.name,s:TYPE[p.type].label})),...EVENTS.map(e=>({k:'e',id:e.id,t:e.title,s:'فعالية · '+(e.d===0?'اليوم':dayLabel(e.date))})),...TRAILS.map(t=>({k:'t',id:t.id,t:t.name,s:'مسار تراثي'})),...Object.entries(TXNS).map(([k,t])=>({k:'x',id:k,t:t.t,s:'خدمة'})),...NAV.filter(n=>n.k&&can(n.k)).map(n=>({k:'n',id:n.k,t:n.t,s:'قسم'}))];
+  const draw=()=>{const v=q.value.trim();const r=v?items.filter(i=>i.t.includes(v)||i.s.includes(v)):items.filter(i=>i.k==='e').slice(0,4);
+   out.innerHTML=(v?'':'<p class="small muted">فعاليات قريبة</p>')+(r.slice(0,10).map((i,ix)=>`<button class="res" data-r="${ix}"><span>${esc(i.t)}</span><span class="small muted">${esc(i.s)}</span></button>`).join('')||'<p class="small muted">لا توجد نتائج. جرّب «قهوة» أو «المصمك» أو «موقف».</p>');
+   out.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{const i=r[+b.dataset.r];closeModal();if(i.k==='p'){mapState.sel=i.id;go('maps')}else if(i.k==='e')openEvent(i.id);else if(i.k==='t'){trailSel=i.id;go('heritage')}else if(i.k==='x')openTxn(i.id);else go(i.id)})};
+  q.oninput=draw;draw();setTimeout(()=>q.focus(),30)})}
+$('#search-btn').onclick=openSearch;
+
+/* trail run card */
+function trailRunHTML(t){const run=S.trailRun&&S.trailRun.id===t.id?S.trailRun:null;
+ if(!run)return `<div class="row" style="margin-top:10px"><button class="btn" id="tr-start">ابدأ المسار بالملاحة</button><button class="btn quiet" data-txn="tour">احجز جولة مع مرشد</button>${S.badges.includes(t.name)?'<span class="chip ok">✓ أكملت هذا المسار</span>':''}</div>`;
+ const i=run.i,st=P(t.stops[i]),nx=t.stops[i+1]&&P(t.stops[i+1]);const leg=nx?toMeters(pathLen(roadPath(st,nx))):0;
+ const story=HISTORY.filter(h=>(st.id==='masmak'&&h.y==='1902')||(st.id==='murabba'&&h.y==='1938')||(st.id==='museum'&&h.y==='1999')||(st.id==='mosque'&&h.y==='1824'));
+ return `<div class="card" style="box-shadow:none;margin-top:12px;border-color:var(--accent)"><div class="row between"><span class="kicker">المحطة <span class="num">${i+1}</span> من <span class="num">${t.stops.length}</span></span><button class="btn sm quiet" id="tr-stop">إيقاف المسار</button></div><div class="bar" style="margin:6px 0 10px"><i style="width:${(i+1)/t.stops.length*100}%"></i></div><h3>${esc(st.name)}</h3><p class="small">${esc(st.desc||'')}</p>${story.map(h=>`<p class="note" style="margin-top:8px"><b class="num">${h.y}</b> · ${h.t}: ${h.d}</p>`).join('')}
+ <div class="row between" style="margin-top:10px">${nx?`<span class="small muted">التالي: <b>${esc(nx.name)}</b> · <span class="num">${fmt(leg)}</span> م · <span class="num">${Math.max(1,Math.round(leg/80))}</span> د مشياً</span><button class="btn" id="tr-next">وصلت إلى ${esc(nx.name)}</button>`:`<span class="small muted">آخر محطة في المسار</span><button class="btn" id="tr-next">أنهيت المسار</button>`}</div></div>`}
+
+/* ============ Render ============ */
+const BIND={home:bindHome,events:bindEvents,maps:bindMaps,dest:bindDest,heritage:bindHeritage,community:bindCommunity,sustain:bindSustain,business:bindBusiness,donate:bindDonate,twin:bindTwin,admin:bindAdmin,future:()=>{},solutions:()=>{},plan:bindPlan,account:bindAccount,journeys:()=>{}};
+function render(){
+  if(twin&&view!=='twin'){cancelAnimationFrame(twin.raf);twin.r.dispose();twin=null}
+  if(!V[view]||!can(view))view='home';
+  renderNav();$('#main').innerHTML=V[view]();BIND[view]&&BIND[view]();
+  document.querySelectorAll('main [data-txn]').forEach(b=>{if(!b.onclick)b.onclick=()=>openTxn(b.dataset.txn,b.dataset.ctx)});
+  document.querySelectorAll('main [data-ticket]').forEach(b=>b.onclick=()=>showTicket(booked(b.dataset.ticket)));
+  renderGuide();
+}
+
+/* ============ Login ============ */
+async function sha256(t){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return [...new Uint8Array(d)].map(b=>b.toString(16).padStart(2,'0')).join('')}
+function showLogin(){document.body.classList.add('locked');$('#login').hidden=false;
+  $('#personas').innerHTML=Object.entries(USERS).map(([u,x])=>`<button type="button" class="persona-btn" data-user="${u}"><b>${esc(x.label)}</b><span dir="ltr">${u}</span></button>`).join('');
+  document.querySelectorAll('[data-user]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.persona-btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#lg-user').value=b.dataset.user;$('#lg-pass').value='';$('#lg-pass').focus()});
+  $('#lg-err').textContent=''}
+function enter(u,fresh){CUR=u;if(!STORE.users[u])STORE.users[u]=userSeed(u);save();try{sessionStorage.setItem('majlis-user',u)}catch(e){}
+  document.body.classList.remove('locked');$('#login').hidden=true;
+  const h0=(location.hash||'').slice(1);view=(!fresh&&V[h0]&&can(h0))?h0:USERS[u].home;sub=null;renderBell();render();if(fresh)toast('مرحباً '+USERS[u].name)}
+$('#lg-show').onchange=e=>$('#lg-pass').type=e.target.checked?'text':'password';
+$('#login-form').onsubmit=async e=>{e.preventDefault();const u=$('#lg-user').value.trim().toLowerCase(),p=$('#lg-pass').value;
+  if(!USERS[u]){$('#lg-err').textContent='اسم المستخدم غير معروف. اختر أحد الحسابات التجريبية أعلاه.';return}
+  let h='';try{h=await sha256(p)}catch(err){$('#lg-err').textContent='المتصفح لا يدعم التحقق الآمن. افتح الموقع عبر https.';return}
+  if(h!==USERS[u].hash){$('#lg-err').textContent='كلمة المرور غير صحيحة. تحقق منها وحاول مرة أخرى.';return}
+  enter(u,true)};
+$('#logout').onclick=()=>{document.querySelectorAll('.toast').forEach(x=>x.remove());guide=null;renderGuide();closeModal();CUR=null;try{sessionStorage.removeItem('majlis-user')}catch(e){}$('#lg-user').value='';$('#lg-pass').value='';showLogin()};
+let saved=null;try{saved=sessionStorage.getItem('majlis-user')}catch(e){}
+if(saved&&USERS[saved])enter(saved,false);else showLogin();
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(view==='twin'||view==='events'||view==='dest')render()},250)});
+</script>
+</body>
+</html>
