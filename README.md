@@ -25,15 +25,33 @@ It is a single static page (`index.html`) with no backend. Everything runs in th
 
 The site opens in **English**. Use the **ع / EN** button in the top bar (or on the sign-in page) to switch between English and Arabic; the layout flips between left-to-right and right-to-left, and the choice is remembered in the browser.
 
+## Mobile app
+
+Visitor, resident, business and partner accounts open as a **mobile app**: on a desktop screen the app appears inside a phone frame with a status bar, bottom tab bar (Home, Map, Events, Heritage, More) and bottom-sheet pop-ups; on a real phone it fills the screen like a native app. The CADC team and NHCI presenter accounts open the full web dashboard, with a phone button in the top bar to preview the app. Guided journeys switch between phone (visitor steps) and web (CADC steps) automatically.
+
+## Heritage tours
+
+On **Heritage & culture → Schedule a tour**, visitors pick a trail, day and time slot (live seat availability), tour type (guided SAR 35/person, self-guided audio free, private group SAR 250), guide language, group size and accessibility needs, pay (test gateway) and get a QR tour ticket with meeting point and guide. Tours can be rescheduled or cancelled, appear under My account, and are listed for CADC on the dashboard overview.
+
+## Sending activities to app users
+
+CADC dashboard → **Send activities**: create a new event (added to the app calendar), an offer, a service alert, a heritage tour or a community campaign; choose the audience segment (all users, visitors, verified residents, businesses, partners, heritage enthusiasts, people in Central Riyadh now), channels (in-app, push, SMS, email — push/SMS/email simulated), send now or schedule, and preview the phone notification. Users who turned off that notification type are excluded. Recipients see a “Message from CADC” card on Home and an actionable item in the bell that opens the event ready to book; the **Sent activities** table shows reach, open rate and bookings per activity.
+
 ## Guided user journeys
 
 Sign in as `nhci.admin` (or `cadc.ops`) and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
 
 1. First-time visitor — plan, book and pay, arrive, heritage trail, review, post-visit impact summary
 2. Neighbourhood resident — resident offers, map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing
-3. Business owner — create ad, CADC approves, ad performance, jobs
-4. CADC team — indicators, Balady+ content approval, utilities coordination, digital twin, solutions
-5. Donor or partner — donate, crowdfund, carbon offset, sponsorship, impact summary
+3. Business owner — create ad, CADC approves, ad performance, post a job and get notified of applicants
+4. CADC team — indicators, send an activity, Balady+ content approval, utilities coordination, digital twin, solutions
+5. Donor or partner — donate, crowdfund, carbon offset, sponsorship request, CADC follows up, impact summary
+6. Visit inside a building (Masmak Fortress) — ticket check-in, floor plan with “you are here” and live crowd levels, step-by-step indoor directions (with a step-free option), audio stories per hall, upper floor and watchtower, 3D walk-through, collecting stamps for the Explorer badge, then CADC's indoor analytics
+7. CADC sends an activity — create a new event and audience, preview and send, the visitor receives it and books from the notification, CADC measures opens and bookings
+
+The Masmak floor plan is illustrative, not the architectural drawing.
+
+See **QC.md** for the latest quality-check results.
 
 ## Security note
 
