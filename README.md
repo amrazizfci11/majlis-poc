@@ -1,4 +1,4 @@
-# المجلس الرقمي · وسط الرياض — نموذج أولي (POC)
+# Digital Majlis · Central Riyadh — Prototype (POC)
 
 Interactive proof-of-concept of the Central Riyadh **Digital Majlis** app, prepared by **NHC Innovation**.
 It is a single static page (`index.html`) with no backend. Everything runs in the browser.
@@ -7,19 +7,33 @@ It is a single static page (`index.html`) with no backend. Everything runs in th
 
 ## Demo accounts
 
-| Persona | Username | Password | Lands on |
+| Persona | Username | Password | Opens on |
 |---|---|---|---|
-| زائرة (Visitor) | `sara` | `Visitor@2026` | الرئيسية |
-| ساكن موثّق (Resident) | `abukhalid` | `Resident@2026` | الرئيسية |
-| صاحبة نشاط تجاري (Business) | `munira` | `Business@2026` | الأعمال |
-| شريك ومتبرع (Partner) | `partner` | `Partner@2026` | التبرعات |
-| فريق الشركة (Company ops) | `cadc.ops` | `Cadc@2026` | لوحة الشركة |
-| مدير العرض (NHCI presenter, all access) | `nhci.admin` | `Nhci@2026` | رحلات المستخدم |
+| Visitor | `sara` | `Visitor@2026` | Home |
+| Verified resident | `abukhalid` | `Resident@2026` | Home |
+| Business owner | `munira` | `Business@2026` | Business |
+| Partner & donor | `partner` | `Partner@2026` | Donations |
+| CADC team | `cadc.ops` | `Cadc@2026` | CADC dashboard |
+| NHCI presenter (all access) | `nhci.admin` | `Nhci@2026` | User journeys |
 
 - Visitor, resident, business and partner accounts see the app modules only.
-- `cadc.ops` adds the company dashboard, roadmap, solutions and guided journeys.
+- `cadc.ops` adds the CADC dashboard, roadmap, solutions and guided journeys.
 - `nhci.admin` sees everything and is the account to present with.
-- Each account keeps its own bookings, points, notifications and plan. Shared items (feedback, ads, Balady+ content, proposals) are common to all accounts **on the same browser**, so cross-persona flows (resident reports → company processes → resident is notified) can be demonstrated by logging out and in.
+- Each account keeps its own bookings, points, notifications and plan. Shared items (feedback, ads, Balady+ content, proposals) are common to all accounts **on the same browser**, so cross-persona flows (resident reports → CADC processes → resident is notified) can be demonstrated by logging out and in.
+
+## Languages
+
+The site opens in **English**. Use the **ع / EN** button in the top bar (or on the sign-in page) to switch between English and Arabic; the layout flips between left-to-right and right-to-left, and the choice is remembered in the browser.
+
+## Guided user journeys
+
+Sign in as `nhci.admin` (or `cadc.ops`) and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
+
+1. First-time visitor — plan, book and pay, arrive, heritage trail, review, post-visit impact summary
+2. Neighbourhood resident — resident offers, map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing
+3. Business owner — create ad, CADC approves, ad performance, jobs
+4. CADC team — indicators, Balady+ content approval, utilities coordination, digital twin, solutions
+5. Donor or partner — donate, crowdfund, carbon offset, sponsorship, impact summary
 
 ## Security note
 
