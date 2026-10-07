@@ -1,6 +1,6 @@
 # QC report — Digital Majlis POC
 
-Date: 7 October 2026 · Build: single static page (`index.html`, ~380 KB, no backend)
+Date: 7 October 2026 · Build: single static page (`index.html`, ~430 KB, no backend)
 
 ## Scope
 
@@ -8,10 +8,10 @@ Automated checks run in a headless Chromium browser across every page the accoun
 
 | Check | Result |
 |---|---|
-| Pages × layouts covered | 141 page renders across 8 combinations (24 web views incl. 7 CADC tabs; 13 mobile views per persona) |
-| Guided journeys (7, 44 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
-| End-to-end flows | Booking + payment + QR ticket; tour scheduling, reschedule, cancel; indoor check-in, directions, stamps, rating; feedback → CADC → resident notified; ad approval; job post → applicant notified; partnership request → CADC contact; **CADC sends activity → user receives → opens → books → CADC sees opens and bookings**; first-sign-in consent; rating a past event from Home; borrow request → owner accepts → requester notified; ad rejected with reason → owner edits and resubmits; remind non-openers and duplicate an activity; Masmak ticket → indoor check-in |
-| Untranslated text in English | 0 (1,392 dictionary entries + rule-based patterns) |
+| Pages × layouts covered | 174 page renders across 8 combinations (29 web views incl. 8 CADC tabs; 17 mobile views per persona) |
+| Guided journeys (9, 57 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
+| End-to-end flows | Booking + payment + QR ticket; tour scheduling, reschedule, cancel; indoor check-in, directions, stamps, rating; feedback → CADC → resident notified; ad approval; job post → applicant notified; partnership request → CADC contact; **CADC sends activity → user receives → opens → books → CADC sees opens and bookings**; first-sign-in consent; rating a past event from Home; borrow request → owner accepts → requester notified; ad rejected with reason → owner edits and resubmits; remind non-openers and duplicate an activity; Masmak ticket → indoor check-in; **parking: find → book and pay → plate entry → extend → find my car → exit with VAT receipt; CADC price change, event pricing, closure → bookings moved and owners notified; resident permit and first-hour discount** |
+| Untranslated text in English | 0 (1,929 dictionary entries + rule-based patterns) |
 | Conflicting translations | 0 (2 found and fixed: “Date/History”, “Completed/Full”) |
 | JavaScript errors / console errors | 0 |
 | Horizontal scroll or off-screen elements | 0 at every width |
@@ -21,6 +21,46 @@ Automated checks run in a headless Chromium browser across every page the accoun
 | Colour contrast (WCAG AA 4.5:1) | All text pairs pass in both themes (success and warning chips raised from 4.26 / 4.03 to 6.0 / 5.9) |
 | Page switch speed | All under 800 ms; largest page ≈ 580 DOM nodes |
 | 3D views | Rendered and checked with a local copy of the 3D library; first-frame crash fixed |
+
+## Journey review, fifth pass (8 October 2026)
+
+All 9 journeys (57 steps) walked again, including the new “Design your tour” journey and the indoor journey on Masmak's real layout; all steps smooth, no dead ends. Fixed in this pass: suggested tours show whether they fit the chosen time and stay within it (at least two stops); “Tidy the route” for hand-edited tours; distance from the starting point to the first stop; the indoor tour checks in and collects stamps; step-free version of the indoor tour.
+
+Still open: step-free and shaded outdoor routing; real push/SMS delivery; real narration and audio (content from CADC); verify the Masmak plan against measured drawings.
+
+## Tour generator and real-building indoor tour (8 October 2026)
+
+New: three automatically suggested tours (with edit and create), My tours with per-tour progress, and the Masmak indoor guide rebuilt on the fort's real layout (from published descriptions) with a nine-stop, two-floor indoor tour. Tested: suggestions for several interest/time/start combinations, editing (reorder, remove, add, rename), creating, starting and finishing tours, indoor tour across floors with badge, indoor directions to every room, 3D view of the new layout, English and Arabic, phone and web, light and dark. Fixed during testing: route colours missing outside the walk screen, overview maps cropping routes, upper-floor rooms hard to see, a walk-screen click handler running while signed out.
+
+## Journey review, fourth pass (8 October 2026)
+
+All 8 journeys (51 steps) walked again after the Heritage walk and back navigation were added; all steps smooth, no dead ends. Fixed in this pass: guided-tour ticket for the walk route opens the Heritage walk; next-stop distance and time on each stop; walk card on Home and in the Today card; walk completion marks the route completed; car park closures have an end time and reopen automatically; new Help page with messages to CADC and replies; hints inside text boxes are now translated in English mode (they stayed in Arabic before).
+
+Still open: step-free and shaded outdoor routing; real push/SMS delivery; real narration and audio for the Heritage walk (content from CADC).
+
+## Heritage walk (7 October 2026)
+
+New stop-by-stop Heritage walk (overview, six stop screens with narration and sample audio player, completion with badge and rating). Tested in English and Arabic, phone and web, light and dark. Also fixed: when all of today's tour slots have passed, tour booking now opens on the next day with free slots instead of a disabled button.
+
+## Back navigation (7 October 2026)
+
+Back button on every screen (web: above the title; phone: top bar), restoring the previous screen and CADC tab; back arrow on payment steps (events, tours, parking). Tested in English and Arabic (arrow mirrors in right-to-left), web and phone.
+
+## Journey review, third pass (7 October 2026)
+
+All 8 journeys (51 steps) were walked again, including the new parking journey. All 51 steps are now smooth (89% in the second pass, 70% in the first), with no dead ends. Fixed in this pass:
+
+- Resident codes show their expiry and can be marked as used.
+- Event-promotion ads carry a date, time and place and become bookable calendar events when CADC approves them.
+- Digital-twin indicators are live (event bookings, satisfaction from ratings, parking occupancy, open feedback).
+- Donations and crowdfunding contributions produce receipts with reference numbers; partners get a printable impact report.
+- Parking booked from an event ticket targets that event; a reminder arrives 15 minutes before parking time ends; overstay is shown on the exit receipt.
+
+Still open: step-free outdoor routing, in-app help for visitors, scheduled reopening of closed car parks, and real push/SMS delivery (the prototype alerts in-app only).
+
+## Parking service (7 October 2026)
+
+New Smart parking module, CADC Parking tab and journey 8, all tested end to end in English and Arabic. Also fixed during this pass: two-column pages (Events, Destination, Proposals, Sharing, Parking) did not stack on the phone; they now collapse to one column.
 
 ## Journey review, second pass (7 October 2026)
 
