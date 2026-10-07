@@ -7,14 +7,16 @@ It is a single static page (`index.html`) with no backend. Everything runs in th
 
 ## Demo accounts
 
+All accounts use the same password: **`Cadec@2026`**.
+
 | Persona | Username | Password | Opens on |
 |---|---|---|---|
-| Visitor | `sara` | `Visitor@2026` | Home |
-| Verified resident | `abukhalid` | `Resident@2026` | Home |
-| Business owner | `munira` | `Business@2026` | Business |
-| Partner & donor | `partner` | `Partner@2026` | Donations |
-| CADC team | `cadc.ops` | `Cadc@2026` | CADC dashboard |
-| NHCI presenter (all access) | `nhci.admin` | `Nhci@2026` | User journeys |
+| Visitor | `sara` | `Cadec@2026` | Home |
+| Verified resident | `abukhalid` | `Cadec@2026` | Home |
+| Business owner | `munira` | `Cadec@2026` | Business |
+| Partner & donor | `partner` | `Cadec@2026` | Donations |
+| CADC team | `cadc.ops` | `Cadec@2026` | CADC dashboard |
+| NHCI presenter (all access) | `nhci.admin` | `Cadec@2026` | User journeys |
 
 - Visitor, resident, business and partner accounts see the app modules only.
 - `cadc.ops` adds the CADC dashboard, roadmap, solutions and guided journeys.
@@ -41,13 +43,13 @@ CADC dashboard → **Send activities**: create a new event (added to the app cal
 
 Sign in as `nhci.admin` (or `cadc.ops`) and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
 
-1. First-time visitor — plan, book and pay, arrive, heritage trail, review, post-visit impact summary
-2. Neighbourhood resident — resident offers, map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing
-3. Business owner — create ad, CADC approves, ad performance, post a job and get notified of applicants
-4. CADC team — indicators, send an activity, Balady+ content approval, utilities coordination, digital twin, solutions
+1. First-time visitor — first-sign-in consent, plan, book and pay, arrive, schedule a tour, heritage trail, rate a finished event from the Home “Today” card, post-visit impact summary
+2. Neighbourhood resident — resident offers, map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing (borrow requests reach the owner, who accepts or declines)
+3. Business owner — create ad, CADC approves (or rejects with a reason so she can edit and resubmit), ad performance, post a job and get notified of applicants
+4. CADC team — indicators and a “Needs action” list with counts on each tab, send an activity, Balady+ content approval, utilities coordination, digital twin, solutions
 5. Donor or partner — donate, crowdfund, carbon offset, sponsorship request, CADC follows up, impact summary
-6. Visit inside a building (Masmak Fortress) — ticket check-in, floor plan with “you are here” and live crowd levels, step-by-step indoor directions (with a step-free option), audio stories per hall, upper floor and watchtower, 3D walk-through, collecting stamps for the Explorer badge, then CADC's indoor analytics
-7. CADC sends an activity — create a new event and audience, preview and send, the visitor receives it and books from the notification, CADC measures opens and bookings
+6. Visit inside a building (Masmak Fortress) — check-in straight from the event or tour ticket, floor plan with “you are here” and live crowd levels, step-by-step indoor directions (with a step-free option), audio stories per hall, upper floor and watchtower, 3D walk-through, collecting stamps for the Explorer badge, then CADC's indoor analytics
+7. CADC sends an activity — create a new event and audience, preview and send, the visitor receives it and books from the notification, CADC measures opens and bookings, reminds non-openers and duplicates the activity
 
 The Masmak floor plan is illustrative, not the architectural drawing.
 
