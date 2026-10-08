@@ -18,8 +18,13 @@ All accounts use the same password: **`Cadec@2026`**.
 | CADC team | `cadc.ops` | `Cadec@2026` | CADC dashboard |
 | NHCI presenter (all access) | `nhci.admin` | `Cadec@2026` | User journeys |
 
-- Visitor, resident, business and partner accounts see the app modules only.
-- `cadc.ops` adds the CADC dashboard, roadmap, solutions and guided journeys.
+Each account sees only what its persona needs (no gold plating):
+
+- **Visitor (`sara`):** plan your visit, events, maps, smart parking, heritage, Heritage walk, Design your tour, inside the building, destination info, community feedback and polls, sustainability, offers and featured places, My account (visit summary), Help. No donations & partnerships, future expansion or digital twin.
+- **Resident (`abukhalid`):** events, maps, parking with resident permit, destination info, heritage, community (feedback, polls, proposals, resource sharing), sustainability, resident offers and jobs, My account, Help.
+- **Business (`munira`):** Business (ads and event promotions, jobs, featured places), events, maps, parking, destination info, community feedback and polls, My account, Help.
+- **Partner (`partner`):** Donations & partnerships, sustainability, events, My account (contribution summary and impact report), Help.
+- **CADC team (`cadc.ops`):** the CADC dashboard (overview, send activities, parking, feedback and messages, ads, Balady+ content, utilities, map services), digital twin, future expansion, indoor analytics, events, maps, parking, destination info, heritage and community. The guided user journeys and NHCI solutions pages are for the NHCI presenter (`nhci.admin`).
 - `nhci.admin` sees everything and is the account to present with.
 - Each account keeps its own bookings, points, notifications and plan. Shared items (feedback, ads, Balady+ content, proposals) are common to all accounts **on the same browser**, so cross-persona flows (resident reports → CADC processes → resident is notified) can be demonstrated by logging out and in.
 
@@ -102,17 +107,17 @@ CADC dashboard → **Send activities**: create a new event (added to the app cal
 
 ## Guided user journeys
 
-Sign in as `nhci.admin` (or `cadc.ops`) and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
+Sign in as `nhci.admin` and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
 
-1. First-time visitor — first-sign-in consent, plan, book and pay, arrive, schedule a tour, the stop-by-stop heritage walk, rate a finished event from the Home “Today” card, post-visit impact summary
+1. First-time visitor — first-sign-in consent, plan, book and pay, arrive, explore heritage (walk it step by step or book the same route with a guide), rate a finished event from the Home “Today” card, post-visit impact summary
 2. Neighbourhood resident — resident offers (codes show expiry and can be marked as used), map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing (borrow requests reach the owner, who accepts or declines)
 3. Business owner — create an ad or an event promotion (becomes a bookable calendar event once approved), CADC approves (or rejects with a reason so she can edit and resubmit), ad performance, post a job and get notified of applicants
-4. CADC team — indicators and a “Needs action” list with counts on each tab, live digital-twin indicators, send an activity, Balady+ content approval, utilities coordination, digital twin, solutions
+4. CADC team — indicators and a “Needs action” list with counts on each tab, live digital-twin indicators, send an activity, Balady+ content approval, utilities coordination, digital twin
 5. Donor or partner — donate with a receipt for each contribution, crowdfund, carbon offset, sponsorship request, CADC follows up, printable impact report
 6. Visit inside a building (Masmak Fortress) — check-in straight from the event or tour ticket, floor plan with “you are here” and live crowd levels, step-by-step indoor directions (with a step-free option), audio stories per hall, upper floor and watchtower, 3D walk-through, collecting stamps for the Explorer badge, then CADC's indoor analytics
 7. CADC sends an activity — create a new event and audience, preview and send, the visitor receives it and books from the notification, CADC measures opens and bookings, reminds non-openers and duplicates the activity
 8. Parking — find a car park near Masmak, book and pay, CADC closes it for an event and the booking moves automatically with a notification, arrive with plate recognition, 15-minute reminder, extend and find the car, exit with a receipt (overstay shown)
-9. Design your tour — choose interests and time, compare three suggested tours, edit one or create a new one, walk it stop by stop, then continue inside Masmak Fortress on its real layout across both floors
+9. Design your tour — choose interests and time, compare three suggested tours, edit one or create a new one, then walk it stop by stop
 
 The Masmak plan is simplified from published architectural descriptions of the fort; positions are approximate and it is not the measured architectural drawing.
 

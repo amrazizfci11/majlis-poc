@@ -9,9 +9,9 @@ Automated checks run in a headless Chromium browser across every page the accoun
 | Check | Result |
 |---|---|
 | Pages × layouts covered | 174 page renders across 8 combinations (29 web views incl. 8 CADC tabs; 17 mobile views per persona) |
-| Guided journeys (9, 57 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
+| Guided journeys (9, 52 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
 | End-to-end flows | Booking + payment + QR ticket; tour scheduling, reschedule, cancel; indoor check-in, directions, stamps, rating; feedback → CADC → resident notified; ad approval; job post → applicant notified; partnership request → CADC contact; **CADC sends activity → user receives → opens → books → CADC sees opens and bookings**; first-sign-in consent; rating a past event from Home; borrow request → owner accepts → requester notified; ad rejected with reason → owner edits and resubmits; remind non-openers and duplicate an activity; Masmak ticket → indoor check-in; **parking: find → book and pay → plate entry → extend → find my car → exit with VAT receipt; CADC price change, event pricing, closure → bookings moved and owners notified; resident permit and first-hour discount** |
-| Untranslated text in English | 0 (1,929 dictionary entries + rule-based patterns) |
+| Untranslated text in English | 0 (2,001 dictionary entries + rule-based patterns) |
 | Conflicting translations | 0 (2 found and fixed: “Date/History”, “Completed/Full”) |
 | JavaScript errors / console errors | 0 |
 | Horizontal scroll or off-screen elements | 0 at every width |
@@ -21,6 +21,14 @@ Automated checks run in a headless Chromium browser across every page the accoun
 | Colour contrast (WCAG AA 4.5:1) | All text pairs pass in both themes (success and warning chips raised from 4.26 / 4.03 to 6.0 / 5.9) |
 | Page switch speed | All under 800 ms; largest page ≈ 580 DOM nodes |
 | 3D views | Rendered and checked with a local copy of the 3D library; first-frame crash fixed |
+
+## Independent review, seventh pass (8 October 2026)
+
+A separate reviewer with no knowledge of the build signed in as every persona, performed all nine journeys and explored each menu. All 20 findings were verified and fixed: per-persona account pages; Masmak Explorer badge actually awarded; “not satisfied” reopens a report and alerts CADC; carbon offset with payment and receipt; partnership request form with contact details, no duplicates, status updates; car park closures move only overlapping bookings; ticket → parking keeps the event date; seats, bookings and satisfaction consistent across screens; employer sees job applicants; business tools first for business owners; prototype modules and data reset hidden from app users; resident “Waiting for you” on Home; problem-report rating removed and English reports classified; remaining untranslated text; business ads show real event dates and venues; NHCI pitch/demo pages hidden from CADC; ticket check-in only on the visit day; map/plan label overlaps, twin chart and star wrapping fixed; borrow pickup scheduling; tomorrow's parking in the Today card; names unified. Full regression and QC passed in English and Arabic.
+
+## Role-fit review, sixth pass (8 October 2026)
+
+Each account now sees only what its persona needs. Visitor: donations & partnerships, future expansion and digital twin removed (including their Home cards), visit summary without donation figures, community limited to feedback and polls, no job openings or business promotion. Resident, business, partner and CADC each have their own menu, tab bar, Home cards and account summary. Links to pages an account can't open are hidden. Journeys trimmed to their personas' needs: j1 merges the guided-tour and heritage-walk steps, j4 drops the NHCI solutions step, j6 drops the on-site 3D step, j9 drops the two steps that repeated j6 (52 steps in total). Verified per account: menus, tab bars, Home cards, shared-page sections, no visible links to inaccessible pages; full regression and QC passed.
 
 ## Journey review, fifth pass (8 October 2026)
 
