@@ -15,7 +15,7 @@ All accounts use the same password: **`Cadec@2026`**.
 | Verified resident | `abukhalid` | `Cadec@2026` | Home |
 | Business owner | `munira` | `Cadec@2026` | Business |
 | Partner & donor | `partner` | `Cadec@2026` | Donations |
-| CADC team | `cadc.ops` | `Cadec@2026` | CADC dashboard |
+| CADC team (portal administrator) | `cadc.ops` | `Cadec@2026` | CADC dashboard |
 | NHCI presenter (all access) | `nhci.admin` | `Cadec@2026` | User journeys |
 
 Each account sees only what its persona needs (no gold plating):
@@ -24,7 +24,7 @@ Each account sees only what its persona needs (no gold plating):
 - **Resident (`abukhalid`):** events, maps, parking with resident permit, destination info, heritage, community (feedback, polls, proposals, resource sharing), sustainability, resident offers and jobs, My account, Help.
 - **Business (`munira`):** Business (ads and event promotions, jobs, featured places), events, maps, parking, destination info, community feedback and polls, My account, Help.
 - **Partner (`partner`):** Donations & partnerships, sustainability, events, My account (contribution summary and impact report), Help.
-- **CADC team (`cadc.ops`):** the CADC dashboard (overview, send activities, parking, feedback and messages, ads, Balady+ content, utilities, map services), digital twin, future expansion, indoor analytics, events, maps, parking, destination info, heritage and community. The guided user journeys and NHCI solutions pages are for the NHCI presenter (`nhci.admin`).
+- **CADC team (`cadc.ops`):** the administrator of the portal. The CADC dashboard (overview, car parks, events, 3D view content, send activities, feedback and messages, ads, Balady+ content, utilities, map services), digital twin, 3D virtual tour, future expansion, indoor analytics, events, maps, parking, destination info, heritage and community. The guided user journeys and NHCI solutions pages are for the NHCI presenter (`nhci.admin`).
 - `nhci.admin` sees everything and is the account to present with.
 - Each account keeps its own bookings, points, notifications and plan. Shared items (feedback, ads, Balady+ content, proposals) are common to all accounts **on the same browser**, so cross-persona flows (resident reports → CADC processes → resident is notified) can be demonstrated by logging out and in.
 
@@ -99,20 +99,30 @@ On **Heritage & culture → Schedule a tour**, visitors pick a trail, day and ti
 - **Enter without a ticket:** the pass shows the QR code, plate and assigned bay. “I've arrived” simulates number-plate recognition at the gate and starts the clock.
 - **While parked:** the time left shows on the parking page and the Home “Today and tomorrow” card. Extend by an hour, open “Where's my car?” for the bay number and walking route back, then exit to get a VAT receipt saved in parking history.
 - **My vehicles and resident permit:** save plates. Verified residents can get a digital resident parking permit.
-- **CADC dashboard → Parking:** live occupancy, bookings and revenue; change the hourly price; turn evening event pricing on or off; temporarily close a car park for an event or maintenance, choosing how long (rest of today, until 06:00 tomorrow, or until reopened); it reopens on its own. Closing it moves affected bookings to the alternative car park and notifies their owners.
+- **CADC dashboard → Parking:** add a new car park (name, location, capacity, hourly rate, EV and accessible spaces, type, covered, valet) or edit an existing one; it appears for booking straight away. A **daily occupancy** chart shows occupied and vacant spaces for each hour of the day with the peak hour, for all car parks or one, and earlier days for comparison. Live occupancy, bookings and revenue; change the hourly price; turn evening event pricing on or off; temporarily close a car park for an event or maintenance, choosing how long (rest of today, until 06:00 tomorrow, or until reopened); it reopens on its own. Closing it moves affected bookings to the alternative car park and notifies their owners.
 
 ## Sending activities to app users
 
 CADC dashboard → **Send activities**: create a new event (added to the app calendar), an offer, a service alert, a heritage tour or a community campaign; choose the audience segment (all users, visitors, verified residents, businesses, partners, heritage enthusiasts, people in Central Riyadh now), channels (in-app, push, SMS, email — push/SMS/email simulated), send now or schedule, and preview the phone notification. Users who turned off that notification type are excluded. Recipients see a “Message from CADC” card on Home and an actionable item in the bell that opens the event ready to book; the **Sent activities** table shows reach, open rate and bookings per activity.
 
+## Events administration
+
+**Facility owners add events** (business account `munira`, owner of Al Sadu Store): under **Your facility's events** on the Business page (also on the Events page) she adds an event for her facility (title, category, venue, date and time, seats, ticket price, description). It is saved with the status *Awaiting CADC approval* and CADC is notified.
+
+CADC dashboard → **Events**: the queue **Events added by facility owners** shows each event with its facility and owner, and pending ones are counted in “Needs action”. CADC **approves** an event (it is added to the app calendar and can be booked, and the owner is notified) or **rejects** it with a reason and an optional note (the owner is notified with the reason). The owner sees the status of each event (awaiting approval, approved, rejected with the reason); an approved event opens in the calendar, and a rejected one can be edited and resubmitted, which notifies CADC again. CADC can also add its own events, which appear in the calendar at once.
+
+## 3D virtual tour
+
+**3D virtual tour** (visitor, resident and CADC menus; card on Home and Heritage): pick a building from the list and the camera flies to it, highlights it with a pin and shows its description; from Masmak Fortress you can step inside the 3D model of the fort. The descriptions are written by CADC under dashboard → **3D view** in Arabic and English, saved and published to the tour at once, or reset to the default text.
+
 ## Guided user journeys
 
 Sign in as `nhci.admin` and open **User journeys**. Each journey switches automatically to the right persona account at every step (for example, resident → CADC team → resident) and returns you to your own account at the end:
 
-1. First-time visitor — first-sign-in consent, plan, book and pay, arrive, explore heritage (walk it step by step or book the same route with a guide), rate a finished event from the Home “Today” card, post-visit impact summary
-2. Neighbourhood resident — resident offers (codes show expiry and can be marked as used), map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing (borrow requests reach the owner, who accepts or declines)
-3. Business owner — create an ad or an event promotion (becomes a bookable calendar event once approved), CADC approves (or rejects with a reason so she can edit and resubmit), ad performance, post a job and get notified of applicants
-4. CADC team — indicators and a “Needs action” list with counts on each tab, live digital-twin indicators, send an activity, Balady+ content approval, utilities coordination, digital twin
+1. First-time visitor — first-sign-in consent, plan, book and pay, arrive, explore heritage (walk it step by step or book the same route with a guide), take the 3D virtual tour of the buildings, rate a finished event from the Home “Today” card, post-visit impact summary
+2. Neighbourhood resident — resident offers (codes show expiry and can be marked as used), map feedback, CADC resolves it, resident is notified and rates it, proposals, resource sharing (borrow requests reach the owner, who accepts or declines), 3D virtual tour of the neighbourhood buildings
+3. Facility owner — add an event for her facility, CADC approves or rejects it, she is notified and sees the status (approved events open in the calendar, rejected ones can be edited and resubmitted); create an ad, CADC approves (or rejects with a reason), ad performance, post a job and get notified of applicants
+4. CADC portal administrator — add a car park and update an existing one, follow daily occupied and vacant spaces, add an event to the calendar, approve an event added by a facility owner and reject another with a reason, write the building descriptions for the 3D view, then see the description in the visitor's 3D tour
 5. Donor or partner — donate with a receipt for each contribution, crowdfund, carbon offset, sponsorship request, CADC follows up, printable impact report
 6. Visit inside a building (Masmak Fortress) — check-in straight from the event or tour ticket, floor plan with “you are here” and live crowd levels, step-by-step indoor directions (with a step-free option), audio stories per hall, upper floor and watchtower, 3D walk-through, collecting stamps for the Explorer badge, then CADC's indoor analytics
 7. CADC sends an activity — create a new event and audience, preview and send, the visitor receives it and books from the notification, CADC measures opens and bookings, reminds non-openers and duplicates the activity

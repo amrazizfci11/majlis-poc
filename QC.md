@@ -1,6 +1,6 @@
 # QC report — Digital Majlis POC
 
-Date: 7 October 2026 · Build: single static page (`index.html`, ~430 KB, no backend)
+Date: 23 October 2026 · Build: single static page (`index.html`, ~430 KB, no backend)
 
 ## Scope
 
@@ -8,10 +8,10 @@ Automated checks run in a headless Chromium browser across every page the accoun
 
 | Check | Result |
 |---|---|
-| Pages × layouts covered | 174 page renders across 8 combinations (29 web views incl. 8 CADC tabs; 17 mobile views per persona) |
-| Guided journeys (9, 52 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
+| Pages × layouts covered | 174 page renders across 8 combinations (30 web views incl. 10 CADC tabs; 17 mobile views per persona) |
+| Guided journeys (9, 60 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
 | End-to-end flows | Booking + payment + QR ticket; tour scheduling, reschedule, cancel; indoor check-in, directions, stamps, rating; feedback → CADC → resident notified; ad approval; job post → applicant notified; partnership request → CADC contact; **CADC sends activity → user receives → opens → books → CADC sees opens and bookings**; first-sign-in consent; rating a past event from Home; borrow request → owner accepts → requester notified; ad rejected with reason → owner edits and resubmits; remind non-openers and duplicate an activity; Masmak ticket → indoor check-in; **parking: find → book and pay → plate entry → extend → find my car → exit with VAT receipt; CADC price change, event pricing, closure → bookings moved and owners notified; resident permit and first-hour discount** |
-| Untranslated text in English | 0 (2,001 dictionary entries + rule-based patterns) |
+| Untranslated text in English | 0 (2,215 dictionary entries + rule-based patterns) |
 | Conflicting translations | 0 (2 found and fixed: “Date/History”, “Completed/Full”) |
 | JavaScript errors / console errors | 0 |
 | Horizontal scroll or off-screen elements | 0 at every width |
@@ -21,6 +21,44 @@ Automated checks run in a headless Chromium browser across every page the accoun
 | Colour contrast (WCAG AA 4.5:1) | All text pairs pass in both themes (success and warning chips raised from 4.26 / 4.03 to 6.0 / 5.9) |
 | Page switch speed | All under 800 ms; largest page ≈ 580 DOM nodes |
 | 3D views | Rendered and checked with a local copy of the 3D library; first-frame crash fixed |
+
+## Full journey review, tenth pass (23 October 2026)
+
+Every step of all 9 journeys (60 steps) was performed, not just opened: each action was carried out as the step's persona, and its effect was checked on the other accounts. In total 295 checks ran, in both Arabic and English, and **all pass** with no JavaScript errors. They cover:
+- **Visitor:** plan saved; event booked and paid with a QR ticket; route; heritage walk; 3D tour into Masmak; rating from Today; impact summary.
+- **Resident:** Nafath; 3D tour; offer code used; map report auto-classified, then closed by CADC with a notification at each stage, then rated; vote and proposal; borrow accepted and requested.
+- **Facility owner:** adds an event, CADC approves it into the calendar with its price, the owner is notified and opens it; ad approved; job posted, and the owner is notified when a resident applies.
+- **CADC administrator:** car park added and edited; daily occupancy; CADC event; approve and reject with a reason; 3D description visible to visitors.
+- **Partner:** donation receipt; crowdfunding; carbon offset with payment; partnership request reaches CADC, which contacts the partner.
+- **CADC activity:** sent; the visitor gets it on Home and in the bell, books from it, and CADC sees opens and bookings, with remind and duplicate options.
+- **Indoor visit:** check-in, crowds, directions, audio, upper floor, 6 stamps for the badge, end and rate; CADC analytics.
+- **Parking:** book, CADC closure moves the booking with a notification, plate arrival, extend, find car, exit with a VAT receipt.
+- **Tour generator:** three tours, edit and save, walk.
+
+The 60 steps were also reviewed as screenshots, each account's pages were opened (none broken, no visible links to pages it can't use), and a phone-width check (390 px) was run.
+
+Fixed in this pass:
+- The indoor journey opened on the 3D tab if the visitor had entered Masmak 3D from the virtual tour, so the floor-plan steps were missing. Guide steps now open the floor plan.
+- “Books straight from the notification” closed the event opened from the notification; the step now reopens the new event ready to book.
+- Resident account now states “Verified via Nafath”, matching the journey text.
+- Jobs posted by the facility owner now show her facility (Al Sadu Store) instead of a different shop name.
+
+## Facility owners' events, ninth pass (23 October 2026)
+
+Events now come from facility owners. The facility owner adds an event for her facility; it is saved as *Awaiting CADC approval* and CADC is notified. CADC approves it (added to the calendar, owner notified) or rejects it with a reason (owner notified). The owner sees the status of each event, opens approved ones in the calendar, and edits and resubmits rejected ones (CADC notified again). Residents no longer submit events. Journey 3 now starts with this flow (7 steps; 60 in total).
+
+Results: add, approve (ticket price carried to the calendar), reject with reason and note, owner notifications, status list, open in calendar, edit and resubmit all pass; all 60 journey steps pass; 0 untranslated strings in English; 0 JavaScript errors.
+
+## CADC as portal administrator, eighth pass (23 October 2026)
+
+CADC's journey now shows the team as the administrator of the portal rather than a reviewer. New and tested end to end in English and Arabic:
+- **Car parks:** add a car park and edit an existing one (shown for booking at once); daily occupied / vacant chart by hour with peak hour, per car park or all, with earlier days.
+- **Events:** CADC adds events to the calendar; facility owners add events; CADC approves (added to the calendar, owner notified) or rejects with a reason (owner notified); pending suggestions counted in “Needs action”.
+- **3D view content:** CADC writes building descriptions in Arabic and English, publishes or resets them.
+- **3D virtual tour** for visitors, residents and CADC: pick a building, the camera flies to it with a pin and its description; step inside Masmak in 3D.
+- Journeys: j4 rewritten (8 steps); j1 (visitor) and j2 (resident) each gain a 3D-tour step — 57 steps in total.
+
+Results: all 57 journey steps open the right page as the right persona and find their highlighted element; 0 untranslated strings in English; 0 JavaScript errors.
 
 ## Independent review, seventh pass (8 October 2026)
 
