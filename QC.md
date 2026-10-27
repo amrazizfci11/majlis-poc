@@ -206,6 +206,15 @@ Still open: resident codes have no used/expiry state, event-promotion ads don't 
 - Cross-account test (add/update in one account, checked in the others): car park add/edit/close, business event create/approve/book/edit max, ad with video, donations from three accounts, Balady reviews and improvement plan, resident city, feedback lifecycle, CADC read-only — 49/49 in Arabic and English.
 - Regression: journeys 326/326 (AR and EN), 65 guided steps, add/update 82/82, Balady upload 28/28, new-feature checks 30/30, role access clean, 0 untranslated strings.
 
+## Pass 17: CADC as content manager for heritage and inside buildings
+
+- Heritage for CADC: landmarks, trails and timeline content (photos, maps, bilingual information); tours, walks, booking and quiz removed for CADC.
+- Inside the building for CADC: building selector, plan and component table, edit halls, add/delete components, upload a building plan; visitor guide, stamps and analytics removed for CADC.
+- 3D tour: "How to use the tour" hidden for CADC.
+- Visitors see the published content (heritage page, map card, hall cards, extra components, newly opened buildings); Arabic input fields are excluded from automatic translation.
+- Fixed: the audio-story timer could run after sign-out and raise an error.
+- Content test 29/29 (AR and EN); regression suites all pass.
+
 ## Known limits (by design for a POC)
 
 - Login is a front-end demo gate; passwords are visible to anyone reading the code.
