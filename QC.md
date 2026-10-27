@@ -1,6 +1,6 @@
 # QC report — Digital Majlis POC
 
-Date: 23 October 2026 · Build: single static page (`index.html`, ~430 KB, no backend)
+Date: 25 October 2026 · Build: single static page (`index.html`, ~430 KB, no backend)
 
 ## Scope
 
@@ -8,10 +8,10 @@ Automated checks run in a headless Chromium browser across every page the accoun
 
 | Check | Result |
 |---|---|
-| Pages × layouts covered | 174 page renders across 8 combinations (30 web views incl. 10 CADC tabs; 17 mobile views per persona) |
-| Guided journeys (9, 60 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
+| Pages × layouts covered | 174 page renders across 8 combinations (31 web views incl. 11 CADC tabs; 17 mobile views per persona) |
+| Guided journeys (9, 61 steps) | Every step opens the right page as the right persona, finds its highlighted element, and returns to the presenter account |
 | End-to-end flows | Booking + payment + QR ticket; tour scheduling, reschedule, cancel; indoor check-in, directions, stamps, rating; feedback → CADC → resident notified; ad approval; job post → applicant notified; partnership request → CADC contact; **CADC sends activity → user receives → opens → books → CADC sees opens and bookings**; first-sign-in consent; rating a past event from Home; borrow request → owner accepts → requester notified; ad rejected with reason → owner edits and resubmits; remind non-openers and duplicate an activity; Masmak ticket → indoor check-in; **parking: find → book and pay → plate entry → extend → find my car → exit with VAT receipt; CADC price change, event pricing, closure → bookings moved and owners notified; resident permit and first-hour discount** |
-| Untranslated text in English | 0 (2,215 dictionary entries + rule-based patterns) |
+| Untranslated text in English | 0 (2,366 dictionary entries + rule-based patterns) |
 | Conflicting translations | 0 (2 found and fixed: “Date/History”, “Completed/Full”) |
 | JavaScript errors / console errors | 0 |
 | Horizontal scroll or off-screen elements | 0 at every width |
@@ -21,6 +21,60 @@ Automated checks run in a headless Chromium browser across every page the accoun
 | Colour contrast (WCAG AA 4.5:1) | All text pairs pass in both themes (success and warning chips raised from 4.26 / 4.03 to 6.0 / 5.9) |
 | Page switch speed | All under 800 ms; largest page ≈ 580 DOM nodes |
 | 3D views | Rendered and checked with a local copy of the 3D library; first-frame crash fixed |
+
+## Upload to Balady, thirteenth pass (25 October 2026)
+
+New CADC tab **Upload to Balady**, tested end to end in Arabic and English (28 checks pass):
+- **File checks:**
+  - Photos: a valid sample image; a low-resolution photo warned; an unsupported file and an oversized file rejected.
+  - GeoJSON: valid; outside Riyadh rejected; partly outside warned; broken JSON rejected; empty file rejected.
+  - Others: KML valid; complete Shapefile ZIP accepted; incomplete ZIP rejected; PDF plan accepted.
+- **Sending:** blocked until a valid file, a title and rights confirmation are given; only valid files are sent; a reference number is issued.
+- **Status:** sent → review → published.
+  - Low-resolution photos are returned for changes with a reason, and the tab shows a badge.
+  - Edit and resend works; unpublishing removes the item from the app.
+- **In the app:**
+  - Published photos appear on the Masmak map card (opening full size) and in the 3D tour card.
+  - Published layers are drawn on the map and can be switched on or off.
+  - Uploads persist after a reload.
+- **Journey 4:** gains an "Uploads photos and maps to Balady" step, bringing the total to 61.
+
+Regression: all 61 journey steps; 299 action checks in Arabic and English; 82 add/update checks; 0 untranslated strings; 0 JavaScript errors; every account's pages open.
+
+## Review, twelfth pass (25 October 2026)
+
+- **3D performance:** the scenery is now merged by material. Draw calls per frame dropped from 952 to 46 outside and from 276 to 15 inside Masmak, so the tour runs smoothly on mid-range phones. The look is unchanged.
+- **Dark theme:** the 3D tour uses warm evening lighting under the night sky instead of midday light.
+- **Tickets:** tickets for past events can no longer be edited.
+- **Reload:** edits survive a page reload (renamed new car park, edited CADC event, no duplicate events).
+- **Navigation:** the 3D animation stops when you leave the tour, including when moving to the digital twin.
+- **Regression:** all 60 journey steps; 295 action checks in Arabic and English; 82 add/update checks; 0 untranslated strings; 0 JavaScript errors.
+
+## Add/update everywhere and 3D tour, eleventh pass (24 October 2026)
+
+**Add and update.** Each account added and then edited its items, and every other place that shows them was checked, including other accounts' screens: 82 checks pass in Arabic. The English run fails only checks that look for Arabic text on translated screens.
+- **CADC car park:** add, edit, edit a built-in one. Checked in: parking list, map, booking price, active booking, Home spaces, CADC booking count.
+- **CADC event:** add, book, edit, cancel. Checked in: calendar, ticket, account, notifications, booking removal.
+- **Facility event:** edit while pending, approve, book, change after approval, approve the change, then reject a second change. Checked in: calendar time, ticket holder notified, no duplicate.
+- **Ad:** edit when live, then re-approve. The visitor sees the new text.
+- **Job:** edit, then close. Checked for: resident view and applicant notifications.
+- **Resource:** add, edit, remove. Checked for: CADC view and removal.
+- **Resident:** feedback and proposal.
+- **Visitor:** booking size (seats left everywhere), tour reschedule (CADC list), car added (parking booking), review.
+- **3D description:** write, edit, reset.
+- **Partner:** request, then CADC contact.
+
+Fixed:
+- Calendar entries didn't refresh when an event changed after publishing; re-approved ad promotions created duplicate events.
+- Edits to newly added car parks didn't reach the parking list, map or bookings.
+- Missing edit actions were added: CADC edit/cancel event, owner edit of pending/approved events and live ads, job edit/close, resource edit/remove, ticket size change.
+
+**3D tour.** Rendered with WebGL on desktop and phone, in Arabic and English, and reviewed frame by frame.
+- **Outside, rebuilt:** sky, textured streets and buildings with windows, landmarks modelled individually, names on the model that you can tap (overlapping names hide), smooth camera flight, zoom buttons and pinch. The canvas is taller on phones.
+- **Inside Masmak, improved:** mud-plaster textures, wooden gate with the khokha, Najdi triangular vents, crenellated rooms and towers, hall names hidden by walls, “You are here” caption. The camera looks ahead along the route and stands on top of the watchtower.
+- The animation stops when you leave the page.
+
+Regression: all 60 journey steps; 295 action checks in Arabic and English; 0 untranslated strings; 0 JavaScript errors; every account's pages open.
 
 ## Full journey review, tenth pass (23 October 2026)
 
@@ -130,10 +184,33 @@ Still open: resident codes have no used/expiry state, event-promotion ads don't 
 - Side-panel text ended with a double full stop.
 - Dropdown values were saved in English when the UI was in English (fixed earlier; re-verified).
 
+## Pass 14: date, temperature, sharing, resident services
+
+- Date, time and Central Riyadh temperature bar added on web and phone, in Arabic and English.
+- Share sheet with 8 social networks; consent chip removed from Notifications & privacy.
+- Resident access now matches the visitor (16 sections each); city of residence selectable; permit limited to Central Riyadh addresses.
+- Regression: journeys 299/299 (AR and EN), 61 guided steps, add/update 82/82, Balady upload 28/28, role access clean, 0 untranslated strings.
+
+## Pass 15: business focus, donations, CADC supervision, Balady reviews
+
+- Business home rebuilt around the owner's events and ratings; event browsing, booking and tours removed; image, voice and video uploads; maximum attendees.
+- Donations from every visitor, resident and business account.
+- CADC supervision landing with live camera; booking removed from every CADC screen; parking tiles per car park by day; Balady ratings forwarded to owners.
+- Regression: journeys 300/300 (AR and EN), 61 guided steps, add/update 82/82, Balady upload 28/28, new checks 30/30, 0 untranslated strings.
+
+## Pass 16: journey review, CADC main tab, presenter removed, cross-account testing
+
+- Presenter account removed; guided journeys start from the sign-in screen and return to it.
+- Journeys reviewed: business-owner journey rewritten (dashboard, max attendees, attachments, visitor booking, Balady reviews and improvement plan); CADC journey starts with supervision and camera; parking and visitor steps updated (65 steps).
+- CADC main tab: no duplicate figures; supervision board, needs action, this week's indicators, event occupancy (bookings / max), feedback by category, tours, partnerships, proposals; closed venues listed in one line.
+- Cross-account test (add/update in one account, checked in the others): car park add/edit/close, business event create/approve/book/edit max, ad with video, donations from three accounts, Balady reviews and improvement plan, resident city, feedback lifecycle, CADC read-only — 49/49 in Arabic and English.
+- Regression: journeys 326/326 (AR and EN), 65 guided steps, add/update 82/82, Balady upload 28/28, new-feature checks 30/30, role access clean, 0 untranslated strings.
+
 ## Known limits (by design for a POC)
 
 - Login is a front-end demo gate; passwords are visible to anyone reading the code.
 - Data lives in each browser's local storage; cross-persona flows work on the same browser only.
 - Map and Masmak floor plan are illustrative; figures, names and reach estimates are sample data.
 - Push, SMS and email channels are simulated; in-app notifications are delivered to demo accounts.
+- Camera feeds are simulated; in operation they link to the venues' cameras.
 - The 3D library loads from cdnjs; if it is blocked, the page shows a notice instead of the model.
